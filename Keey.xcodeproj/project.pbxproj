@@ -1,0 +1,610 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6D0AEB641A8F117A00AFB84B /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */; };
+		6D0AEB681A8F189000AFB84B /* PanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AEB671A8F189000AFB84B /* PanelView.m */; };
+		6D35A9DF1A791A5300A38A58 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9DE1A791A5300A38A58 /* HeaderView.m */; };
+		6D35A9E31A792BC800A38A58 /* BodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E21A792BC800A38A58 /* BodyView.m */; };
+		6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E51A792F5F00A38A58 /* BodyContentView.m */; };
+		6D65E9941A8D00A200009CF3 /* Claps.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9931A8D00A200009CF3 /* Claps.m */; };
+		6D65E9971A8D00D700009CF3 /* Snares.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9961A8D00D700009CF3 /* Snares.m */; };
+		6D65E99A1A8D00EE00009CF3 /* HiHats.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9991A8D00EE00009CF3 /* HiHats.m */; };
+		6D65E9A01A8D11FF00009CF3 /* Piano.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E99F1A8D11FF00009CF3 /* Piano.m */; };
+		6DA78C0B1A8BC41B002FC88D /* PatternViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA78C0A1A8BC41B002FC88D /* PatternViewController.m */; };
+		6DA78C0E1A8BCF99002FC88D /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA78C0D1A8BCF99002FC88D /* PlaylistViewController.m */; };
+		6DA78C191A8BDBE8002FC88D /* PatternCollectionViewCTRL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA78C181A8BDBE8002FC88D /* PatternCollectionViewCTRL.m */; };
+		6DDE0DE71A78D0270087053D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE0DE61A78D0270087053D /* main.m */; };
+		6DDE0DEA1A78D0270087053D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE0DE91A78D0270087053D /* AppDelegate.m */; };
+		6DDE0DF21A78D0270087053D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DDE0DF11A78D0270087053D /* Images.xcassets */; };
+		6DDE0DF51A78D0270087053D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DDE0DF31A78D0270087053D /* LaunchScreen.xib */; };
+		6DDE0E011A78D0270087053D /* KeeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE0E001A78D0270087053D /* KeeyTests.m */; };
+		6DDE0E0C1A78D08D0087053D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE0E0B1A78D08D0087053D /* MainViewController.m */; };
+		6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0682B1A7D97C700F3D04B /* Drums.m */; };
+		6DE068311A7DA38A00F3D04B /* blackBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE068301A7DA38A00F3D04B /* blackBg.png */; };
+		6DE068351A7DA69400F3D04B /* kicks.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE068341A7DA69400F3D04B /* kicks.m */; };
+		6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */; };
+		6DEEEEE91A80FE4E008CF16F /* BubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEEEEE81A80FE4E008CF16F /* BubbleButton.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6DDE0DFB1A78D0270087053D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6DDE0DD91A78D0270087053D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DDE0DE01A78D0270087053D;
+			remoteInfo = Keey;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6D0AEB621A8F117A00AFB84B /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
+		6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
+		6D0AEB661A8F189000AFB84B /* PanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelView.h; sourceTree = "<group>"; };
+		6D0AEB671A8F189000AFB84B /* PanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelView.m; sourceTree = "<group>"; };
+		6D35A9DD1A791A5300A38A58 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		6D35A9DE1A791A5300A38A58 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		6D35A9E11A792BC800A38A58 /* BodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyView.h; sourceTree = "<group>"; };
+		6D35A9E21A792BC800A38A58 /* BodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyView.m; sourceTree = "<group>"; };
+		6D35A9E41A792F5F00A38A58 /* BodyContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyContentView.h; sourceTree = "<group>"; };
+		6D35A9E51A792F5F00A38A58 /* BodyContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyContentView.m; sourceTree = "<group>"; };
+		6D65E9921A8D00A200009CF3 /* Claps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Claps.h; sourceTree = "<group>"; };
+		6D65E9931A8D00A200009CF3 /* Claps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Claps.m; sourceTree = "<group>"; };
+		6D65E9951A8D00D700009CF3 /* Snares.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snares.h; sourceTree = "<group>"; };
+		6D65E9961A8D00D700009CF3 /* Snares.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Snares.m; sourceTree = "<group>"; };
+		6D65E9981A8D00EE00009CF3 /* HiHats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiHats.h; sourceTree = "<group>"; };
+		6D65E9991A8D00EE00009CF3 /* HiHats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiHats.m; sourceTree = "<group>"; };
+		6D65E99E1A8D11FF00009CF3 /* Piano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Piano.h; sourceTree = "<group>"; };
+		6D65E99F1A8D11FF00009CF3 /* Piano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Piano.m; sourceTree = "<group>"; };
+		6DA78C091A8BC41B002FC88D /* PatternViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternViewController.h; sourceTree = "<group>"; };
+		6DA78C0A1A8BC41B002FC88D /* PatternViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternViewController.m; sourceTree = "<group>"; };
+		6DA78C0C1A8BCF99002FC88D /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
+		6DA78C0D1A8BCF99002FC88D /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
+		6DA78C171A8BDBE8002FC88D /* PatternCollectionViewCTRL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternCollectionViewCTRL.h; sourceTree = "<group>"; };
+		6DA78C181A8BDBE8002FC88D /* PatternCollectionViewCTRL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternCollectionViewCTRL.m; sourceTree = "<group>"; };
+		6DDE0DE11A78D0270087053D /* Keey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DDE0DE51A78D0270087053D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DDE0DE61A78D0270087053D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6DDE0DE81A78D0270087053D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6DDE0DE91A78D0270087053D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6DDE0DF11A78D0270087053D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6DDE0DF41A78D0270087053D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		6DDE0DFA1A78D0270087053D /* KeeyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeeyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DDE0DFF1A78D0270087053D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DDE0E001A78D0270087053D /* KeeyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeeyTests.m; sourceTree = "<group>"; };
+		6DDE0E0A1A78D08D0087053D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		6DDE0E0B1A78D08D0087053D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		6DE0682A1A7D97C700F3D04B /* Drums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drums.h; sourceTree = "<group>"; };
+		6DE0682B1A7D97C700F3D04B /* Drums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Drums.m; sourceTree = "<group>"; };
+		6DE068301A7DA38A00F3D04B /* blackBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackBg.png; path = ../blackBg.png; sourceTree = "<group>"; };
+		6DE068331A7DA69400F3D04B /* kicks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kicks.h; sourceTree = "<group>"; };
+		6DE068341A7DA69400F3D04B /* kicks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kicks.m; sourceTree = "<group>"; };
+		6DE068361A7DA74600F3D04B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kick01.mp3; sourceTree = "<group>"; };
+		6DEEEEE71A80FE4E008CF16F /* BubbleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleButton.h; sourceTree = "<group>"; };
+		6DEEEEE81A80FE4E008CF16F /* BubbleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleButton.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6DDE0DDE1A78D0270087053D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DDE0DF71A78D0270087053D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6D0AEB651A8F186D00AFB84B /* Panel */ = {
+			isa = PBXGroup;
+			children = (
+				6D0AEB661A8F189000AFB84B /* PanelView.h */,
+				6D0AEB671A8F189000AFB84B /* PanelView.m */,
+			);
+			name = Panel;
+			sourceTree = "<group>";
+		};
+		6D35A9DC1A791A3000A38A58 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				6D35A9DD1A791A5300A38A58 /* HeaderView.h */,
+				6D35A9DE1A791A5300A38A58 /* HeaderView.m */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
+		6D35A9E01A792B8E00A38A58 /* Body */ = {
+			isa = PBXGroup;
+			children = (
+				6D35A9E11A792BC800A38A58 /* BodyView.h */,
+				6D35A9E21A792BC800A38A58 /* BodyView.m */,
+				6D35A9E41A792F5F00A38A58 /* BodyContentView.h */,
+				6D35A9E51A792F5F00A38A58 /* BodyContentView.m */,
+			);
+			name = Body;
+			sourceTree = "<group>";
+		};
+		6D65E9911A8D004300009CF3 /* Midi sound objects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Midi sound objects";
+			sourceTree = "<group>";
+		};
+		6DA78C081A8BC3E0002FC88D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6DA78C091A8BC41B002FC88D /* PatternViewController.h */,
+				6DA78C0A1A8BC41B002FC88D /* PatternViewController.m */,
+				6DA78C0C1A8BCF99002FC88D /* PlaylistViewController.h */,
+				6DA78C0D1A8BCF99002FC88D /* PlaylistViewController.m */,
+				6D0AEB621A8F117A00AFB84B /* DrawerViewController.h */,
+				6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6DA78C0F1A8BD51D002FC88D /* Collectionviews */ = {
+			isa = PBXGroup;
+			children = (
+				6DA78C171A8BDBE8002FC88D /* PatternCollectionViewCTRL.h */,
+				6DA78C181A8BDBE8002FC88D /* PatternCollectionViewCTRL.m */,
+			);
+			name = Collectionviews;
+			sourceTree = "<group>";
+		};
+		6DDE0DD81A78D0270087053D = {
+			isa = PBXGroup;
+			children = (
+				6DE068361A7DA74600F3D04B /* AudioToolbox.framework */,
+				6DDE0DE31A78D0270087053D /* Keey */,
+				6DDE0DFD1A78D0270087053D /* KeeyTests */,
+				6DDE0DE21A78D0270087053D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6DDE0DE21A78D0270087053D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DDE0DE11A78D0270087053D /* Keey.app */,
+				6DDE0DFA1A78D0270087053D /* KeeyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6DDE0DE31A78D0270087053D /* Keey */ = {
+			isa = PBXGroup;
+			children = (
+				6DA78C0F1A8BD51D002FC88D /* Collectionviews */,
+				6DA78C081A8BC3E0002FC88D /* Controllers */,
+				6DEEEEE61A80FDD5008CF16F /* Buttons */,
+				6DE2C7881A7FA88000FBE9D5 /* Views */,
+				6D65E9911A8D004300009CF3 /* Midi sound objects */,
+				6DE068321A7DA68100F3D04B /* Instrument Objects */,
+				6DE068291A7D966700F3D04B /* Sound Objects */,
+				6DDE0DF11A78D0270087053D /* Images.xcassets */,
+				6DDE0DF31A78D0270087053D /* LaunchScreen.xib */,
+				6DDE0DE81A78D0270087053D /* AppDelegate.h */,
+				6DDE0DE91A78D0270087053D /* AppDelegate.m */,
+				6DDE0E0A1A78D08D0087053D /* MainViewController.h */,
+				6DDE0E0B1A78D08D0087053D /* MainViewController.m */,
+				6D35A9E01A792B8E00A38A58 /* Body */,
+				6D35A9DC1A791A3000A38A58 /* Header */,
+				6DDE0DE41A78D0270087053D /* Supporting Files */,
+			);
+			path = Keey;
+			sourceTree = "<group>";
+		};
+		6DDE0DE41A78D0270087053D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */,
+				6DE068301A7DA38A00F3D04B /* blackBg.png */,
+				6DDE0DE51A78D0270087053D /* Info.plist */,
+				6DDE0DE61A78D0270087053D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6DDE0DFD1A78D0270087053D /* KeeyTests */ = {
+			isa = PBXGroup;
+			children = (
+				6DDE0E001A78D0270087053D /* KeeyTests.m */,
+				6DDE0DFE1A78D0270087053D /* Supporting Files */,
+			);
+			path = KeeyTests;
+			sourceTree = "<group>";
+		};
+		6DDE0DFE1A78D0270087053D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6DDE0DFF1A78D0270087053D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6DE068291A7D966700F3D04B /* Sound Objects */ = {
+			isa = PBXGroup;
+			children = (
+				6DE068331A7DA69400F3D04B /* kicks.h */,
+				6DE068341A7DA69400F3D04B /* kicks.m */,
+				6D65E9921A8D00A200009CF3 /* Claps.h */,
+				6D65E9931A8D00A200009CF3 /* Claps.m */,
+				6D65E9951A8D00D700009CF3 /* Snares.h */,
+				6D65E9961A8D00D700009CF3 /* Snares.m */,
+				6D65E9981A8D00EE00009CF3 /* HiHats.h */,
+				6D65E9991A8D00EE00009CF3 /* HiHats.m */,
+			);
+			name = "Sound Objects";
+			sourceTree = "<group>";
+		};
+		6DE068321A7DA68100F3D04B /* Instrument Objects */ = {
+			isa = PBXGroup;
+			children = (
+				6DE0682A1A7D97C700F3D04B /* Drums.h */,
+				6DE0682B1A7D97C700F3D04B /* Drums.m */,
+				6D65E99E1A8D11FF00009CF3 /* Piano.h */,
+				6D65E99F1A8D11FF00009CF3 /* Piano.m */,
+			);
+			name = "Instrument Objects";
+			sourceTree = "<group>";
+		};
+		6DE2C7881A7FA88000FBE9D5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6D0AEB651A8F186D00AFB84B /* Panel */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		6DEEEEE61A80FDD5008CF16F /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				6DEEEEE71A80FE4E008CF16F /* BubbleButton.h */,
+				6DEEEEE81A80FE4E008CF16F /* BubbleButton.m */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6DDE0DE01A78D0270087053D /* Keey */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DDE0E041A78D0270087053D /* Build configuration list for PBXNativeTarget "Keey" */;
+			buildPhases = (
+				6DDE0DDD1A78D0270087053D /* Sources */,
+				6DDE0DDE1A78D0270087053D /* Frameworks */,
+				6DDE0DDF1A78D0270087053D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Keey;
+			productName = Keey;
+			productReference = 6DDE0DE11A78D0270087053D /* Keey.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6DDE0DF91A78D0270087053D /* KeeyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DDE0E071A78D0270087053D /* Build configuration list for PBXNativeTarget "KeeyTests" */;
+			buildPhases = (
+				6DDE0DF61A78D0270087053D /* Sources */,
+				6DDE0DF71A78D0270087053D /* Frameworks */,
+				6DDE0DF81A78D0270087053D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DDE0DFC1A78D0270087053D /* PBXTargetDependency */,
+			);
+			name = KeeyTests;
+			productName = KeeyTests;
+			productReference = 6DDE0DFA1A78D0270087053D /* KeeyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6DDE0DD91A78D0270087053D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = SweetKeyNotes;
+				TargetAttributes = {
+					6DDE0DE01A78D0270087053D = {
+						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 43KBXGLJU2;
+					};
+					6DDE0DF91A78D0270087053D = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 6DDE0DE01A78D0270087053D;
+					};
+				};
+			};
+			buildConfigurationList = 6DDE0DDC1A78D0270087053D /* Build configuration list for PBXProject "Keey" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6DDE0DD81A78D0270087053D;
+			productRefGroup = 6DDE0DE21A78D0270087053D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6DDE0DE01A78D0270087053D /* Keey */,
+				6DDE0DF91A78D0270087053D /* KeeyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6DDE0DDF1A78D0270087053D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DDE0DF51A78D0270087053D /* LaunchScreen.xib in Resources */,
+				6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */,
+				6DDE0DF21A78D0270087053D /* Images.xcassets in Resources */,
+				6DE068311A7DA38A00F3D04B /* blackBg.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DDE0DF81A78D0270087053D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6DDE0DDD1A78D0270087053D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DE068351A7DA69400F3D04B /* kicks.m in Sources */,
+				6D35A9DF1A791A5300A38A58 /* HeaderView.m in Sources */,
+				6D65E9971A8D00D700009CF3 /* Snares.m in Sources */,
+				6D35A9E31A792BC800A38A58 /* BodyView.m in Sources */,
+				6DA78C0E1A8BCF99002FC88D /* PlaylistViewController.m in Sources */,
+				6D0AEB681A8F189000AFB84B /* PanelView.m in Sources */,
+				6DA78C191A8BDBE8002FC88D /* PatternCollectionViewCTRL.m in Sources */,
+				6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */,
+				6DDE0DEA1A78D0270087053D /* AppDelegate.m in Sources */,
+				6D65E99A1A8D00EE00009CF3 /* HiHats.m in Sources */,
+				6DA78C0B1A8BC41B002FC88D /* PatternViewController.m in Sources */,
+				6D65E9A01A8D11FF00009CF3 /* Piano.m in Sources */,
+				6D0AEB641A8F117A00AFB84B /* DrawerViewController.m in Sources */,
+				6DEEEEE91A80FE4E008CF16F /* BubbleButton.m in Sources */,
+				6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */,
+				6DDE0E0C1A78D08D0087053D /* MainViewController.m in Sources */,
+				6D65E9941A8D00A200009CF3 /* Claps.m in Sources */,
+				6DDE0DE71A78D0270087053D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DDE0DF61A78D0270087053D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DDE0E011A78D0270087053D /* KeeyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6DDE0DFC1A78D0270087053D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6DDE0DE01A78D0270087053D /* Keey */;
+			targetProxy = 6DDE0DFB1A78D0270087053D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6DDE0DF31A78D0270087053D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DDE0DF41A78D0270087053D /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6DDE0E021A78D0270087053D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		6DDE0E031A78D0270087053D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6DDE0E051A78D0270087053D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Keey/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		6DDE0E061A78D0270087053D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Keey/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		6DDE0E081A78D0270087053D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KeeyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Keey.app/Keey";
+			};
+			name = Debug;
+		};
+		6DDE0E091A78D0270087053D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KeeyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Keey.app/Keey";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6DDE0DDC1A78D0270087053D /* Build configuration list for PBXProject "Keey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DDE0E021A78D0270087053D /* Debug */,
+				6DDE0E031A78D0270087053D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DDE0E041A78D0270087053D /* Build configuration list for PBXNativeTarget "Keey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DDE0E051A78D0270087053D /* Debug */,
+				6DDE0E061A78D0270087053D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DDE0E071A78D0270087053D /* Build configuration list for PBXNativeTarget "KeeyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DDE0E081A78D0270087053D /* Debug */,
+				6DDE0E091A78D0270087053D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6DDE0DD91A78D0270087053D /* Project object */;
+}
