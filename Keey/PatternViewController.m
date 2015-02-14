@@ -31,9 +31,6 @@
     _addInstrumentBtn.backgroundColor = [UIColor blackColor];
     [self.view addSubview:_addInstrumentBtn];
     
-    _drawerViewController = [[DrawerViewController alloc] init];
-    [self displayDrawerController:_drawerViewController];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,22 +40,39 @@
 
 - (void) displayContentController: (UICollectionViewController *) content;
 {
+    
     [self addChildViewController:content];
     content.view.frame = CGRectMake(0, ([self window_height]/6), [self window_width], 200);
     [self.view addSubview: content.view];
     [content didMoveToParentViewController:self];
+    
 }
 
 - (void) displayDrawerController: (UIViewController*) content;
 {
+    content.view.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:0];
+
     [self addChildViewController:content];
     content.view.frame = CGRectMake(0, 0, [self window_width], [self window_height]);
     [self.view addSubview: content.view];
     [content didMoveToParentViewController:self];
+
+    [UIView animateKeyframesWithDuration:0.5
+                                   delay:0
+                                 options:UIViewKeyframeAnimationOptionBeginFromCurrentState
+                              animations:^{
+                                  content.view.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:0.8];
+
+                              }
+                              completion:^(BOOL finished) {
+                                  // block fires when animaiton has finished
+                              }];
 }
 
 - (void) addInstrument {
-    [_patternCollectionCTRL addPatternInstrument:(NSObject *)@"drums"];
+    _drawerViewController = [[DrawerViewController alloc] init];
+    [self displayDrawerController:_drawerViewController];
+    //[_patternCollectionCTRL addPatternInstrument:(NSObject *)@"drums"];
 }
 
 - (CGFloat) window_height {

@@ -17,9 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.view.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:0.8];
-    
+        
     _panelView = [[PanelView alloc] initWithFrame:CGRectMake(0, [self window_height], [self window_width], 350)];
     [_panelView displayViewWithTitle:@"Add an Instrument"];
     [self.view addSubview:_panelView];
@@ -31,8 +29,8 @@
 }
 
 - (void) animateDrawerIn {
-    [UIView animateKeyframesWithDuration:1
-                                   delay:0.0
+    [UIView animateKeyframesWithDuration:0.5
+                                   delay:0.5
                                  options:UIViewKeyframeAnimationOptionBeginFromCurrentState
                               animations:^{
                                   CGRect originalFrame = _panelView.frame;
