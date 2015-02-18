@@ -28,21 +28,21 @@
     _addInstrumentBtn = [[BubbleButton alloc] initWithFrame:CGRectMake([self window_width]/2-50, 400, 100, 100)];
     [_addInstrumentBtn addTarget:self action:@selector(addInstrument) forControlEvents:UIControlEventTouchUpInside];
     [_addInstrumentBtn setSize:@"medium"];
-    _addInstrumentBtn.backgroundColor = [UIColor blackColor];
+    _addInstrumentBtn.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
     [self.view addSubview:_addInstrumentBtn];
+    
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) DrawerViewControllerDelegateMethod: (DrawerViewController *) sender {
+    [self hideViewController:_drawerViewController];
 }
 
 - (void) displayContentController: (UICollectionViewController *) content;
 {
     
     [self addChildViewController:content];
-    content.view.frame = CGRectMake(0, ([self window_height]/6), [self window_width], 200);
+    content.view.frame = CGRectMake(20, ([self window_height]/6), [self window_width]-20, 300);
     [self.view addSubview: content.view];
     [content didMoveToParentViewController:self];
     
@@ -57,7 +57,7 @@
     [self.view addSubview: content.view];
     [content didMoveToParentViewController:self];
 
-    [UIView animateKeyframesWithDuration:0.5
+    [UIView animateKeyframesWithDuration:0.4
                                    delay:0
                                  options:UIViewKeyframeAnimationOptionBeginFromCurrentState
                               animations:^{
@@ -69,9 +69,56 @@
                               }];
 }
 
+- (void) hideViewController: (UIViewController*) content
+{
+    [content willMoveToParentViewController:nil];  // 1
+    [content.view removeFromSuperview];            // 2
+    [content removeFromParentViewController];      // 3
+}
+
+- (void) createDrawerInstruments {
+    
+    InstrumentButton *drumBtn = [[InstrumentButton alloc] init];
+    [drumBtn addTarget:self action:@selector(addInstrumentToPatternScrollView:) forControlEvents:UIControlEventTouchUpInside];
+    [drumBtn ofType:InstrumentalTypeDrums ofSize:SmallSize];
+
+    InstrumentButton *pianoBtn = [[InstrumentButton alloc] init];
+    [pianoBtn addTarget:self action:@selector(addInstrumentToPatternScrollView:) forControlEvents:UIControlEventTouchUpInside];
+    [pianoBtn ofType:InstrumentalTypePiano ofSize:SmallSize];
+
+    InstrumentButton *trumpetBtn = [[InstrumentButton alloc] init];
+    [trumpetBtn addTarget:self action:@selector(addInstrumentToPatternScrollView:) forControlEvents:UIControlEventTouchUpInside];
+    [trumpetBtn ofType:InstrumentalTypeTrumpet ofSize:SmallSize];
+    
+    InstrumentButton *brassBtn = [[InstrumentButton alloc] init];
+    [brassBtn addTarget:self action:@selector(addInstrumentToPatternScrollView:) forControlEvents:UIControlEventTouchUpInside];
+    [brassBtn ofType:InstrumentalTypeBrass ofSize:SmallSize];
+    
+    _instrumentFactory = [[NSArray alloc] initWithObjects:drumBtn,pianoBtn,trumpetBtn,brassBtn, nil];
+    
+    [_drawerViewController displayDrawerElements:_instrumentFactory];
+
+
+}
+
+
+- (void) addInstrumentToPatternScrollView : (InstrumentButton *) sender {
+    
+    [_patternCollectionCTRL addPatternInstrument:sender];
+}
+
+- (void) OverLayDidTap: (UITapGestureRecognizer*) sender {
+    [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
+}
+
 - (void) addInstrument {
+    
     _drawerViewController = [[DrawerViewController alloc] init];
+    [_drawerViewController setDelegate:self];
     [self displayDrawerController:_drawerViewController];
+    
+    [self createDrawerInstruments];
+
     //[_patternCollectionCTRL addPatternInstrument:(NSObject *)@"drums"];
 }
 

@@ -10,6 +10,7 @@
 #import "BubbleButton.h"
 #import "Drums.h"
 #import "Piano.h"
+#import "InstrumentButton.h"
 
 @interface PatternCollectionViewCTRL : UICollectionViewController
 
@@ -25,6 +26,6 @@ typedef NS_ENUM (NSInteger, InstumentType) {
 @property Drums *drums;
 @property Piano *piano;
 
-- (void) addPatternInstrument:(NSObject *) instrument;
+- (void) addPatternInstrument:(UIButton *) instrument;
 
 @end

@@ -13,33 +13,48 @@
 @end
 
 @implementation DrawerViewController
+@synthesize delegate; //synthesise  MyClassDelegate delegate
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-        
-    _panelView = [[PanelView alloc] initWithFrame:CGRectMake(0, [self window_height], [self window_width], 350)];
+    
+    _panelView = [[PanelView alloc] initWithFrame:CGRectMake(0, [self window_height], [self window_width], 400)];
     [_panelView displayViewWithTitle:@"Add an Instrument"];
     [self.view addSubview:_panelView];
     
     [self animateDrawerIn];
     
+    UITapGestureRecognizer *tapRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OverLayDidTap:)];
     
+    tapRecog.numberOfTapsRequired = 1;
+    
+    [self.view addGestureRecognizer:tapRecog];
     
 }
 
 - (void) animateDrawerIn {
-    [UIView animateKeyframesWithDuration:0.5
-                                   delay:0.5
+    [UIView animateKeyframesWithDuration:0.4
+                                   delay:0.4
                                  options:UIViewKeyframeAnimationOptionBeginFromCurrentState
                               animations:^{
                                   CGRect originalFrame = _panelView.frame;
-                                  originalFrame.origin.y = 300;
+                                  originalFrame.origin.y = 250;
                                   _panelView.frame = originalFrame;
                               }
                               completion:^(BOOL finished) {
-                                  // block fires when animaiton has finished
+                                  
                               }];
+}
+
+- (void) OverLayDidTap:(UITapGestureRecognizer*)sender {
+    //this will call the method implemented in your other class
+    [self.delegate DrawerViewControllerDelegateMethod:self];
+}
+
+- (void) displayDrawerElements: ( NSArray *) elements {
+
+    [_panelView displayContent: elements];
+    
 }
 
 - (CGFloat) window_height {

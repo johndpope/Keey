@@ -19,7 +19,7 @@
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
-    self.view.backgroundColor = [UIColor colorWithRed:0.204 green:0.22 blue:0.22 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:0.204 green:0.22 blue:0.22 alpha:2];
     
     _segControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Pattern", @"Playlist", nil]];
     _segControl.frame = CGRectMake(400, 50, 200, 50);
@@ -29,7 +29,7 @@
                     action:@selector(HandleSegCtrlClick:)
           forControlEvents:UIControlEventValueChanged];
     
-    [self.view addSubview:_segControl];
+    //[self.view addSubview:_segControl];
     
     _patternViewCTRL = [[PatternViewController alloc] init];
     _playlistViewCTRL = [[PlaylistViewController alloc] init];

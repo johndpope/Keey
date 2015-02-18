@@ -8,13 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "PatternCollectionViewCTRL.h"
+#import "InstrumentButton.h"
 #import "BubbleButton.h"
 #import "DrawerViewController.h"
 
-@interface PatternViewController : UIViewController
+@interface PatternViewController : UIViewController <DrawerViewControllerDelegate> {
+    
+}
 
 @property PatternCollectionViewCTRL *patternCollectionCTRL;
 @property BubbleButton *addInstrumentBtn;
 @property DrawerViewController *drawerViewController;
+@property NSArray *instrumentFactory;
+@property InstrumentButton *instrumentButton;
+
 
 @end

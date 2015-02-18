@@ -19,21 +19,27 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.collectionView setShowsHorizontalScrollIndicator:NO];
+    [self.collectionView setShowsVerticalScrollIndicator:NO];
+    
     [self.collectionView setDataSource:self];
     [self.collectionView setDelegate:self];
     
     self.collectionView.backgroundColor = [UIColor colorWithRed:0.204 green:0.22 blue:0.22 alpha:1];
 
-    _instrumentButton = [[BubbleButton alloc] init];
-    [_instrumentButton setSize:@"medium"];
-
-    // Initialising sound objects
-    _drums = [[Drums alloc] init];
+    InstrumentButton *drumins = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [drumins ofType:InstrumentalTypeDrums ofSize:BigSize];
     
-    _piano = [[Piano alloc] init];
-    //_piano = InstumentTypePiano;
+    InstrumentButton *pianoins = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [pianoins ofType:InstrumentalTypePiano ofSize:BigSize];
     
-    _patternInstruments =[[NSMutableArray alloc] initWithObjects:_drums,_piano, nil];
+    InstrumentButton *trumpetins = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [trumpetins ofType:InstrumentalTypeTrumpet ofSize:BigSize];
+    
+    InstrumentButton *brassins = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [brassins ofType:InstrumentalTypeBrass ofSize:BigSize];
+    
+    _patternInstruments =[[NSMutableArray alloc] initWithObjects:drumins,pianoins,trumpetins,brassins, nil];
     
     
     // Uncomment the following line to preserve selection between presentations
@@ -76,26 +82,16 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    /*
-    _instrumentButton = [[BubbleButton alloc] initWithFrame:CGRectMake(100, 0, 200, 200)];
+    [cell.contentView addSubview:[_patternInstruments objectAtIndex:[indexPath row]]];
     
-    if ([[_patternInstruments objectAtIndex:[indexPath row]] isKindOfClass:[Drums class]]) {
-        
-        _instrumentButton.backgroundColor = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:1];
-        [_instrumentButton setLabelTitle:@"Drums"];
-        
-    } else if ([[_patternInstruments objectAtIndex:[indexPath row]] isKindOfClass:[Piano class]]) {
-        
-        _instrumentButton.backgroundColor = [UIColor colorWithRed:0.996 green:0.82 blue:0 alpha:1];
-        [_instrumentButton setLabelTitle:@"Piano"];
-        
-    }
-    
-    [_instrumentButton setSize:@"medium"];
-    [cell addSubview:_instrumentButton];
-    */
+    //cell.contentView.backgroundColor = [UIColor greenColor];
     
     return cell;
+}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return CGSizeMake(190, 150);
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -129,8 +125,34 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 */
 
-- (void) addPatternInstrument:(NSObject *) instrument {
-    [_patternInstruments addObject:instrument];
+- (void) addPatternInstrument:(InstrumentButton *) sender {
+    
+    InstrumentButton *instrument = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+
+    switch (sender.instrumentType) {
+            
+        case InstrumentalTypeDrums:
+            [instrument ofType:InstrumentalTypeDrums ofSize:BigSize];
+            break;
+            
+        case InstrumentalTypePiano:
+            [instrument ofType:InstrumentalTypePiano ofSize:BigSize];
+            break;
+            
+        case InstrumentalTypeTrumpet:
+            [instrument ofType:InstrumentalTypeTrumpet ofSize:BigSize];
+            break;
+            
+        case InstrumentalTypeBrass:
+            [instrument ofType:InstrumentalTypeBrass ofSize:BigSize];
+            break;
+            
+        default:
+            break;
+            
+    }
+    
+    [_patternInstruments addObject: instrument];
     [self.collectionView reloadData];
 }
 

@@ -12,6 +12,8 @@
 		6D35A9DF1A791A5300A38A58 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9DE1A791A5300A38A58 /* HeaderView.m */; };
 		6D35A9E31A792BC800A38A58 /* BodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E21A792BC800A38A58 /* BodyView.m */; };
 		6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E51A792F5F00A38A58 /* BodyContentView.m */; };
+		6D618B4B1A94E87800CC3CDC /* InstrumentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D618B4A1A94E87800CC3CDC /* InstrumentButton.m */; };
+		6D618B4D1A954ADD00CC3CDC /* drumicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B4C1A954ADD00CC3CDC /* drumicon.png */; };
 		6D65E9941A8D00A200009CF3 /* Claps.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9931A8D00A200009CF3 /* Claps.m */; };
 		6D65E9971A8D00D700009CF3 /* Snares.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9961A8D00D700009CF3 /* Snares.m */; };
 		6D65E99A1A8D00EE00009CF3 /* HiHats.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9991A8D00EE00009CF3 /* HiHats.m */; };
@@ -26,7 +28,6 @@
 		6DDE0E011A78D0270087053D /* KeeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE0E001A78D0270087053D /* KeeyTests.m */; };
 		6DDE0E0C1A78D08D0087053D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE0E0B1A78D08D0087053D /* MainViewController.m */; };
 		6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0682B1A7D97C700F3D04B /* Drums.m */; };
-		6DE068311A7DA38A00F3D04B /* blackBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE068301A7DA38A00F3D04B /* blackBg.png */; };
 		6DE068351A7DA69400F3D04B /* kicks.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE068341A7DA69400F3D04B /* kicks.m */; };
 		6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */; };
 		6DEEEEE91A80FE4E008CF16F /* BubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEEEEE81A80FE4E008CF16F /* BubbleButton.m */; };
@@ -53,6 +54,9 @@
 		6D35A9E21A792BC800A38A58 /* BodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyView.m; sourceTree = "<group>"; };
 		6D35A9E41A792F5F00A38A58 /* BodyContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyContentView.h; sourceTree = "<group>"; };
 		6D35A9E51A792F5F00A38A58 /* BodyContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyContentView.m; sourceTree = "<group>"; };
+		6D618B491A94E87800CC3CDC /* InstrumentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentButton.h; sourceTree = "<group>"; };
+		6D618B4A1A94E87800CC3CDC /* InstrumentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentButton.m; sourceTree = "<group>"; };
+		6D618B4C1A954ADD00CC3CDC /* drumicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drumicon.png; sourceTree = "<group>"; };
 		6D65E9921A8D00A200009CF3 /* Claps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Claps.h; sourceTree = "<group>"; };
 		6D65E9931A8D00A200009CF3 /* Claps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Claps.m; sourceTree = "<group>"; };
 		6D65E9951A8D00D700009CF3 /* Snares.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snares.h; sourceTree = "<group>"; };
@@ -81,7 +85,6 @@
 		6DDE0E0B1A78D08D0087053D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		6DE0682A1A7D97C700F3D04B /* Drums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drums.h; sourceTree = "<group>"; };
 		6DE0682B1A7D97C700F3D04B /* Drums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Drums.m; sourceTree = "<group>"; };
-		6DE068301A7DA38A00F3D04B /* blackBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackBg.png; path = ../blackBg.png; sourceTree = "<group>"; };
 		6DE068331A7DA69400F3D04B /* kicks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kicks.h; sourceTree = "<group>"; };
 		6DE068341A7DA69400F3D04B /* kicks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kicks.m; sourceTree = "<group>"; };
 		6DE068361A7DA74600F3D04B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -147,10 +150,10 @@
 		6DA78C081A8BC3E0002FC88D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6DA78C091A8BC41B002FC88D /* PatternViewController.h */,
-				6DA78C0A1A8BC41B002FC88D /* PatternViewController.m */,
 				6DA78C0C1A8BCF99002FC88D /* PlaylistViewController.h */,
 				6DA78C0D1A8BCF99002FC88D /* PlaylistViewController.m */,
+				6DA78C091A8BC41B002FC88D /* PatternViewController.h */,
+				6DA78C0A1A8BC41B002FC88D /* PatternViewController.m */,
 				6D0AEB621A8F117A00AFB84B /* DrawerViewController.h */,
 				6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */,
 			);
@@ -211,8 +214,8 @@
 		6DDE0DE41A78D0270087053D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6D618B4C1A954ADD00CC3CDC /* drumicon.png */,
 				6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */,
-				6DE068301A7DA38A00F3D04B /* blackBg.png */,
 				6DDE0DE51A78D0270087053D /* Info.plist */,
 				6DDE0DE61A78D0270087053D /* main.m */,
 			);
@@ -275,6 +278,8 @@
 			children = (
 				6DEEEEE71A80FE4E008CF16F /* BubbleButton.h */,
 				6DEEEEE81A80FE4E008CF16F /* BubbleButton.m */,
+				6D618B491A94E87800CC3CDC /* InstrumentButton.h */,
+				6D618B4A1A94E87800CC3CDC /* InstrumentButton.m */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -360,10 +365,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D618B4D1A954ADD00CC3CDC /* drumicon.png in Resources */,
 				6DDE0DF51A78D0270087053D /* LaunchScreen.xib in Resources */,
 				6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */,
 				6DDE0DF21A78D0270087053D /* Images.xcassets in Resources */,
-				6DE068311A7DA38A00F3D04B /* blackBg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +403,7 @@
 				6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */,
 				6DDE0E0C1A78D08D0087053D /* MainViewController.m in Sources */,
 				6D65E9941A8D00A200009CF3 /* Claps.m in Sources */,
+				6D618B4B1A94E87800CC3CDC /* InstrumentButton.m in Sources */,
 				6DDE0DE71A78D0270087053D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

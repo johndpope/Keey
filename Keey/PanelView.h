@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BubbleButton.h"
+#import "InstrumentButton.h"
 
 @interface PanelView : UIView
 
 @property UIView *panelHeader;
+@property UIView *panelContent;
 
 - (void) displayViewWithTitle: (NSString *)title;
+- (void) displayContent: (NSArray *) instruments;
 
 @end

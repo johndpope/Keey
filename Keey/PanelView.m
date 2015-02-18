@@ -27,12 +27,27 @@
     [self addSubview:_panelHeader];
     
     UILabel *panelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [self window_width], 60)];
-    panelTitle.text = @"Add an Instrument";
+    panelTitle.textColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
+    panelTitle.font = [UIFont fontWithName:@"Avenir-Heavy" size:18];
     panelTitle.textAlignment = NSTextAlignmentCenter;
-    panelTitle.textColor = [UIColor whiteColor];
-    panelTitle.font = [UIFont systemFontOfSize:15];
-    panelTitle.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:15];
+    panelTitle.text = @"Add an Instrument";
     [_panelHeader addSubview: panelTitle];
+}
+
+- (void) displayContent: (NSArray *) instruments {
+    
+    _panelContent = [[UIView alloc] initWithFrame:CGRectMake(20, _panelHeader.frame.size.height +30, [self window_width]-40, 300)];
+    NSLog(@"%f", [self window_width]);
+    [self addSubview:_panelContent];
+
+    int spaceIncrement = 40;
+    
+    for (InstrumentButton *button in instruments) {
+        [button setFrame:CGRectMake(spaceIncrement, 0, button.frame.size.width, button.frame.size.height)];
+        spaceIncrement +=256;
+        [_panelContent addSubview:button];
+    }
+    
 }
 
 
