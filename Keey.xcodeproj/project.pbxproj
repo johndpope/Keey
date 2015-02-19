@@ -14,6 +14,12 @@
 		6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E51A792F5F00A38A58 /* BodyContentView.m */; };
 		6D618B4B1A94E87800CC3CDC /* InstrumentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D618B4A1A94E87800CC3CDC /* InstrumentButton.m */; };
 		6D618B4D1A954ADD00CC3CDC /* drumicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B4C1A954ADD00CC3CDC /* drumicon.png */; };
+		6D618B511A95507200CC3CDC /* guitaricon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B4E1A95507200CC3CDC /* guitaricon.png */; };
+		6D618B521A95507200CC3CDC /* pianoicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B4F1A95507200CC3CDC /* pianoicon.png */; };
+		6D618B531A95507200CC3CDC /* trumpeticon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B501A95507200CC3CDC /* trumpeticon.png */; };
+		6D618B591A958C3E00CC3CDC /* fluteicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B561A958C3E00CC3CDC /* fluteicon.png */; };
+		6D618B5A1A958C3E00CC3CDC /* synthicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B571A958C3E00CC3CDC /* synthicon.png */; };
+		6D618B5B1A958C3E00CC3CDC /* voxicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B581A958C3E00CC3CDC /* voxicon.png */; };
 		6D65E9941A8D00A200009CF3 /* Claps.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9931A8D00A200009CF3 /* Claps.m */; };
 		6D65E9971A8D00D700009CF3 /* Snares.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9961A8D00D700009CF3 /* Snares.m */; };
 		6D65E99A1A8D00EE00009CF3 /* HiHats.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9991A8D00EE00009CF3 /* HiHats.m */; };
@@ -57,6 +63,12 @@
 		6D618B491A94E87800CC3CDC /* InstrumentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentButton.h; sourceTree = "<group>"; };
 		6D618B4A1A94E87800CC3CDC /* InstrumentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentButton.m; sourceTree = "<group>"; };
 		6D618B4C1A954ADD00CC3CDC /* drumicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drumicon.png; sourceTree = "<group>"; };
+		6D618B4E1A95507200CC3CDC /* guitaricon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guitaricon.png; sourceTree = "<group>"; };
+		6D618B4F1A95507200CC3CDC /* pianoicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pianoicon.png; sourceTree = "<group>"; };
+		6D618B501A95507200CC3CDC /* trumpeticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trumpeticon.png; sourceTree = "<group>"; };
+		6D618B561A958C3E00CC3CDC /* fluteicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fluteicon.png; sourceTree = "<group>"; };
+		6D618B571A958C3E00CC3CDC /* synthicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = synthicon.png; sourceTree = "<group>"; };
+		6D618B581A958C3E00CC3CDC /* voxicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = voxicon.png; sourceTree = "<group>"; };
 		6D65E9921A8D00A200009CF3 /* Claps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Claps.h; sourceTree = "<group>"; };
 		6D65E9931A8D00A200009CF3 /* Claps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Claps.m; sourceTree = "<group>"; };
 		6D65E9951A8D00D700009CF3 /* Snares.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snares.h; sourceTree = "<group>"; };
@@ -140,6 +152,28 @@
 			name = Body;
 			sourceTree = "<group>";
 		};
+		6D618B541A95507400CC3CDC /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				6D618B561A958C3E00CC3CDC /* fluteicon.png */,
+				6D618B571A958C3E00CC3CDC /* synthicon.png */,
+				6D618B581A958C3E00CC3CDC /* voxicon.png */,
+				6D618B4E1A95507200CC3CDC /* guitaricon.png */,
+				6D618B4F1A95507200CC3CDC /* pianoicon.png */,
+				6D618B501A95507200CC3CDC /* trumpeticon.png */,
+				6D618B4C1A954ADD00CC3CDC /* drumicon.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
+		6D618B551A95508500CC3CDC /* mp3 */ = {
+			isa = PBXGroup;
+			children = (
+				6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */,
+			);
+			name = mp3;
+			sourceTree = "<group>";
+		};
 		6D65E9911A8D004300009CF3 /* Midi sound objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,8 +248,8 @@
 		6DDE0DE41A78D0270087053D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6D618B4C1A954ADD00CC3CDC /* drumicon.png */,
-				6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */,
+				6D618B551A95508500CC3CDC /* mp3 */,
+				6D618B541A95507400CC3CDC /* icons */,
 				6DDE0DE51A78D0270087053D /* Info.plist */,
 				6DDE0DE61A78D0270087053D /* main.m */,
 			);
@@ -365,10 +399,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D618B511A95507200CC3CDC /* guitaricon.png in Resources */,
+				6D618B591A958C3E00CC3CDC /* fluteicon.png in Resources */,
+				6D618B5B1A958C3E00CC3CDC /* voxicon.png in Resources */,
 				6D618B4D1A954ADD00CC3CDC /* drumicon.png in Resources */,
+				6D618B521A95507200CC3CDC /* pianoicon.png in Resources */,
 				6DDE0DF51A78D0270087053D /* LaunchScreen.xib in Resources */,
 				6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */,
 				6DDE0DF21A78D0270087053D /* Images.xcassets in Resources */,
+				6D618B5A1A958C3E00CC3CDC /* synthicon.png in Resources */,
+				6D618B531A95507200CC3CDC /* trumpeticon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

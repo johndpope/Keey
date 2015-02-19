@@ -27,19 +27,43 @@
         case InstrumentalTypePiano:
             self.backgroundColor = [UIColor colorWithRed:0.392 green:0.439 blue:0.525 alpha:1];
             [self setTitle:@"Piano" forState:UIControlStateNormal];
+            imageView.image = [UIImage imageNamed:@"pianoicon.png"];
             _instrumentType = InstrumentalTypePiano;
             break;
             
         case InstrumentalTypeTrumpet:
             self.backgroundColor = [UIColor colorWithRed:0.494 green:0.827 blue:0.129 alpha:1];
             [self setTitle:@"Trumpet" forState:UIControlStateNormal];
+            imageView.image = [UIImage imageNamed:@"trumpeticon.png"];
             _instrumentType = InstrumentalTypeTrumpet;
             break;
             
-        case InstrumentalTypeBrass:
+        case InstrumentalTypeGuitar:
             self.backgroundColor = [UIColor colorWithRed:0.314 green:0.89 blue:0.761 alpha:1];
             [self setTitle:@"Brass" forState:UIControlStateNormal];
-            _instrumentType = InstrumentalTypeBrass;
+            imageView.image = [UIImage imageNamed:@"guitaricon.png"];
+            _instrumentType = InstrumentalTypeGuitar;
+            break;
+        
+        case InstrumentalTypeFlute:
+            self.backgroundColor = [UIColor colorWithRed:0.157 green:0.753 blue:0.482 alpha:1];
+            [self setTitle:@"Flute" forState:UIControlStateNormal];
+            imageView.image = [UIImage imageNamed:@"fluteicon.png"];
+            _instrumentType = InstrumentalTypeFlute;
+            break;
+
+        case InstrumentalTypeSynth:
+            self.backgroundColor = [UIColor colorWithRed:0.973 green:0.431 blue:0.529 alpha:1];
+            [self setTitle:@"Synth" forState:UIControlStateNormal];
+            imageView.image = [UIImage imageNamed:@"synthicon.png"];
+            _instrumentType = InstrumentalTypeSynth;
+            break;
+        
+        case InstrumentalTypeVox:
+            self.backgroundColor = [UIColor colorWithRed:0.29 green:0.565 blue:0.886 alpha:1];
+            [self setTitle:@"Vox fx" forState:UIControlStateNormal];
+            imageView.image = [UIImage imageNamed:@"voxicon.png"];
+            _instrumentType = InstrumentalTypeVox;
             break;
             
         default:
@@ -52,16 +76,16 @@
             newFrame.size.width = 150;
             newFrame.size.height = 150;
             [self setFrame:newFrame];
-            [self setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 0, 0)];
-            [imageView setFrame:CGRectMake(self.frame.size.width/2-20, 35, 40, 40)];
+            [self setTitleEdgeInsets:UIEdgeInsetsMake(25, 0, 0, 0)];
+            [imageView setFrame:CGRectMake(self.frame.size.width/2-15, 40, 30, 30)];
             break;
         
         case SmallSize:
             newFrame.size.width = 120;
             newFrame.size.height = 120;
             [self setFrame:newFrame];
-            [self setTitleEdgeInsets:UIEdgeInsetsMake(35, 0, 0, 0)];
-            [imageView setFrame:CGRectMake(self.frame.size.width/2-20, 30, 40, 40)];
+            [self setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 0, 0)];
+            [imageView setFrame:CGRectMake(self.frame.size.width/2-12.5, 30, 25, 25)];
             break;
             
         default:

@@ -41,11 +41,21 @@
     [self addSubview:_panelContent];
 
     int spaceIncrement = 40;
+    int count = 0;
+    int spacey = 0;
     
     for (InstrumentButton *button in instruments) {
-        [button setFrame:CGRectMake(spaceIncrement, 0, button.frame.size.width, button.frame.size.height)];
-        spaceIncrement +=256;
+        
+        [button setFrame:CGRectMake(spaceIncrement, spacey, button.frame.size.width, button.frame.size.height)];
+        spaceIncrement += 256;
+        
+        if (([instruments count] - count) % 4 == 0 && count !=0){
+            spacey = 150;
+            spaceIncrement = 160;
+        }
+        
         [_panelContent addSubview:button];
+        count++;
     }
     
 }

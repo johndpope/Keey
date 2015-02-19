@@ -14,7 +14,10 @@ typedef enum InstrumentalType : NSUInteger {
     InstrumentalTypeDrums,
     InstrumentalTypePiano,
     InstrumentalTypeTrumpet,
-    InstrumentalTypeBrass
+    InstrumentalTypeGuitar,
+    InstrumentalTypeFlute,
+    InstrumentalTypeSynth,
+    InstrumentalTypeVox
     
 } InstrumentalType;
 

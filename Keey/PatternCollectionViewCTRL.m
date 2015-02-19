@@ -36,10 +36,10 @@ static NSString * const reuseIdentifier = @"Cell";
     InstrumentButton *trumpetins = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [trumpetins ofType:InstrumentalTypeTrumpet ofSize:BigSize];
     
-    InstrumentButton *brassins = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    [brassins ofType:InstrumentalTypeBrass ofSize:BigSize];
+    InstrumentButton *guitarinns = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [guitarinns ofType:InstrumentalTypeGuitar ofSize:BigSize];
     
-    _patternInstruments =[[NSMutableArray alloc] initWithObjects:drumins,pianoins,trumpetins,brassins, nil];
+    _patternInstruments =[[NSMutableArray alloc] initWithObjects:drumins,pianoins,trumpetins,guitarinns, nil];
     
     
     // Uncomment the following line to preserve selection between presentations
@@ -143,8 +143,20 @@ static NSString * const reuseIdentifier = @"Cell";
             [instrument ofType:InstrumentalTypeTrumpet ofSize:BigSize];
             break;
             
-        case InstrumentalTypeBrass:
-            [instrument ofType:InstrumentalTypeBrass ofSize:BigSize];
+        case InstrumentalTypeGuitar:
+            [instrument ofType:InstrumentalTypeGuitar ofSize:BigSize];
+            break;
+            
+        case InstrumentalTypeFlute:
+            [instrument ofType:InstrumentalTypeFlute ofSize:BigSize];
+            break;
+            
+        case InstrumentalTypeSynth:
+            [instrument ofType:InstrumentalTypeSynth ofSize:BigSize];
+            break;
+            
+        case InstrumentalTypeVox:
+            [instrument ofType:InstrumentalTypeVox ofSize:BigSize];
             break;
             
         default:

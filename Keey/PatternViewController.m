@@ -50,6 +50,7 @@
 
 - (void) displayDrawerController: (UIViewController*) content;
 {
+    
     content.view.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:0];
 
     [self addChildViewController:content];
@@ -90,11 +91,23 @@
     [trumpetBtn addTarget:self action:@selector(addInstrumentToPatternScrollView:) forControlEvents:UIControlEventTouchUpInside];
     [trumpetBtn ofType:InstrumentalTypeTrumpet ofSize:SmallSize];
     
-    InstrumentButton *brassBtn = [[InstrumentButton alloc] init];
-    [brassBtn addTarget:self action:@selector(addInstrumentToPatternScrollView:) forControlEvents:UIControlEventTouchUpInside];
-    [brassBtn ofType:InstrumentalTypeBrass ofSize:SmallSize];
+    InstrumentButton *guitarBtn = [[InstrumentButton alloc] init];
+    [guitarBtn addTarget:self action:@selector(addInstrumentToPatternScrollView:) forControlEvents:UIControlEventTouchUpInside];
+    [guitarBtn ofType:InstrumentalTypeGuitar ofSize:SmallSize];
     
-    _instrumentFactory = [[NSArray alloc] initWithObjects:drumBtn,pianoBtn,trumpetBtn,brassBtn, nil];
+    InstrumentButton *fluteBtn = [[InstrumentButton alloc] init];
+    [fluteBtn addTarget:self action:@selector(addInstrumentToPatternScrollView:) forControlEvents:UIControlEventTouchUpInside];
+    [fluteBtn ofType:InstrumentalTypeFlute ofSize:SmallSize];
+    
+    InstrumentButton *synthBtn = [[InstrumentButton alloc] init];
+    [synthBtn addTarget:self action:@selector(addInstrumentToPatternScrollView:) forControlEvents:UIControlEventTouchUpInside];
+    [synthBtn ofType:InstrumentalTypeSynth ofSize:SmallSize];
+    
+    InstrumentButton *voxBtn = [[InstrumentButton alloc] init];
+    [voxBtn addTarget:self action:@selector(addInstrumentToPatternScrollView:) forControlEvents:UIControlEventTouchUpInside];
+    [voxBtn ofType:InstrumentalTypeVox ofSize:SmallSize];
+    
+    _instrumentFactory = [[NSArray alloc] initWithObjects:drumBtn,pianoBtn,trumpetBtn,guitarBtn,fluteBtn,synthBtn,voxBtn, nil];
     
     [_drawerViewController displayDrawerElements:_instrumentFactory];
 
