@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 SweetKeyNotes. All rights reserved.
 //
 
+#define SCREEN_WIDTH (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_HEIGHT (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
+
 #import "DrawerViewController.h"
 
 @interface DrawerViewController ()
@@ -58,11 +61,11 @@
 }
 
 - (CGFloat) window_height {
-    return [UIScreen mainScreen].applicationFrame.size.height;
+    return SCREEN_HEIGHT;
 }
 
 - (CGFloat) window_width {
-    return [UIScreen mainScreen].applicationFrame.size.width;
+    return SCREEN_WIDTH;
 }
 
 /*

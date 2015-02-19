@@ -22,4 +22,6 @@
 @property BodyContentView *contentView;
 @property UISegmentedControl *segControl;
 
+@property UIView *selectedView;
+
 @end

@@ -40,7 +40,7 @@
             
         case InstrumentalTypeGuitar:
             self.backgroundColor = [UIColor colorWithRed:0.314 green:0.89 blue:0.761 alpha:1];
-            [self setTitle:@"Brass" forState:UIControlStateNormal];
+            [self setTitle:@"Guitar" forState:UIControlStateNormal];
             imageView.image = [UIImage imageNamed:@"guitaricon.png"];
             _instrumentType = InstrumentalTypeGuitar;
             break;
@@ -77,7 +77,7 @@
             newFrame.size.height = 150;
             [self setFrame:newFrame];
             [self setTitleEdgeInsets:UIEdgeInsetsMake(25, 0, 0, 0)];
-            [imageView setFrame:CGRectMake(self.frame.size.width/2-15, 40, 30, 30)];
+            [imageView setFrame:CGRectMake(self.frame.size.width/2-15, 40, 25, 35)];
             break;
         
         case SmallSize:
@@ -94,6 +94,7 @@
     
     // General Button Properties
     [self addSubview:imageView];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:18];
     self.layer.cornerRadius = self.frame.size.height/2;
 }

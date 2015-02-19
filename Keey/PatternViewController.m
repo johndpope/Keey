@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 SweetKeyNotes. All rights reserved.
 //
 
+#define SCREEN_WIDTH (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_HEIGHT (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
+
 #import "PatternViewController.h"
 
 @interface PatternViewController ()
@@ -14,7 +17,7 @@
 
 @implementation PatternViewController
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
         
@@ -29,6 +32,11 @@
     [_addInstrumentBtn addTarget:self action:@selector(addInstrument) forControlEvents:UIControlEventTouchUpInside];
     [_addInstrumentBtn setSize:@"medium"];
     _addInstrumentBtn.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(_addInstrumentBtn.frame.size.width/2-15, _addInstrumentBtn.frame.size.height/2-15, 30, 30)];
+    imageView.image = [UIImage imageNamed:@"addicon.png"];
+    [_addInstrumentBtn addSubview:imageView];
+    
     [self.view addSubview:_addInstrumentBtn];
     
     
@@ -38,8 +46,7 @@
     [self hideViewController:_drawerViewController];
 }
 
-- (void) displayContentController: (UICollectionViewController *) content;
-{
+- (void) displayContentController: (UICollectionViewController *) content {
     
     [self addChildViewController:content];
     content.view.frame = CGRectMake(20, ([self window_height]/6), [self window_width]-20, 300);
@@ -48,8 +55,7 @@
     
 }
 
-- (void) displayDrawerController: (UIViewController*) content;
-{
+- (void) displayDrawerController: (UIViewController*) content {
     
     content.view.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:0];
 
@@ -70,8 +76,7 @@
                               }];
 }
 
-- (void) hideViewController: (UIViewController*) content
-{
+- (void) hideViewController: (UIViewController*) content {
     [content willMoveToParentViewController:nil];  // 1
     [content.view removeFromSuperview];            // 2
     [content removeFromParentViewController];      // 3
@@ -114,7 +119,6 @@
 
 }
 
-
 - (void) addInstrumentToPatternScrollView : (InstrumentButton *) sender {
     
     [_patternCollectionCTRL addPatternInstrument:sender];
@@ -136,21 +140,12 @@
 }
 
 - (CGFloat) window_height {
-    return [UIScreen mainScreen].applicationFrame.size.height;
+    return SCREEN_HEIGHT;
 }
 
 - (CGFloat) window_width {
-    return [UIScreen mainScreen].applicationFrame.size.width;
+    return SCREEN_WIDTH;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

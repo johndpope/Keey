@@ -6,17 +6,11 @@
 //  Copyright (c) 2015 SweetKeyNotes. All rights reserved.
 //
 
+#define SCREEN_WIDTH (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_HEIGHT (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
 #import "PanelView.h"
 
 @implementation PanelView
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 - (void) displayViewWithTitle: (NSString *)title {
     
@@ -37,7 +31,6 @@
 - (void) displayContent: (NSArray *) instruments {
     
     _panelContent = [[UIView alloc] initWithFrame:CGRectMake(20, _panelHeader.frame.size.height +30, [self window_width]-40, 300)];
-    NSLog(@"%f", [self window_width]);
     [self addSubview:_panelContent];
 
     int spaceIncrement = 40;
@@ -60,13 +53,12 @@
     
 }
 
-
 - (CGFloat) window_height {
-    return [UIScreen mainScreen].applicationFrame.size.height;
+    return SCREEN_HEIGHT;
 }
 
 - (CGFloat) window_width {
-    return [UIScreen mainScreen].applicationFrame.size.width;
+    return SCREEN_WIDTH;
 }
 
 @end

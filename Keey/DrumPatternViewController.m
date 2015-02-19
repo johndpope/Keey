@@ -1,23 +1,22 @@
 //
-//  PlaylistViewController.m
+//  DrumPatternViewController.m
 //  Keey
 //
-//  Created by Ipalibo Whyte on 11/02/2015.
+//  Created by Ipalibo Whyte on 19/02/2015.
 //  Copyright (c) 2015 SweetKeyNotes. All rights reserved.
 //
 
-#import "PlaylistViewController.h"
+#import "DrumPatternViewController.h"
 
-@interface PlaylistViewController ()
+@interface DrumPatternViewController ()
 
 @end
 
-@implementation PlaylistViewController
+@implementation DrumPatternViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithRed:0.133 green:0.192 blue:0.247 alpha:1];
 }
 
 - (void)didReceiveMemoryWarning {
