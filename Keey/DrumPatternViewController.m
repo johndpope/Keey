@@ -28,10 +28,18 @@ static NSString * const reuseIdentifier = @"Cell";
     
     _drums = [[Drums alloc] init];
     
+    
+    _soundRepresentation = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < 8; i++){
+        [_soundRepresentation addObject:[NSNumber numberWithInt:0]];
+    }
+    
     UICollectionViewFlowLayout *myLayout = [[UICollectionViewFlowLayout alloc]init];
     [myLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [myLayout setMinimumInteritemSpacing:30];
     [myLayout setMinimumLineSpacing:0];
+    
     
     patternerCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(125, 300, [self window_width]-250, 100) collectionViewLayout:myLayout];
     
@@ -42,6 +50,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
     [self.view addSubview:patternerCollectionView];
     
+    [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(methodB:) userInfo:nil repeats:YES];
+
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -56,15 +66,22 @@ static NSString * const reuseIdentifier = @"Cell";
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    cell.contentView.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
-    cell.contentView.layer.cornerRadius = cell.contentView.frame.size.height/2;
-    
+    if ([_soundRepresentation objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:0]){
+        
+        cell.contentView.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
+        cell.contentView.layer.cornerRadius = cell.contentView.frame.size.height/2;
+        
+    } else if ([_soundRepresentation objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:1]){
+        cell.contentView.backgroundColor = [UIColor colorWithRed:0.961 green:0.651 blue:0.137 alpha:1];
+        cell.contentView.layer.cornerRadius = cell.contentView.frame.size.height/2;
+    }
+
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize retval = CGSizeMake(60, 60);
-    return retval;
+    
+    return CGSizeMake(60, 60);
 }
 
 - (UIEdgeInsets)collectionView:
@@ -72,27 +89,52 @@ static NSString * const reuseIdentifier = @"Cell";
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
-/*
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *touchedCell =[collectionView cellForItemAtIndexPath:indexPath];
-    
-    touchedCell.contentView.backgroundColor = [UIColor colorWithRed:0.961 green:0.651 blue:0.137 alpha:1];
-    
-}*/
+    if ([_soundRepresentation objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:0]) {
 
+        [_soundRepresentation replaceObjectAtIndex:[indexPath row] withObject:[NSNumber numberWithInt:1]];
+        
+    } else if ([_soundRepresentation objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:1]) {
+
+        [_soundRepresentation replaceObjectAtIndex:[indexPath row] withObject:[NSNumber numberWithInt:0]];
+        
+    }
+    //NSLog(@"%@", _soundRepresentation);
+
+    [collectionView reloadData];
+
+}
+
+
+/*
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell *touchedCell =[collectionView cellForItemAtIndexPath:indexPath];
-    
+ 
     if (![touchedCell isSelected]) {
+        //[touchedCell setFrame:CGRectMake(0, 0, 80, 80)];
+        //touchedCell.contentView.layer.cornerRadius = 40;
+        touchedCell.contentView.layer.borderColor = [[UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:0.6] CGColor];
+        touchedCell.contentView.layer.borderWidth = 8;
         touchedCell.contentView.backgroundColor = [UIColor colorWithRed:0.961 green:0.651 blue:0.137 alpha:1];
+        [patternerCollectionView selectItemAtIndexPath:indexPath animated:nil scrollPosition:UICollectionViewScrollPositionNone];
+
         return true;
     } else {
+        NSLog(@"should deselect");
         [patternerCollectionView deselectItemAtIndexPath:indexPath animated:nil];
         touchedCell.contentView.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
         return false;
     }
+}
+ */
+
+- (void) methodB:(NSTimer *)timer
+{
+    //[_drums playKick];
+    [_drums playSnare];
 }
 
 - (CGFloat) window_height {

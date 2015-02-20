@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		6D0AEB641A8F117A00AFB84B /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */; };
 		6D0AEB681A8F189000AFB84B /* PanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AEB671A8F189000AFB84B /* PanelView.m */; };
+		6D2EC4CE1A97EC5900712D44 /* Clap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CA1A97EC5900712D44 /* Clap.wav */; };
+		6D2EC4CF1A97EC5900712D44 /* HiHat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CB1A97EC5900712D44 /* HiHat.wav */; };
+		6D2EC4D01A97EC5900712D44 /* Kick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CC1A97EC5900712D44 /* Kick.wav */; };
+		6D2EC4D11A97EC5900712D44 /* Snare.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CD1A97EC5900712D44 /* Snare.wav */; };
 		6D35A9DF1A791A5300A38A58 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9DE1A791A5300A38A58 /* HeaderView.m */; };
 		6D35A9E31A792BC800A38A58 /* BodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E21A792BC800A38A58 /* BodyView.m */; };
 		6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E51A792F5F00A38A58 /* BodyContentView.m */; };
@@ -58,6 +62,10 @@
 		6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
 		6D0AEB661A8F189000AFB84B /* PanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelView.h; sourceTree = "<group>"; };
 		6D0AEB671A8F189000AFB84B /* PanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelView.m; sourceTree = "<group>"; };
+		6D2EC4CA1A97EC5900712D44 /* Clap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Clap.wav; sourceTree = "<group>"; };
+		6D2EC4CB1A97EC5900712D44 /* HiHat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HiHat.wav; sourceTree = "<group>"; };
+		6D2EC4CC1A97EC5900712D44 /* Kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Kick.wav; sourceTree = "<group>"; };
+		6D2EC4CD1A97EC5900712D44 /* Snare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Snare.wav; sourceTree = "<group>"; };
 		6D35A9DD1A791A5300A38A58 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		6D35A9DE1A791A5300A38A58 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		6D35A9E11A792BC800A38A58 /* BodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyView.h; sourceTree = "<group>"; };
@@ -141,6 +149,17 @@
 				6D0AEB671A8F189000AFB84B /* PanelView.m */,
 			);
 			name = Panel;
+			sourceTree = "<group>";
+		};
+		6D2EC4C91A97EC5000712D44 /* wav */ = {
+			isa = PBXGroup;
+			children = (
+				6D2EC4CA1A97EC5900712D44 /* Clap.wav */,
+				6D2EC4CB1A97EC5900712D44 /* HiHat.wav */,
+				6D2EC4CC1A97EC5900712D44 /* Kick.wav */,
+				6D2EC4CD1A97EC5900712D44 /* Snare.wav */,
+			);
+			name = wav;
 			sourceTree = "<group>";
 		};
 		6D35A9DC1A791A3000A38A58 /* Header */ = {
@@ -282,6 +301,7 @@
 		6DDE0DE41A78D0270087053D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6D2EC4C91A97EC5000712D44 /* wav */,
 				6D618B551A95508500CC3CDC /* mp3 */,
 				6D618B541A95507400CC3CDC /* icons */,
 				6DDE0DE51A78D0270087053D /* Info.plist */,
@@ -437,11 +457,15 @@
 				6D618B591A958C3E00CC3CDC /* fluteicon.png in Resources */,
 				6D618B5B1A958C3E00CC3CDC /* voxicon.png in Resources */,
 				6D618B4D1A954ADD00CC3CDC /* drumicon.png in Resources */,
+				6D2EC4D01A97EC5900712D44 /* Kick.wav in Resources */,
+				6D2EC4D11A97EC5900712D44 /* Snare.wav in Resources */,
+				6D2EC4CE1A97EC5900712D44 /* Clap.wav in Resources */,
 				6D618B521A95507200CC3CDC /* pianoicon.png in Resources */,
 				6D618B5D1A9650C400CC3CDC /* addicon.png in Resources */,
 				6DDE0DF51A78D0270087053D /* LaunchScreen.xib in Resources */,
 				6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */,
 				6DDE0DF21A78D0270087053D /* Images.xcassets in Resources */,
+				6D2EC4CF1A97EC5900712D44 /* HiHat.wav in Resources */,
 				6D618B5A1A958C3E00CC3CDC /* synthicon.png in Resources */,
 				6D618B531A95507200CC3CDC /* trumpeticon.png in Resources */,
 			);

@@ -12,7 +12,7 @@
 
 -(instancetype)init{
     
-    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"kick01" ofType:@"mp3"];
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Clap" ofType:@"wav"];
     AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath: soundPath]), &_soundID);
     
     return self;

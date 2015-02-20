@@ -13,5 +13,6 @@
 @interface DrumPatternViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property Drums *drums;
+@property NSMutableArray *soundRepresentation;
 
 @end
