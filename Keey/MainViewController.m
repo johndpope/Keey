@@ -32,33 +32,10 @@
                     action:@selector(HandleSegCtrlClick:)
           forControlEvents:UIControlEventValueChanged];
     
-    UIView *cusSegControl = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 55)];
-    cusSegControl.center = CGPointMake([self window_width]/2, 70.0);
-    cusSegControl.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
-    cusSegControl.layer.cornerRadius = 27.5;
-    [self.view addSubview:cusSegControl];
-    
-    _selectedView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 125, 45)];
-    _selectedView.backgroundColor = [UIColor colorWithRed:0 green:0.875 blue:0.988 alpha:1];
-    _selectedView.layer.cornerRadius = 22.5;
-    [cusSegControl addSubview:_selectedView];
-
-    UIButton *first = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 135, 45)];
-    [first addTarget:self action:@selector(HandleSegCtrlClick:) forControlEvents:UIControlEventTouchUpInside];
-    first.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:16];
-    [first setTitle:@"pattern" forState:UIControlStateNormal];
-    [first setTag:0];
-    [cusSegControl addSubview:first];
-    
-    UIButton *second = [[UIButton alloc] initWithFrame:CGRectMake(135, 5, 135, 45)];
-    [second addTarget:self action:@selector(HandleSegCtrlClick:) forControlEvents:UIControlEventTouchUpInside];
-    second.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:16];
-    [second setTitle:@"playlist" forState:UIControlStateNormal];
-    [second setTag:1];
-    [cusSegControl addSubview:second];
-    
     //[self.view addSubview:_segControl];
     
+    [self displayCustomSegmentedControl];
+
     _patternViewCTRL = [[PatternViewController alloc] init];
     _playlistViewCTRL = [[PlaylistViewController alloc] init];
     
@@ -78,6 +55,48 @@
     
 }
 
+- (void) displayContentController: (UIViewController*) content {
+    
+    [self addChildViewController:content];
+    content.view.frame = CGRectMake(0, 120, [self window_width], [self window_height]);
+    [self.view addSubview: content.view];
+    [content didMoveToParentViewController:self];
+}
+
+- (void) hideContentController: (UIViewController*) content {
+    [content willMoveToParentViewController:nil];  // 1
+    [content.view removeFromSuperview];            // 2
+    [content removeFromParentViewController];      // 3
+}
+
+- (void) displayCustomSegmentedControl {
+    
+    UIView *cusSegControl = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 55)];
+    cusSegControl.center = CGPointMake([self window_width]/2, 70.0);
+    cusSegControl.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
+    cusSegControl.layer.cornerRadius = 27.5;
+    [self.view addSubview:cusSegControl];
+    
+    _selectedView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 125, 45)];
+    _selectedView.backgroundColor = [UIColor colorWithRed:0 green:0.875 blue:0.988 alpha:1];
+    _selectedView.layer.cornerRadius = 22.5;
+    [cusSegControl addSubview:_selectedView];
+    
+    UIButton *first = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 135, 45)];
+    [first addTarget:self action:@selector(HandleSegCtrlClick:) forControlEvents:UIControlEventTouchUpInside];
+    first.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:16];
+    [first setTitle:@"pattern" forState:UIControlStateNormal];
+    [first setTag:0];
+    [cusSegControl addSubview:first];
+    
+    UIButton *second = [[UIButton alloc] initWithFrame:CGRectMake(135, 5, 135, 45)];
+    [second addTarget:self action:@selector(HandleSegCtrlClick:) forControlEvents:UIControlEventTouchUpInside];
+    second.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:16];
+    [second setTitle:@"playlist" forState:UIControlStateNormal];
+    [second setTag:1];
+    [cusSegControl addSubview:second];
+}
+
 - (void) HandleSegCtrlClick: (id) sender {
     
     switch ([sender tag]) {
@@ -94,20 +113,6 @@
         default:
             break;
     }
-}
-
-- (void) displayContentController: (UIViewController*) content {
-    
-    [self addChildViewController:content];
-    content.view.frame = CGRectMake(0, 120, [self window_width], [self window_height]);
-    [self.view addSubview: content.view];
-    [content didMoveToParentViewController:self];
-}
-
-- (void) hideContentController: (UIViewController*) content {
-    [content willMoveToParentViewController:nil];  // 1
-    [content.view removeFromSuperview];            // 2
-    [content removeFromParentViewController];      // 3
 }
 
 - (void) moveSelected {

@@ -12,6 +12,8 @@
 		6D35A9DF1A791A5300A38A58 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9DE1A791A5300A38A58 /* HeaderView.m */; };
 		6D35A9E31A792BC800A38A58 /* BodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E21A792BC800A38A58 /* BodyView.m */; };
 		6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E51A792F5F00A38A58 /* BodyContentView.m */; };
+		6D4CBDD91A96BBEA00E74817 /* MidiPatternViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4CBDD81A96BBEA00E74817 /* MidiPatternViewController.m */; };
+		6D4CBDDD1A96ECE900E74817 /* SelectableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4CBDDC1A96ECE900E74817 /* SelectableViewCell.m */; };
 		6D618B4B1A94E87800CC3CDC /* InstrumentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D618B4A1A94E87800CC3CDC /* InstrumentButton.m */; };
 		6D618B4D1A954ADD00CC3CDC /* drumicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B4C1A954ADD00CC3CDC /* drumicon.png */; };
 		6D618B511A95507200CC3CDC /* guitaricon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B4E1A95507200CC3CDC /* guitaricon.png */; };
@@ -62,6 +64,10 @@
 		6D35A9E21A792BC800A38A58 /* BodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyView.m; sourceTree = "<group>"; };
 		6D35A9E41A792F5F00A38A58 /* BodyContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyContentView.h; sourceTree = "<group>"; };
 		6D35A9E51A792F5F00A38A58 /* BodyContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyContentView.m; sourceTree = "<group>"; };
+		6D4CBDD71A96BBEA00E74817 /* MidiPatternViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiPatternViewController.h; sourceTree = "<group>"; };
+		6D4CBDD81A96BBEA00E74817 /* MidiPatternViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidiPatternViewController.m; sourceTree = "<group>"; };
+		6D4CBDDB1A96ECE900E74817 /* SelectableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableViewCell.h; sourceTree = "<group>"; };
+		6D4CBDDC1A96ECE900E74817 /* SelectableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableViewCell.m; sourceTree = "<group>"; };
 		6D618B491A94E87800CC3CDC /* InstrumentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentButton.h; sourceTree = "<group>"; };
 		6D618B4A1A94E87800CC3CDC /* InstrumentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentButton.m; sourceTree = "<group>"; };
 		6D618B4C1A954ADD00CC3CDC /* drumicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drumicon.png; sourceTree = "<group>"; };
@@ -157,6 +163,15 @@
 			name = Body;
 			sourceTree = "<group>";
 		};
+		6D4CBDDA1A96EBE800E74817 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				6D4CBDDB1A96ECE900E74817 /* SelectableViewCell.h */,
+				6D4CBDDC1A96ECE900E74817 /* SelectableViewCell.m */,
+			);
+			name = CustomCell;
+			sourceTree = "<group>";
+		};
 		6D618B541A95507400CC3CDC /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,8 +205,11 @@
 		6D9014E31A968F5800B59B67 /* InstrumentCTRL */ = {
 			isa = PBXGroup;
 			children = (
+				6D4CBDDA1A96EBE800E74817 /* CustomCell */,
 				6D9014E41A968F9C00B59B67 /* DrumPatternViewController.h */,
 				6D9014E51A968F9C00B59B67 /* DrumPatternViewController.m */,
+				6D4CBDD71A96BBEA00E74817 /* MidiPatternViewController.h */,
+				6D4CBDD81A96BBEA00E74817 /* MidiPatternViewController.m */,
 			);
 			name = InstrumentCTRL;
 			sourceTree = "<group>";
@@ -457,6 +475,8 @@
 				6D9014E61A968F9C00B59B67 /* DrumPatternViewController.m in Sources */,
 				6D65E9A01A8D11FF00009CF3 /* Piano.m in Sources */,
 				6D0AEB641A8F117A00AFB84B /* DrawerViewController.m in Sources */,
+				6D4CBDDD1A96ECE900E74817 /* SelectableViewCell.m in Sources */,
+				6D4CBDD91A96BBEA00E74817 /* MidiPatternViewController.m in Sources */,
 				6DEEEEE91A80FE4E008CF16F /* BubbleButton.m in Sources */,
 				6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */,
 				6DDE0E0C1A78D08D0087053D /* MainViewController.m in Sources */,

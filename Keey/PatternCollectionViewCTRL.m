@@ -27,21 +27,22 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.collectionView.backgroundColor = [UIColor colorWithRed:0.204 green:0.22 blue:0.22 alpha:1];
 
-    InstrumentButton *drumins = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    InstrumentButton *drumins = [[InstrumentButton alloc] init];
     [drumins ofType:InstrumentalTypeDrums ofSize:BigSize];
     
-    InstrumentButton *pianoins = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    InstrumentButton *pianoins = [[InstrumentButton alloc] init];
     [pianoins ofType:InstrumentalTypePiano ofSize:BigSize];
     
-    InstrumentButton *trumpetins = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    InstrumentButton *trumpetins = [[InstrumentButton alloc] init];
     [trumpetins ofType:InstrumentalTypeTrumpet ofSize:BigSize];
     
-    InstrumentButton *guitarinns = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    InstrumentButton *guitarinns = [[InstrumentButton alloc] init];
     [guitarinns ofType:InstrumentalTypeGuitar ofSize:BigSize];
     
-    _patternInstruments =[[NSMutableArray alloc] initWithObjects:drumins,pianoins,trumpetins,guitarinns, nil];
-    //_patternInstruments =[[NSMutableArray alloc] init];
+    //_patternInstruments =[[NSMutableArray alloc] initWithObjects:drumins,pianoins,trumpetins,guitarinns, nil];
+    _patternInstruments =[[NSMutableArray alloc] init];
     
+    _currentPatterns = [[NSMutableArray alloc] init];
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -50,6 +51,12 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     // Do any additional setup after loading the view.
+    
+    [self addPatternInstrument:drumins];
+    [self addPatternInstrument:pianoins];
+    [self addPatternInstrument:trumpetins];
+    [self addPatternInstrument:guitarinns];
+
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -78,35 +85,49 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void) addPatternInstrument:(InstrumentButton *) sender {
     
     InstrumentButton *instrument = [[InstrumentButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-
+    
     switch (sender.instrumentType) {
             
         case InstrumentalTypeDrums:
             [instrument ofType:InstrumentalTypeDrums ofSize:BigSize];
+            _DrumPatternerCTRL = [[DrumPatternViewController alloc] init];
+            [_currentPatterns addObject:_DrumPatternerCTRL];
             break;
             
         case InstrumentalTypePiano:
             [instrument ofType:InstrumentalTypePiano ofSize:BigSize];
+            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
+            [_currentPatterns addObject:_MidiPatternerCTRL];
             break;
             
         case InstrumentalTypeTrumpet:
             [instrument ofType:InstrumentalTypeTrumpet ofSize:BigSize];
+            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
+            [_currentPatterns addObject:_MidiPatternerCTRL];
             break;
             
         case InstrumentalTypeGuitar:
             [instrument ofType:InstrumentalTypeGuitar ofSize:BigSize];
+            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
+            [_currentPatterns addObject:_MidiPatternerCTRL];
             break;
             
         case InstrumentalTypeFlute:
             [instrument ofType:InstrumentalTypeFlute ofSize:BigSize];
+            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
+            [_currentPatterns addObject:_MidiPatternerCTRL];
             break;
             
         case InstrumentalTypeSynth:
             [instrument ofType:InstrumentalTypeSynth ofSize:BigSize];
+            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
+            [_currentPatterns addObject:_MidiPatternerCTRL];
             break;
             
         case InstrumentalTypeVox:
             [instrument ofType:InstrumentalTypeVox ofSize:BigSize];
+            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
+            [_currentPatterns addObject:_MidiPatternerCTRL];
             break;
             
         default:
@@ -114,13 +135,16 @@ static NSString * const reuseIdentifier = @"Cell";
             
     }
     
+    
     [_patternInstruments addObject: instrument];
+
     [self.collectionView reloadData];
 }
 
 - (void) handleInstrumentClick: sender {
-    UIViewController *myViewCTRL = [[UIViewController alloc] init];
-    [self.navigationController presentViewController:myViewCTRL animated:YES completion:nil];
+    
+    [self.navigationController presentViewController:[_currentPatterns objectAtIndex:[sender tag]] animated:YES completion:nil];
+        
     //NSLog(@"touched by %@", sender);
 }
 

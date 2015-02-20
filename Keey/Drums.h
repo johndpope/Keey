@@ -21,4 +21,9 @@
 @property Snares *snareSound;
 @property HiHats *HiHats;
 
+- (void) playKick;
+- (void) playClap;
+- (void) playSnare;
+- (void) playHats;
+
 @end

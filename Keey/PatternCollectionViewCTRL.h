@@ -11,6 +11,8 @@
 #import "Drums.h"
 #import "Piano.h"
 #import "InstrumentButton.h"
+#import "DrumPatternViewController.h"
+#import "MidiPatternViewController.h"
 
 @interface PatternCollectionViewCTRL : UICollectionViewController
 
@@ -20,11 +22,16 @@ typedef NS_ENUM (NSInteger, InstumentType) {
     InstumentTypeTrumpets,
 };
 
-
-@property BubbleButton *instrumentButton;
+@property NSMutableArray *currentPatterns;
 @property NSMutableArray *patternInstruments;
+
+@property DrumPatternViewController *DrumPatternerCTRL;
+@property MidiPatternViewController *MidiPatternerCTRL;
+
 @property Drums *drums;
 @property Piano *piano;
+@property BubbleButton *instrumentButton;
+
 
 - (void) addPatternInstrument:(UIButton *) instrument;
 

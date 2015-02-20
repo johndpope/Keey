@@ -16,9 +16,24 @@
     _snareSound = [[Snares alloc] init];
     _clapSound = [[Claps alloc] init];
     _HiHats = [[HiHats alloc] init];
-    [_patternItems initWithObjects:_kickSound,_snareSound,_clapSound,_HiHats, nil];
     
     return self;
+}
+
+- (void) playKick {
+    [_kickSound playSound];
+}
+
+- (void) playClap {
+    [_clapSound playSound];
+}
+
+- (void) playSnare {
+    [_snareSound playSound];
+}
+
+- (void) playHats {
+    [_HiHats playSound];
 }
 
 @end

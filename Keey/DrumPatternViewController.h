@@ -6,8 +6,12 @@
 //  Copyright (c) 2015 SweetKeyNotes. All rights reserved.
 //
 
+#import "SelectableViewCell.h"
 #import <UIKit/UIKit.h>
+#import "Drums.h"
 
-@interface DrumPatternViewController : UIViewController
+@interface DrumPatternViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+
+@property Drums *drums;
 
 @end
