@@ -11,7 +11,7 @@
 #import "Drums.h"
 #import "Piano.h"
 #import "InstrumentButton.h"
-#import "DrumPatternViewController.h"
+#import "DrumStepSequencerViewController.h"
 #import "MidiPatternViewController.h"
 
 @interface PatternCollectionViewCTRL : UICollectionViewController

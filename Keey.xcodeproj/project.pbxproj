@@ -31,7 +31,7 @@
 		6D65E9971A8D00D700009CF3 /* Snares.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9961A8D00D700009CF3 /* Snares.m */; };
 		6D65E99A1A8D00EE00009CF3 /* HiHats.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9991A8D00EE00009CF3 /* HiHats.m */; };
 		6D65E9A01A8D11FF00009CF3 /* Piano.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E99F1A8D11FF00009CF3 /* Piano.m */; };
-		6D9014E61A968F9C00B59B67 /* DrumPatternViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9014E51A968F9C00B59B67 /* DrumPatternViewController.m */; };
+		6D9014E61A968F9C00B59B67 /* DrumStepSequencerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9014E51A968F9C00B59B67 /* DrumStepSequencerViewController.m */; };
 		6DA78C0B1A8BC41B002FC88D /* PatternViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA78C0A1A8BC41B002FC88D /* PatternViewController.m */; };
 		6DA78C0E1A8BCF99002FC88D /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA78C0D1A8BCF99002FC88D /* PlaylistViewController.m */; };
 		6DA78C191A8BDBE8002FC88D /* PatternCollectionViewCTRL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA78C181A8BDBE8002FC88D /* PatternCollectionViewCTRL.m */; };
@@ -43,6 +43,8 @@
 		6DDE0E0C1A78D08D0087053D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE0E0B1A78D08D0087053D /* MainViewController.m */; };
 		6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0682B1A7D97C700F3D04B /* Drums.m */; };
 		6DE068351A7DA69400F3D04B /* kicks.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE068341A7DA69400F3D04B /* kicks.m */; };
+		6DE748531A98F5A90072B140 /* MarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE748521A98F5A90072B140 /* MarkerView.m */; };
+		6DE748551A98F6DB0072B140 /* Marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE748541A98F6DB0072B140 /* Marker.png */; };
 		6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */; };
 		6DEEEEE91A80FE4E008CF16F /* BubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEEEEE81A80FE4E008CF16F /* BubbleButton.m */; };
 /* End PBXBuildFile section */
@@ -94,8 +96,8 @@
 		6D65E9991A8D00EE00009CF3 /* HiHats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiHats.m; sourceTree = "<group>"; };
 		6D65E99E1A8D11FF00009CF3 /* Piano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Piano.h; sourceTree = "<group>"; };
 		6D65E99F1A8D11FF00009CF3 /* Piano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Piano.m; sourceTree = "<group>"; };
-		6D9014E41A968F9C00B59B67 /* DrumPatternViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumPatternViewController.h; sourceTree = "<group>"; };
-		6D9014E51A968F9C00B59B67 /* DrumPatternViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrumPatternViewController.m; sourceTree = "<group>"; };
+		6D9014E41A968F9C00B59B67 /* DrumStepSequencerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumStepSequencerViewController.h; sourceTree = "<group>"; };
+		6D9014E51A968F9C00B59B67 /* DrumStepSequencerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrumStepSequencerViewController.m; sourceTree = "<group>"; };
 		6DA78C091A8BC41B002FC88D /* PatternViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternViewController.h; sourceTree = "<group>"; };
 		6DA78C0A1A8BC41B002FC88D /* PatternViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternViewController.m; sourceTree = "<group>"; };
 		6DA78C0C1A8BCF99002FC88D /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
@@ -119,6 +121,9 @@
 		6DE068331A7DA69400F3D04B /* kicks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kicks.h; sourceTree = "<group>"; };
 		6DE068341A7DA69400F3D04B /* kicks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kicks.m; sourceTree = "<group>"; };
 		6DE068361A7DA74600F3D04B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6DE748511A98F5A90072B140 /* MarkerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerView.h; sourceTree = "<group>"; };
+		6DE748521A98F5A90072B140 /* MarkerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerView.m; sourceTree = "<group>"; };
+		6DE748541A98F6DB0072B140 /* Marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Marker.png; sourceTree = "<group>"; };
 		6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kick01.mp3; sourceTree = "<group>"; };
 		6DEEEEE71A80FE4E008CF16F /* BubbleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleButton.h; sourceTree = "<group>"; };
 		6DEEEEE81A80FE4E008CF16F /* BubbleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleButton.m; sourceTree = "<group>"; };
@@ -194,6 +199,7 @@
 		6D618B541A95507400CC3CDC /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				6DE748541A98F6DB0072B140 /* Marker.png */,
 				6D618B5C1A9650C400CC3CDC /* addicon.png */,
 				6D618B561A958C3E00CC3CDC /* fluteicon.png */,
 				6D618B571A958C3E00CC3CDC /* synthicon.png */,
@@ -224,9 +230,10 @@
 		6D9014E31A968F5800B59B67 /* InstrumentCTRL */ = {
 			isa = PBXGroup;
 			children = (
+				6DE748501A98F56D0072B140 /* Markerview */,
 				6D4CBDDA1A96EBE800E74817 /* CustomCell */,
-				6D9014E41A968F9C00B59B67 /* DrumPatternViewController.h */,
-				6D9014E51A968F9C00B59B67 /* DrumPatternViewController.m */,
+				6D9014E41A968F9C00B59B67 /* DrumStepSequencerViewController.h */,
+				6D9014E51A968F9C00B59B67 /* DrumStepSequencerViewController.m */,
 				6D4CBDD71A96BBEA00E74817 /* MidiPatternViewController.h */,
 				6D4CBDD81A96BBEA00E74817 /* MidiPatternViewController.m */,
 			);
@@ -361,6 +368,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		6DE748501A98F56D0072B140 /* Markerview */ = {
+			isa = PBXGroup;
+			children = (
+				6DE748511A98F5A90072B140 /* MarkerView.h */,
+				6DE748521A98F5A90072B140 /* MarkerView.m */,
+			);
+			name = Markerview;
+			sourceTree = "<group>";
+		};
 		6DEEEEE61A80FDD5008CF16F /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,6 +484,7 @@
 				6D2EC4CF1A97EC5900712D44 /* HiHat.wav in Resources */,
 				6D618B5A1A958C3E00CC3CDC /* synthicon.png in Resources */,
 				6D618B531A95507200CC3CDC /* trumpeticon.png in Resources */,
+				6DE748551A98F6DB0072B140 /* Marker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +513,7 @@
 				6DDE0DEA1A78D0270087053D /* AppDelegate.m in Sources */,
 				6D65E99A1A8D00EE00009CF3 /* HiHats.m in Sources */,
 				6DA78C0B1A8BC41B002FC88D /* PatternViewController.m in Sources */,
-				6D9014E61A968F9C00B59B67 /* DrumPatternViewController.m in Sources */,
+				6D9014E61A968F9C00B59B67 /* DrumStepSequencerViewController.m in Sources */,
 				6D65E9A01A8D11FF00009CF3 /* Piano.m in Sources */,
 				6D0AEB641A8F117A00AFB84B /* DrawerViewController.m in Sources */,
 				6D4CBDDD1A96ECE900E74817 /* SelectableViewCell.m in Sources */,
@@ -504,6 +521,7 @@
 				6DEEEEE91A80FE4E008CF16F /* BubbleButton.m in Sources */,
 				6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */,
 				6DDE0E0C1A78D08D0087053D /* MainViewController.m in Sources */,
+				6DE748531A98F5A90072B140 /* MarkerView.m in Sources */,
 				6D65E9941A8D00A200009CF3 /* Claps.m in Sources */,
 				6D618B4B1A94E87800CC3CDC /* InstrumentButton.m in Sources */,
 				6DDE0DE71A78D0270087053D /* main.m in Sources */,
