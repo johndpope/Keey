@@ -22,7 +22,7 @@
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
-    self.view.backgroundColor = [UIColor colorWithRed:0.204 green:0.22 blue:0.22 alpha:2];
+    self.view.backgroundColor = [UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1];
     
     _segControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Pattern", @"Playlist", nil]];
     _segControl.frame = CGRectMake(400, 50, 200, 50);
@@ -73,12 +73,12 @@
     
     UIView *cusSegControl = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 55)];
     cusSegControl.center = CGPointMake([self window_width]/2, 70.0);
-    cusSegControl.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
+    cusSegControl.backgroundColor = [UIColor colorWithRed:0.129 green:0.165 blue:0.184 alpha:1];
     cusSegControl.layer.cornerRadius = 27.5;
     [self.view addSubview:cusSegControl];
     
     _selectedView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 125, 45)];
-    _selectedView.backgroundColor = [UIColor colorWithRed:0 green:0.875 blue:0.988 alpha:1];
+    _selectedView.backgroundColor = [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1];
     _selectedView.layer.cornerRadius = 22.5;
     [cusSegControl addSubview:_selectedView];
     

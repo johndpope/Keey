@@ -25,7 +25,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView setDataSource:self];
     [self.collectionView setDelegate:self];
     
-    self.collectionView.backgroundColor = [UIColor colorWithRed:0.204 green:0.22 blue:0.22 alpha:1];
+    self.collectionView.backgroundColor = [UIColor clearColor];
 
     InstrumentButton *drumins = [[InstrumentButton alloc] init];
     [drumins ofType:InstrumentalTypeDrums ofSize:BigSize];

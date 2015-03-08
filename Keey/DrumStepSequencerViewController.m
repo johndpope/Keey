@@ -16,7 +16,7 @@
     NSUInteger markerPosition;
     UIView *sequencerContainerView;
     NSUInteger totalSteps;
-    StepMood currentMood;
+    //StepMood currentMood;
     
 }
 
@@ -29,44 +29,24 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor colorWithRed:0.204 green:0.22 blue:0.22 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1];
     
     _drums = [[Drums alloc] init];
+    _drumModel = [[DrumViewModel alloc] init];
+    [_drumModel setupDrumIntruments:16];
     
-    _kickSteps = [[NSMutableArray alloc] init];
-    _clapsSteps = [[NSMutableArray alloc] init];
-    _snareSteps = [[NSMutableArray alloc] init];
-    _hiHatSteps = [[NSMutableArray alloc] init];
+    //currentMood = StepMoodKick;
     
-    totalSteps = 8;
+    [self setUpSequencerView];
+    
+    [self setUpMarker];
 
-    for (int i = 0 ; i < totalSteps; i++){
-        
-        [_kickSteps addObject:[NSNumber numberWithInt:0]];
-        [_clapsSteps addObject:[NSNumber numberWithInt:0]];
-        [_snareSteps addObject:[NSNumber numberWithInt:0]];
-        [_hiHatSteps addObject:[NSNumber numberWithInt:0]];
-        
-    }
-    currentMood = StepMoodKick;
-    sequencerContainerView = [[UIView alloc] initWithFrame:CGRectMake(50, 200, [self window_width]-90, 200)];
-    [self.view addSubview:sequencerContainerView];
-    
-    UICollectionViewFlowLayout *sequencerLayout = [[UICollectionViewFlowLayout alloc]init];
-    [sequencerLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [sequencerLayout setMinimumLineSpacing:0];
-    
-     _stepSequencerCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 150, sequencerContainerView.frame.size.width, 100) collectionViewLayout:sequencerLayout];
-    [_stepSequencerCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-     _stepSequencerCollectionView.backgroundColor = self.view.backgroundColor;
-    [_stepSequencerCollectionView setDataSource:self];
-    [_stepSequencerCollectionView setDelegate:self];
-
-    [sequencerContainerView addSubview:_stepSequencerCollectionView];
     
     markerPosition = 0;
     
-    [NSTimer scheduledTimerWithTimeInterval:0.20 target:self selector:@selector(playSoundAtMarker:) userInfo:nil repeats:YES];
+    
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.15 target:self selector:@selector(playSoundAtMarker:) userInfo:nil repeats:YES];
     
     UITapGestureRecognizer *tapRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissviewctrl)];
     
@@ -74,299 +54,257 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self.view addGestureRecognizer:tapRecog];
     
-    _markerView = [[MarkerView alloc] init];
-    [_markerView setFrame:CGRectMake(0, 0, 60, 400)];
-    [_markerView displayHead];
-    [_markerView displayMarkerLine];
-    [sequencerContainerView addSubview:_markerView];
-    
-    [self layoutInstrumentButtons];
+    //[self layoutInstrumentButtons];
 
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+    return 4;
 }
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return totalSteps;
+    return 16;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionView *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return totalSteps; // This is the minimum inter item spacing, can be more
+    return 20; // This is the minimum inter item spacing, can be more
 }
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor clearColor];
     
-    switch (currentMood) {
-            
-        case StepMoodKick:
-            
-            if ([_kickSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:0]){
-                
-                cell.contentView.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
-                cell.contentView.layer.cornerRadius = cell.contentView.frame.size.height/2;
-                
-            } else if ([_kickSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:1]){
-                cell.contentView.backgroundColor = [UIColor colorWithRed:0 green:0.875 blue:0.988 alpha:1];
-                cell.contentView.layer.cornerRadius = cell.contentView.frame.size.height/2;
-            }
-
-            break;
-            
-        case StepMoodClap:
-
-            if ([_clapsSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:0]){
-                
-                cell.contentView.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
-                cell.contentView.layer.cornerRadius = cell.contentView.frame.size.height/2;
-                
-            } else if ([_clapsSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:1]){
-                cell.contentView.backgroundColor = [UIColor colorWithRed:0 green:0.875 blue:0.988 alpha:1];
-                cell.contentView.layer.cornerRadius = cell.contentView.frame.size.height/2;
-            }
-            
-            break;
+    if([indexPath row] % 8 < 4) {
         
-        case StepMoodSnare:
+        switch ([indexPath section]) {
+                
+            case 0:
+                
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodKick]) {
 
-            if ([_snareSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:0]){
+                    cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
+                }
+                break;
+                
+            case 1:
+                
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodSnare]) {
+                    cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
+                }
+                break;
+                
+            case 2:
+                
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodClap]) {
+                    cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
+                }
+                break;
+                
+            case 3:
+                
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodHiHats]) {
+                    cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
+                }
+                break;
+                
+            default:
+                break;
+        }
+    
+        cell.layer.borderColor = [[UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1] CGColor];
 
-                cell.contentView.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
-                cell.contentView.layer.cornerRadius = cell.contentView.frame.size.height/2;
+    } else {
+        
+        switch ([indexPath section]) {
                 
-            } else if ([_snareSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:1]){
-                cell.contentView.backgroundColor = [UIColor colorWithRed:0 green:0.875 blue:0.988 alpha:1];
-                cell.contentView.layer.cornerRadius = cell.contentView.frame.size.height/2;
-            }
-            
-            break;
-            
-        case StepMoodHiHats:
-            
-            if ([_hiHatSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:0]){
+            case 0:
                 
-                cell.contentView.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
-                cell.contentView.layer.cornerRadius = cell.contentView.frame.size.height/2;
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodKick]) {
+                    cell.backgroundColor = [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1];
+                }
+                break;
+            
+            case 1:
                 
-            } else if ([_hiHatSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:1]){
-                cell.contentView.backgroundColor = [UIColor colorWithRed:0 green:0.875 blue:0.988 alpha:1];
-                cell.contentView.layer.cornerRadius = cell.contentView.frame.size.height/2;
-            }
-            
-            break;
-            
-        default:
-            break;
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodSnare]) {
+                    cell.backgroundColor = [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1];
+                }
+                break;
+                
+            case 2:
+                
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodClap]) {
+                    cell.backgroundColor = [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1];
+                }
+                break;
+                
+            case 3:
+                
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodHiHats]) {
+                    cell.backgroundColor = [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1];
+                }
+                break;
+                
+            default:
+                break;
+        }
+        
+        cell.layer.borderColor = [[UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1] CGColor];
+
     }
+
+    cell.layer.borderWidth = 2;
+    cell.layer.cornerRadius = cell.frame.size.width/2;
     
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return CGSizeMake(60, 60);
+    return CGSizeMake(33, 33);
 }
 
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 0, 0, 0);
+    return UIEdgeInsetsMake(25, 0, 0, 0);
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(0., 30.);
+}
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    switch (currentMood) {
+    if([indexPath section] == 0){
 
-        case StepMoodKick:
-            
-            if ([_kickSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:0]) {
-                
-                [_kickSteps replaceObjectAtIndex:[indexPath row] withObject:[NSNumber numberWithInt:1]];
-                
-            } else if ([_kickSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:1]) {
-                
-                [_kickSteps replaceObjectAtIndex:[indexPath row] withObject:[NSNumber numberWithInt:0]];
-                
-            }
-            
-            break;
-            
-        case StepMoodClap:
-            
-            if ([_clapsSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:0]) {
-                
-                [_clapsSteps replaceObjectAtIndex:[indexPath row] withObject:[NSNumber numberWithInt:1]];
-                
-            } else if ([_clapsSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:1]) {
-                
-                [_clapsSteps replaceObjectAtIndex:[indexPath row] withObject:[NSNumber numberWithInt:0]];
-                
-            }
-            
-            break;
-            
-        case StepMoodSnare:
-            
-            if ([_snareSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:0]) {
-                
-                [_snareSteps replaceObjectAtIndex:[indexPath row] withObject:[NSNumber numberWithInt:1]];
-                
-            } else if ([_snareSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:1]) {
-                
-                [_snareSteps replaceObjectAtIndex:[indexPath row] withObject:[NSNumber numberWithInt:0]];
-                
-            }
-            
-            break;
-            
-        case StepMoodHiHats:
-            
-            if ([_hiHatSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:0]) {
-                
-                [_hiHatSteps replaceObjectAtIndex:[indexPath row] withObject:[NSNumber numberWithInt:1]];
-                
-            } else if ([_hiHatSteps objectAtIndex:[indexPath row]] == [NSNumber numberWithInt:1]) {
-                
-                [_hiHatSteps replaceObjectAtIndex:[indexPath row] withObject:[NSNumber numberWithInt:0]];
-                
-            }
-            
-        default:
-            break;
+        [_drumModel updateStepAt:[indexPath row] forInstrument:DrumMoodKick];
+        
+    } else if ([indexPath section] == 1) {
+        
+        [_drumModel updateStepAt:[indexPath row] forInstrument:DrumMoodSnare];
+        
+    } else if ([indexPath section] == 2) {
+        
+        [_drumModel updateStepAt:[indexPath row] forInstrument:DrumMoodClap];
+        
+    } else if ([indexPath section] == 3) {
+        
+        [_drumModel updateStepAt:[indexPath row] forInstrument:DrumMoodHiHats];
+        
     }
 
-    [collectionView reloadData];
+    [_stepSequencerCollectionView reloadData];
 
 }
 
 - (void) playSoundAtMarker:(NSTimer *)timer
 {
     
-    if ([_kickSteps objectAtIndex:markerPosition] == [NSNumber numberWithInt:1]) {
+    if (markerPosition >= 16) {
+        markerPosition = 0;
+    }
+    
+    if([_drumModel shouldPlaySoundAt:markerPosition forIntrument:DrumMoodKick]){
         [_drums playKick];
     }
     
-    if ([_clapsSteps objectAtIndex:markerPosition] == [NSNumber numberWithInt:1]) {
+    if([_drumModel shouldPlaySoundAt:markerPosition forIntrument:DrumMoodClap]){
         [_drums playClap];
     }
     
-    if ([_snareSteps objectAtIndex:markerPosition] == [NSNumber numberWithInt:1]) {
-       
+    if([_drumModel shouldPlaySoundAt:markerPosition forIntrument:DrumMoodSnare]){
         [_drums playSnare];
     }
     
-    if ([_hiHatSteps objectAtIndex:markerPosition] == [NSNumber numberWithInt:1]) {
+    if([_drumModel shouldPlaySoundAt:markerPosition forIntrument:DrumMoodHiHats]){
         [_drums playHats];
     }
     
+    [self updateMarkerPosition];
+
     
     markerPosition++;
-    
-    if(markerPosition == totalSteps){
-        
-        markerPosition = 0;
-        
-        [UIView animateKeyframesWithDuration:0
-                                       delay:0
-                                     options:UIViewKeyframeAnimationOptionBeginFromCurrentState
-                                  animations:^{
-                                      CGRect tempFrame = _markerView.frame;
-                                      tempFrame.origin.x = 0;
-                                      _markerView.frame = tempFrame;
-                                  }
-                                  completion:nil];
-    } else {
-        
-        [UIView animateKeyframesWithDuration:0.2
-                                       delay:0
-                                     options:UIViewKeyframeAnimationOptionBeginFromCurrentState
-                                  animations:^{
-                                      CGRect tempFrame = _markerView.frame;
-                                      tempFrame.origin.x += 74;
-                                      _markerView.frame = tempFrame;
-                                  }
-                                  completion:nil];
 
-    }
     
 }
 
 - (void) dismissviewctrl {
-    //currentMood = StepMoodClap;
-    //[_stepSequencerCollectionView reloadData];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void) layoutInstrumentButtons {
     
-    UIButton *kickButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 500, 150, 150)];
-    kickButton.layer.cornerRadius = 75;
-    kickButton.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
-    kickButton.tag = StepMoodKick;
-    [kickButton addTarget:self action:@selector(handleInstrumentButtonTouch:) forControlEvents:UIControlEventTouchUpInside];
-    [kickButton setTitle:@"Kicks" forState:UIControlStateNormal];
-    kickButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:20];
-    [self.view addSubview:kickButton];
-    
-    UIButton *clapsButton = [[UIButton alloc] initWithFrame:CGRectMake(350, 500, 150, 150)];
-    clapsButton.layer.cornerRadius = 75;
-    clapsButton.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
-    clapsButton.tag = StepMoodClap;
-    [clapsButton addTarget:self action:@selector(handleInstrumentButtonTouch:) forControlEvents:UIControlEventTouchUpInside];
-    [clapsButton setTitle:@"Claps" forState:UIControlStateNormal];
-    clapsButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:20];
-    [self.view addSubview:clapsButton];
-    
-    UIButton *snareButton = [[UIButton alloc] initWithFrame:CGRectMake(600, 500, 150, 150)];
-    snareButton.layer.cornerRadius = 75;
-    snareButton.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
-    snareButton.tag = StepMoodSnare;
-    [snareButton addTarget:self action:@selector(handleInstrumentButtonTouch:) forControlEvents:UIControlEventTouchUpInside];
-    [snareButton setTitle:@"Snares" forState:UIControlStateNormal];
-    snareButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:20];
-    [self.view addSubview:snareButton];
-    
-    UIButton *hiHatButton = [[UIButton alloc] initWithFrame:CGRectMake(850, 500, 150, 150)];
-    hiHatButton.layer.cornerRadius = 75;
-    hiHatButton.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
-    hiHatButton.tag = StepMoodHiHats;
-    [hiHatButton addTarget:self action:@selector(handleInstrumentButtonTouch:) forControlEvents:UIControlEventTouchUpInside];
-    [hiHatButton setTitle:@"HiHats" forState:UIControlStateNormal];
-    hiHatButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:20];
-    [self.view addSubview:hiHatButton];
-    
 }
 
 - (void) handleInstrumentButtonTouch: (UIButton *) sender {
 
-    switch (sender.tag) {
-            
-        case StepMoodKick:
-            currentMood = StepMoodKick;
-            break;
-            
-        case StepMoodClap:
-            currentMood = StepMoodClap;
-            break;
-            
-        case StepMoodSnare:
-            currentMood = StepMoodSnare;
-            break;
-            
-        case StepMoodHiHats:
-            currentMood = StepMoodHiHats;
-            break;
-            
-        default:
-            
-            break;
-    }
-    [_stepSequencerCollectionView reloadData];
 
+}
+
+- (void) setUpMarker {
+    _markerView = [[MarkerView alloc] init];
+    [_markerView setFrame:CGRectMake(0, 0, 1, sequencerContainerView.frame.size.height)];
+    //[_markerView displayHead];
+    [_markerView displayMarkerLine];
+    [_stepSequencerCollectionView addSubview:_markerView];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self updateMarkerPosition];
+    });
+
+
+
+}
+
+- (void) updateMarkerPosition {
+    
+/*
+    [UIView animateWithDuration:4
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         CGRect oldFrame = _markerView.frame;
+                         oldFrame.origin.x = [self window_width] -185;
+                         _markerView.frame = oldFrame;
+                     }completion:nil];
+    */
+    
+    [UIView animateKeyframesWithDuration:0.3
+                                   delay:0
+                                 options: UIViewKeyframeAnimationOptionCalculationModeLinear
+                              animations:^{
+                                  CGRect oldFrame = _markerView.frame;
+                                  if (markerPosition == 0) {
+                                      oldFrame.origin.x = 0;
+                                  }else{
+                                      oldFrame.origin.x += 54;
+                                  }
+                                  _markerView.frame = oldFrame;
+                                  
+                              }
+                              completion:nil];
+    
+}
+
+- (void) setUpSequencerView {
+    sequencerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, [self window_width], 400)];
+    sequencerContainerView.backgroundColor = [UIColor colorWithRed:0.129 green:0.165 blue:0.184 alpha:1];
+    [self.view addSubview:sequencerContainerView];
+    
+    UICollectionViewFlowLayout *sequencerLayout = [[UICollectionViewFlowLayout alloc]init];
+    [sequencerLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [sequencerLayout setMinimumLineSpacing:0];
+    
+    _stepSequencerCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(130, 0, sequencerContainerView.frame.size.width-130, 400) collectionViewLayout:sequencerLayout];
+    [_stepSequencerCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    _stepSequencerCollectionView.backgroundColor = [UIColor clearColor];
+    [_stepSequencerCollectionView setDataSource:self];
+    [_stepSequencerCollectionView setDelegate:self];
+    
+    [sequencerContainerView addSubview:_stepSequencerCollectionView];
 }
 
 - (CGFloat) window_height {

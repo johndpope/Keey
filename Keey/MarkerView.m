@@ -25,9 +25,9 @@
 
 - (void) displayMarkerLine {
     
-    UIView *markerLine = [[UIView alloc] initWithFrame:CGRectMake(0, 30, self.frame.size.width, self.frame.size.height)];
+    UIView *markerLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     
-    markerLine.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:0.37];
+    markerLine.backgroundColor = [UIColor colorWithRed:1 green:0.518 blue:0.486 alpha:1];
     
     [self addSubview:markerLine];
 }

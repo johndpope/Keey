@@ -47,6 +47,8 @@
 		6DE748551A98F6DB0072B140 /* Marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE748541A98F6DB0072B140 /* Marker.png */; };
 		6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */; };
 		6DEEEEE91A80FE4E008CF16F /* BubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEEEEE81A80FE4E008CF16F /* BubbleButton.m */; };
+		6DF42B021AABF981001E754B /* DrumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42B011AABF981001E754B /* DrumViewModel.m */; };
+		6DF42B051AAC3459001E754B /* CollectionReusableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42B041AAC3459001E754B /* CollectionReusableHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +129,10 @@
 		6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kick01.mp3; sourceTree = "<group>"; };
 		6DEEEEE71A80FE4E008CF16F /* BubbleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleButton.h; sourceTree = "<group>"; };
 		6DEEEEE81A80FE4E008CF16F /* BubbleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleButton.m; sourceTree = "<group>"; };
+		6DF42B001AABF981001E754B /* DrumViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumViewModel.h; sourceTree = "<group>"; };
+		6DF42B011AABF981001E754B /* DrumViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrumViewModel.m; sourceTree = "<group>"; };
+		6DF42B031AAC3459001E754B /* CollectionReusableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionReusableHeaderView.h; sourceTree = "<group>"; };
+		6DF42B041AAC3459001E754B /* CollectionReusableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionReusableHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,10 +236,9 @@
 		6D9014E31A968F5800B59B67 /* InstrumentCTRL */ = {
 			isa = PBXGroup;
 			children = (
+				6DF42AFF1AABF954001E754B /* StepSequencer */,
 				6DE748501A98F56D0072B140 /* Markerview */,
 				6D4CBDDA1A96EBE800E74817 /* CustomCell */,
-				6D9014E41A968F9C00B59B67 /* DrumStepSequencerViewController.h */,
-				6D9014E51A968F9C00B59B67 /* DrumStepSequencerViewController.m */,
 				6D4CBDD71A96BBEA00E74817 /* MidiPatternViewController.h */,
 				6D4CBDD81A96BBEA00E74817 /* MidiPatternViewController.m */,
 			);
@@ -388,6 +393,19 @@
 			name = Buttons;
 			sourceTree = "<group>";
 		};
+		6DF42AFF1AABF954001E754B /* StepSequencer */ = {
+			isa = PBXGroup;
+			children = (
+				6D9014E41A968F9C00B59B67 /* DrumStepSequencerViewController.h */,
+				6D9014E51A968F9C00B59B67 /* DrumStepSequencerViewController.m */,
+				6DF42B031AAC3459001E754B /* CollectionReusableHeaderView.h */,
+				6DF42B041AAC3459001E754B /* CollectionReusableHeaderView.m */,
+				6DF42B001AABF981001E754B /* DrumViewModel.h */,
+				6DF42B011AABF981001E754B /* DrumViewModel.m */,
+			);
+			name = StepSequencer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -503,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DE068351A7DA69400F3D04B /* kicks.m in Sources */,
+				6DF42B051AAC3459001E754B /* CollectionReusableHeaderView.m in Sources */,
 				6D35A9DF1A791A5300A38A58 /* HeaderView.m in Sources */,
 				6D65E9971A8D00D700009CF3 /* Snares.m in Sources */,
 				6D35A9E31A792BC800A38A58 /* BodyView.m in Sources */,
@@ -524,6 +543,7 @@
 				6DE748531A98F5A90072B140 /* MarkerView.m in Sources */,
 				6D65E9941A8D00A200009CF3 /* Claps.m in Sources */,
 				6D618B4B1A94E87800CC3CDC /* InstrumentButton.m in Sources */,
+				6DF42B021AABF981001E754B /* DrumViewModel.m in Sources */,
 				6DDE0DE71A78D0270087053D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

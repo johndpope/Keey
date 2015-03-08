@@ -10,18 +10,13 @@
 #import <UIKit/UIKit.h>
 #import "Drums.h"
 #import "MarkerView.h"
+#import "DrumViewModel.h"
+#import "CollectionReusableHeaderView.h"
 
 @interface DrumPatternViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
-typedef enum StepMood : NSUInteger {
-    StepMoodKick,
-    StepMoodClap,
-    StepMoodSnare,
-    StepMoodHiHats
-    
-} StepMood;
-
 @property Drums *drums;
+@property DrumViewModel *drumModel;
 @property NSMutableArray *kickSteps;
 @property NSMutableArray *clapsSteps;
 @property NSMutableArray *snareSteps;

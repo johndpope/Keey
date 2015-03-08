@@ -31,7 +31,7 @@
     _addInstrumentBtn = [[BubbleButton alloc] initWithFrame:CGRectMake([self window_width]/2-50, 400, 100, 100)];
     [_addInstrumentBtn addTarget:self action:@selector(addInstrument) forControlEvents:UIControlEventTouchUpInside];
     [_addInstrumentBtn setSize:@"medium"];
-    _addInstrumentBtn.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
+    _addInstrumentBtn.backgroundColor = [UIColor colorWithRed:0.129 green:0.165 blue:0.184 alpha:1];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(_addInstrumentBtn.frame.size.width/2-15, _addInstrumentBtn.frame.size.height/2-15, 30, 30)];
     imageView.image = [UIImage imageNamed:@"addicon.png"];
