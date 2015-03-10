@@ -32,7 +32,6 @@ typedef NS_ENUM (NSInteger, InstumentType) {
 @property Piano *piano;
 @property BubbleButton *instrumentButton;
 
-
 - (void) addPatternInstrument:(UIButton *) instrument;
 
 @end

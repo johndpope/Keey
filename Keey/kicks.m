@@ -7,19 +7,35 @@
 //
 
 #import "kicks.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
-@implementation kicks
+@implementation kicks {
+    AVAudioPlayer *player;
+}
 
 -(instancetype)init{
     
+    /*
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Kick" ofType:@"wav"];
     AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath: soundPath]), &_soundID);
+    */
+    
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/buffkick.wav",
+                               [[NSBundle mainBundle] resourcePath]];
+    
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+    [player prepareToPlay];
     
     return self;
 }
 
 -(void) playSound {
-    AudioServicesPlaySystemSound (_soundID);
+    
+    [player play];
+    //AudioServicesPlaySystemSound (_soundID);
 }
 
 @end

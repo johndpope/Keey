@@ -10,6 +10,7 @@
 #define SCREEN_HEIGHT (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
 
 #import "DrumStepSequencerViewController.h"
+#import "MusicSequencerModel.h"
 
 @interface DrumPatternViewController () {
     
@@ -28,6 +29,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    MusicSequencerModel *musicSeq = [[MusicSequencerModel alloc] init];
+    [musicSeq setUpSequencer];
     
     self.view.backgroundColor = [UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1];
     
@@ -261,16 +265,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void) updateMarkerPosition {
     
-/*
-    [UIView animateWithDuration:4
-                          delay:0
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         CGRect oldFrame = _markerView.frame;
-                         oldFrame.origin.x = [self window_width] -185;
-                         _markerView.frame = oldFrame;
-                     }completion:nil];
-    */
     
     [UIView animateKeyframesWithDuration:0.3
                                    delay:0

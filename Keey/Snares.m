@@ -7,19 +7,35 @@
 //
 
 #import "Snares.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
-@implementation Snares
+@implementation Snares {
+    
+    AVAudioPlayer *player;
+    
+}
 
 -(instancetype) init {
-    
+    /*
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Snare" ofType:@"wav"];
     AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath: soundPath]), &_soundID);
+     */
+    
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/Snare.wav",
+                               [[NSBundle mainBundle] resourcePath]];
+    
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+    [player prepareToPlay];
     
     return self;
 }
 
 -(void) playSound {
-    AudioServicesPlaySystemSound (_soundID);
+    [player play];
+    //AudioServicesPlaySystemSound (_soundID);
 }
 
 @end
