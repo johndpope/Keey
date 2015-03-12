@@ -17,6 +17,7 @@
     NSUInteger markerPosition;
     UIView *sequencerContainerView;
     NSUInteger totalSteps;
+    //MusicSequencerModel *musicSeq;
     //StepMood currentMood;
     
 }
@@ -29,9 +30,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    MusicSequencerModel *musicSeq = [[MusicSequencerModel alloc] init];
-    [musicSeq setUpSequencer];
     
     self.view.backgroundColor = [UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1];
     
@@ -50,7 +48,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     
     
-    [NSTimer scheduledTimerWithTimeInterval:0.15 target:self selector:@selector(playSoundAtMarker:) userInfo:nil repeats:YES];
+    //[NSTimer scheduledTimerWithTimeInterval:0.15 target:self selector:@selector(playSoundAtMarker:) userInfo:nil repeats:YES];
     
     UITapGestureRecognizer *tapRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissviewctrl)];
     

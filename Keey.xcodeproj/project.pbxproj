@@ -17,6 +17,8 @@
 		6D35A9DF1A791A5300A38A58 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9DE1A791A5300A38A58 /* HeaderView.m */; };
 		6D35A9E31A792BC800A38A58 /* BodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E21A792BC800A38A58 /* BodyView.m */; };
 		6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E51A792F5F00A38A58 /* BodyContentView.m */; };
+		6D43548E1AB11FE9008BAE1C /* Audio - Sound Font - Sonic Implants Session Drums.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D43548D1AB11FE9008BAE1C /* Audio - Sound Font - Sonic Implants Session Drums.sf2 */; };
+		6D4354921AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D4354911AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 */; };
 		6D4CBDD91A96BBEA00E74817 /* MidiPatternViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4CBDD81A96BBEA00E74817 /* MidiPatternViewController.m */; };
 		6D4CBDDD1A96ECE900E74817 /* SelectableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4CBDDC1A96ECE900E74817 /* SelectableViewCell.m */; };
 		6D618B4B1A94E87800CC3CDC /* InstrumentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D618B4A1A94E87800CC3CDC /* InstrumentButton.m */; };
@@ -84,6 +86,8 @@
 		6D35A9E21A792BC800A38A58 /* BodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyView.m; sourceTree = "<group>"; };
 		6D35A9E41A792F5F00A38A58 /* BodyContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyContentView.h; sourceTree = "<group>"; };
 		6D35A9E51A792F5F00A38A58 /* BodyContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyContentView.m; sourceTree = "<group>"; };
+		6D43548D1AB11FE9008BAE1C /* Audio - Sound Font - Sonic Implants Session Drums.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audio - Sound Font - Sonic Implants Session Drums.sf2"; sourceTree = "<group>"; };
+		6D4354911AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = KeeyDrumkitsoundfont.sf2; sourceTree = "<group>"; };
 		6D4CBDD71A96BBEA00E74817 /* MidiPatternViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiPatternViewController.h; sourceTree = "<group>"; };
 		6D4CBDD81A96BBEA00E74817 /* MidiPatternViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidiPatternViewController.m; sourceTree = "<group>"; };
 		6D4CBDDB1A96ECE900E74817 /* SelectableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableViewCell.h; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 		6D11E4411AAD574900FFDEEF /* sf2 */ = {
 			isa = PBXGroup;
 			children = (
+				6D43548D1AB11FE9008BAE1C /* Audio - Sound Font - Sonic Implants Session Drums.sf2 */,
+				6D4354911AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 */,
 				6D7C7FD01AAEDD3600BE7C7F /* x.sf2 */,
 				6D7C7FCE1AAEDA9500BE7C7F /* GeneralUser GS MuseScore v1.442.sf2 */,
 				6D7C7FCC1AAECA0700BE7C7F /* BrassEnsembleSE.sf2 */,
@@ -529,9 +535,11 @@
 				6D2EC4D01A97EC5900712D44 /* Kick.wav in Resources */,
 				6D2EC4D11A97EC5900712D44 /* Snare.wav in Resources */,
 				6D2EC4CE1A97EC5900712D44 /* Clap.wav in Resources */,
+				6D43548E1AB11FE9008BAE1C /* Audio - Sound Font - Sonic Implants Session Drums.sf2 in Resources */,
 				6D618B521A95507200CC3CDC /* pianoicon.png in Resources */,
 				6D618B5D1A9650C400CC3CDC /* addicon.png in Resources */,
 				6D7C7FCF1AAEDA9500BE7C7F /* GeneralUser GS MuseScore v1.442.sf2 in Resources */,
+				6D4354921AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 in Resources */,
 				6DDE0DF51A78D0270087053D /* LaunchScreen.xib in Resources */,
 				6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */,
 				6DDE0DF21A78D0270087053D /* Images.xcassets in Resources */,

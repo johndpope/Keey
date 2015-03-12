@@ -21,9 +21,13 @@
     AUNode mixerNode;
     AUNode outputNode;
     
+    NSDictionary *drumBank;
+    
 }
 
 - (void) setUpSequencer {
+    
+    [self setupDrumBank];
     
     NewMusicSequence(&(sequence));
     NewMusicPlayer(&(musicPlayer));
@@ -33,7 +37,7 @@
     [self setupAudioUnitGraph];
     
     Boolean *outisinitialised = false;
-    //AUGraphIsInitialized(graph, outisinitialised);
+    AUGraphIsInitialized(graph, outisinitialised);
     
     if(!outisinitialised){
         AUGraphInitialize(graph);
@@ -52,9 +56,8 @@
     MusicSequenceSetAUGraph(sequence, graph);
     MusicTrackSetDestNode(musicTrack, samplerNode);
     MusicPlayerSetSequence(musicPlayer, sequence);
+    //[self playdemo];
     MusicPlayerStart(musicPlayer);
-    
-    
 
     
 }
@@ -69,35 +72,13 @@
     
     MusicSequenceNewTrack(sequence, &(musicTrack));
     
-    MusicTimeStamp timestamp = 1;
-    MusicTimeStamp timestampex = 3;
+    //MusicTrackNewMIDINoteEvent(musicTrack, timestampex, &notemessaged);
     
-    MIDINoteMessage notemessage;
-    notemessage.channel = 0;
-    notemessage.velocity = 90;
-    notemessage.releaseVelocity = 0;
-    notemessage.duration = 2;
-    notemessage.note = 60;
-    
-    MIDINoteMessage notemessaged;
-    notemessaged.channel = 0;
-    notemessaged.velocity = 90;
-    notemessaged.releaseVelocity = 0;
-    notemessaged.duration = 2;
-    notemessaged.note = 55;
-    
-    MusicTrackNewMIDINoteEvent(musicTrack, timestamp, &notemessage);
-    MusicTrackNewMIDINoteEvent(musicTrack, timestampex, &notemessaged);
-    
-
     MusicTrackGetProperty(musicTrack, kSequenceTrackProperty_TrackLength, &trackLen, &trackLenLen);
-    loopInfo.loopDuration = trackLen;
+    loopInfo.loopDuration = 4;
     loopInfo.numberOfLoops = 0;
     MusicTrackSetProperty(musicTrack, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
     NSLog(@"track length is %f", trackLen);
-
-    
-
     
 }
 
@@ -129,16 +110,15 @@
 
 - (void) setInstrumentPreset {
     
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"BrassEnsembleSE" withExtension:@"sf2"];
-    [self samplerUnit:samplerUnit loadFromDLSOrSoundFont:url withPatch:61];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"KeeyDrumkitsoundfont" withExtension:@"sf2"];
+    [self samplerUnit:samplerUnit loadFromDLSOrSoundFont:url withPatch:0];
     
 }
 
 - (void) playdemo {
     //NewAUGraph(&(graph));
     
-    /*
-     NewMusicSequence(&sequence);
+     //NewMusicSequence(&sequence);
      
      NSString *midiFilePath = [[NSBundle mainBundle]
      pathForResource:@"teddybear"
@@ -150,19 +130,18 @@
      MusicSequenceFileLoad(sequence, (__bridge CFURLRef)(midiFileURL), 0, 0);
      
      // Create a new music player
-     MusicPlayer  p;
+     //MusicPlayer  p;
      // Initialise the music player
-     NewMusicPlayer(&p);
+     //NewMusicPlayer(&p);
      
      // Load the sequence into the music player
-     MusicPlayerSetSequence(p, sequence);
+     MusicPlayerSetSequence(musicPlayer, sequence);
      // Called to do some MusicPlayer setup. This just
      // reduces latency when MusicPlayerStart is called
      //MusicPlayerPreroll(p);
      // Starts the music playing
-     MusicPlayerStart(p);
+     //MusicPlayerStart(p);
      
-     */
 }
 
 - (OSStatus)samplerUnit:(AudioUnit)sampler loadFromDLSOrSoundFont:(NSURL *)bankURL withPatch:(int)presetNumber
@@ -192,4 +171,39 @@
     return result;
 }
 
+-(void) handleMidiEvent: (int) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType {
+    
+    MusicTimeStamp timestamp = 0.25*index;
+    MIDINoteMessage notemessage;
+
+    switch (eventType) {
+            
+        case MidiEventTypeAdd:
+            
+            notemessage.channel = 0;
+            notemessage.velocity = 90;
+            notemessage.releaseVelocity = 0;
+            notemessage.duration = 0.5;
+            
+            notemessage.note = [[drumBank objectForKey:[drumType lowercaseString]] intValue];
+            
+            MusicTrackNewMIDINoteEvent(musicTrack, timestamp, &notemessage);
+
+            break;
+            
+        case MidiEventTypeClear:
+            
+            MusicTrackClear(musicTrack, timestamp, timestamp+0.25);
+            
+        default:
+            break;
+    }
+
+}
+
+- (void) setupDrumBank {
+    drumBank = [[NSDictionary alloc] initWithObjectsAndKeys:
+                [NSNumber numberWithInt:60],@"kick",
+                [NSNumber numberWithInt:61],@"clap",nil];
+}
 @end

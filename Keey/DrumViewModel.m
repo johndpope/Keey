@@ -8,9 +8,13 @@
 
 #import "DrumViewModel.h"
 
+
 @implementation DrumViewModel
 
 - (void) setupDrumIntruments : (int)steps {
+    
+    musicSeq = [[MusicSequencerModel alloc] init];
+    [musicSeq setUpSequencer];
     
     kickSteps = [[NSMutableArray alloc] init];
     clapsSteps = [[NSMutableArray alloc] init];
@@ -33,26 +37,31 @@
     switch (drumMood) {
             
         case DrumMoodKick:
+            
             kickSteps[index] = [NSNumber numberWithBool: ![[kickSteps objectAtIndex:index] boolValue]];
-            //[kickSteps replaceObjectAtIndex:index withObject: [NSNumber numberWithBool: ![[kickSteps objectAtIndex:index] boolValue]]];
+
+            if ([self shouldPlaySoundAt:index forIntrument:DrumMoodKick]) {
+                [musicSeq handleMidiEvent:index withType:MidiEventTypeAdd forDrumInstrument:@"clap"];
+            } else {
+                NSLog(@"should clear");
+                [musicSeq handleMidiEvent:index withType:MidiEventTypeClear forDrumInstrument:@"kick"];
+            }
+            
             break;
         
         case DrumMoodClap:
             clapsSteps[index] = [NSNumber numberWithBool: ![[clapsSteps objectAtIndex:index] boolValue]];
 
-            //[clapsSteps replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:1]];
             break;
         
         case DrumMoodSnare:
             snareSteps[index] = [NSNumber numberWithBool: ![[snareSteps objectAtIndex:index] boolValue]];
 
-            //[snareSteps replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:1]];
             break;
             
         case DrumMoodHiHats:
             hiHatSteps[index] = [NSNumber numberWithBool: ![[hiHatSteps objectAtIndex:index] boolValue]];
 
-            //[hiHatSteps replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:1]];
             break;
             
         default:

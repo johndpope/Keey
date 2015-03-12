@@ -11,12 +11,18 @@
 
 @interface MusicSequencerModel : NSObject
 
+typedef enum MidiEventType : NSUInteger {
+    MidiEventTypeAdd,
+    MidiEventTypeClear,
+    
+} MidiEventType;
+
 - (void) setUpSequencer;
 
-- (void) addNodeToAugraph;
+//- (void) addNodeToAugraph;
 
 - (void) setInstrumentPreset;
-- (void) handleMidiEvent: (int)index;
+-(void) handleMidiEvent: (int) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType;
 
 @property NSDictionary *soundfontPresets;
 

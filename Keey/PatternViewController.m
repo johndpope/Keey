@@ -39,7 +39,6 @@
     
     [self.view addSubview:_addInstrumentBtn];
     
-    
 }
 
 - (void) DrawerViewControllerDelegateMethod: (DrawerViewController *) sender {
@@ -57,7 +56,7 @@
 
 - (void) displayDrawerController: (UIViewController*) content {
     
-    content.view.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:0];
+    content.view.backgroundColor = [UIColor colorWithRed:0.133 green:0.192 blue:0.212 alpha:0];
 
     [self addChildViewController:content];
     content.view.frame = CGRectMake(0, 0, [self window_width], [self window_height]);
@@ -68,7 +67,7 @@
                                    delay:0
                                  options:UIViewKeyframeAnimationOptionBeginFromCurrentState
                               animations:^{
-                                  content.view.backgroundColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:0.8];
+                                  content.view.backgroundColor = [UIColor colorWithRed:0.133 green:0.192 blue:0.212 alpha:0.8];
 
                               }
                               completion:^(BOOL finished) {

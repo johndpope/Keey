@@ -14,14 +14,14 @@
 
 - (void) displayViewWithTitle: (NSString *)title {
     
-    self.backgroundColor = [UIColor colorWithRed:0.204 green:0.22 blue:0.22 alpha:1];
+    self.backgroundColor = [UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1];
     
     _panelHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self window_width], 60)];
-    _panelHeader.backgroundColor = [UIColor colorWithRed:0.271 green:0.298 blue:0.298 alpha:1];
+    _panelHeader.backgroundColor = [UIColor colorWithRed:0.216 green:0.271 blue:0.294 alpha:1];
     [self addSubview:_panelHeader];
     
     UILabel *panelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [self window_width], 60)];
-    panelTitle.textColor = [UIColor colorWithRed:0.173 green:0.188 blue:0.188 alpha:1];
+    panelTitle.textColor = [UIColor colorWithRed:0.129 green:0.165 blue:0.184 alpha:1];
     panelTitle.font = [UIFont fontWithName:@"Avenir-Heavy" size:18];
     panelTitle.textAlignment = NSTextAlignmentCenter;
     panelTitle.text = @"Add an Instrument";
