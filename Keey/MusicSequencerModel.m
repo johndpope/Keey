@@ -7,10 +7,13 @@
 //
 
 #import "MusicSequencerModel.h"
+
+#define DEFAULT_TIME_DIFF 0.25
 #define NUM_SAMPLER_UNITS 1
 
 @implementation MusicSequencerModel {
     MusicSequence sequence;
+    MusicEventIterator eventIterator;
     MusicTrack musicTrack;
     MusicPlayer musicPlayer;
     AUGraph graph;
@@ -21,6 +24,8 @@
     AUNode mixerNode;
     AUNode outputNode;
     
+    float timeDiff;
+    
     NSDictionary *drumBank;
     
 }
@@ -29,11 +34,16 @@
     
     [self setupDrumBank];
     
+    timeDiff = 0.40;
+    
+    NSLog(@"time diff is %f", timeDiff);
+
     NewMusicSequence(&(sequence));
     NewMusicPlayer(&(musicPlayer));
     NewAUGraph(&(graph));
     
     [self setupMusicTracks];
+    [self setupIterator];
     [self setupAudioUnitGraph];
     
     Boolean *outisinitialised = false;
@@ -50,15 +60,14 @@
         AUGraphStart(graph);
     }
     
-    [self setInstrumentPreset];
-    
+    [self setInstrumentPreset :@"KeeyDrumkitsoundfont"];
     
     MusicSequenceSetAUGraph(sequence, graph);
     MusicTrackSetDestNode(musicTrack, samplerNode);
     MusicPlayerSetSequence(musicPlayer, sequence);
     //[self playdemo];
+    
     MusicPlayerStart(musicPlayer);
-
     
 }
 
@@ -67,7 +76,6 @@
     MusicTimeStamp trackLen = 0;
     UInt32 trackLenLen = sizeof(trackLen);
     
-    
     MusicTrackLoopInfo loopInfo;
     
     MusicSequenceNewTrack(sequence, &(musicTrack));
@@ -75,7 +83,7 @@
     //MusicTrackNewMIDINoteEvent(musicTrack, timestampex, &notemessaged);
     
     MusicTrackGetProperty(musicTrack, kSequenceTrackProperty_TrackLength, &trackLen, &trackLenLen);
-    loopInfo.loopDuration = 4;
+    loopInfo.loopDuration = timeDiff*16;
     loopInfo.numberOfLoops = 0;
     MusicTrackSetProperty(musicTrack, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
     NSLog(@"track length is %f", trackLen);
@@ -108,9 +116,9 @@
     AUGraphConnectNodeInput(graph, samplerNode, 0, outputNode, 0);
 }
 
-- (void) setInstrumentPreset {
+- (void) setInstrumentPreset : (NSString *)name {
     
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"KeeyDrumkitsoundfont" withExtension:@"sf2"];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:name withExtension:@"sf2"];
     [self samplerUnit:samplerUnit loadFromDLSOrSoundFont:url withPatch:0];
     
 }
@@ -171,9 +179,10 @@
     return result;
 }
 
+
 -(void) handleMidiEvent: (int) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType {
     
-    MusicTimeStamp timestamp = 0.25*index;
+    MusicTimeStamp timestamp = timeDiff*index;
     MIDINoteMessage notemessage;
 
     switch (eventType) {
@@ -183,7 +192,7 @@
             notemessage.channel = 0;
             notemessage.velocity = 90;
             notemessage.releaseVelocity = 0;
-            notemessage.duration = 0.5;
+            notemessage.duration = timeDiff;
             
             notemessage.note = [[drumBank objectForKey:[drumType lowercaseString]] intValue];
             
@@ -193,7 +202,7 @@
             
         case MidiEventTypeClear:
             
-            MusicTrackClear(musicTrack, timestamp, timestamp+0.25);
+            MusicTrackClear(musicTrack, timestamp, timestamp+timeDiff);
             
         default:
             break;
@@ -201,9 +210,35 @@
 
 }
 
+- (void) addStepAtPosition: (int) stepPosition withStepLength: (int)stepLength withNoteKey:(int) noteKey {
+    
+    MusicTimeStamp timeStamp = timeDiff*stepPosition;
+    MIDINoteMessage notemessage;
+    
+    notemessage.channel = 0;
+    notemessage.velocity = 90;
+    notemessage.releaseVelocity = 0;
+    notemessage.duration = timeDiff*stepLength;
+    notemessage.note = (12 - noteKey)+35;
+    
+    MusicTrackNewMIDINoteEvent(musicTrack, timeStamp, &notemessage);
+    
+}
+
+
+- (void) setupIterator {
+    
+    NewMusicEventIterator(musicTrack, &(eventIterator));
+
+}
+
 - (void) setupDrumBank {
+    
     drumBank = [[NSDictionary alloc] initWithObjectsAndKeys:
                 [NSNumber numberWithInt:60],@"kick",
-                [NSNumber numberWithInt:61],@"clap",nil];
+                [NSNumber numberWithInt:61],@"snare",
+                [NSNumber numberWithInt:62],@"clap",
+                [NSNumber numberWithInt:63],@"hihat",
+                nil];
 }
 @end

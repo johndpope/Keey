@@ -12,7 +12,6 @@
 #import "Piano.h"
 #import "InstrumentButton.h"
 #import "DrumStepSequencerViewController.h"
-#import "MidiPatternViewController.h"
 
 @interface PatternCollectionViewCTRL : UICollectionViewController
 
@@ -26,7 +25,6 @@ typedef NS_ENUM (NSInteger, InstumentType) {
 @property NSMutableArray *patternInstruments;
 
 @property DrumPatternViewController *DrumPatternerCTRL;
-@property MidiPatternViewController *MidiPatternerCTRL;
 
 @property Drums *drums;
 @property Piano *piano;

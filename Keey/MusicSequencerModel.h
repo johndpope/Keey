@@ -21,8 +21,11 @@ typedef enum MidiEventType : NSUInteger {
 
 //- (void) addNodeToAugraph;
 
-- (void) setInstrumentPreset;
--(void) handleMidiEvent: (int) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType;
+- (void) setInstrumentPreset : (NSString *)name;
+
+- (void) handleMidiEvent: (int) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType;
+
+- (void) addStepAtPosition: (int) stepPosition withStepLength: (int)stepLength withNoteKey:(int) noteKey;
 
 @property NSDictionary *soundfontPresets;
 

@@ -10,12 +10,15 @@
 #define SCREEN_HEIGHT (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
 
 #import "DrumStepSequencerViewController.h"
+#import "InstrumentalHeaderView.h"
 #import "MusicSequencerModel.h"
 
 @interface DrumPatternViewController () {
     
-    NSUInteger markerPosition;
+    InstrumentalHeaderView *headerView;
     UIView *sequencerContainerView;
+    NSUInteger markerPosition;
+    UITableView *tableView;
     NSUInteger totalSteps;
     //MusicSequencerModel *musicSeq;
     //StepMood currentMood;
@@ -50,14 +53,16 @@ static NSString * const reuseIdentifier = @"Cell";
     
     //[NSTimer scheduledTimerWithTimeInterval:0.15 target:self selector:@selector(playSoundAtMarker:) userInfo:nil repeats:YES];
     
-    UITapGestureRecognizer *tapRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissviewctrl)];
-    
-    tapRecog.numberOfTapsRequired = 2;
-    
-    [self.view addGestureRecognizer:tapRecog];
     
     //[self layoutInstrumentButtons];
 
+    headerView = [[InstrumentalHeaderView alloc] initWithFrame:CGRectMake(0, 0, 120, 360)];
+    [headerView setUpHeaders:6 withType:HeaderTypeDetailed];
+    
+    [sequencerContainerView addSubview:headerView];
+    
+    [self setUpNavBar];
+    
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -84,7 +89,7 @@ static NSString * const reuseIdentifier = @"Cell";
                 
             case 0:
                 
-                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodKick]) {
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forInstrument:DrumMoodKick]) {
 
                     cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
                 }
@@ -92,21 +97,21 @@ static NSString * const reuseIdentifier = @"Cell";
                 
             case 1:
                 
-                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodSnare]) {
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forInstrument:DrumMoodSnare]) {
                     cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
                 }
                 break;
                 
             case 2:
                 
-                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodClap]) {
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forInstrument:DrumMoodClap]) {
                     cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
                 }
                 break;
                 
             case 3:
                 
-                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodHiHats]) {
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forInstrument:DrumMoodHiHats]) {
                     cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
                 }
                 break;
@@ -123,28 +128,28 @@ static NSString * const reuseIdentifier = @"Cell";
                 
             case 0:
                 
-                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodKick]) {
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forInstrument:DrumMoodKick]) {
                     cell.backgroundColor = [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1];
                 }
                 break;
             
             case 1:
                 
-                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodSnare]) {
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forInstrument:DrumMoodSnare]) {
                     cell.backgroundColor = [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1];
                 }
                 break;
                 
             case 2:
                 
-                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodClap]) {
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forInstrument:DrumMoodClap]) {
                     cell.backgroundColor = [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1];
                 }
                 break;
                 
             case 3:
                 
-                if ([_drumModel shouldPlaySoundAt:[indexPath row] forIntrument:DrumMoodHiHats]) {
+                if ([_drumModel shouldPlaySoundAt:[indexPath row] forInstrument:DrumMoodHiHats]) {
                     cell.backgroundColor = [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1];
                 }
                 break;
@@ -170,16 +175,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(25, 0, 0, 0);
+    return UIEdgeInsetsMake(30, 0, 30, 0);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    return CGSizeMake(0., 30.);
-}
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSLog(@"%d", [indexPath row]);
     if([indexPath section] == 0){
 
         [_drumModel updateStepAt:[indexPath row] forInstrument:DrumMoodKick];
@@ -197,7 +199,7 @@ static NSString * const reuseIdentifier = @"Cell";
         [_drumModel updateStepAt:[indexPath row] forInstrument:DrumMoodHiHats];
         
     }
-
+    
     [_stepSequencerCollectionView reloadData];
 
 }
@@ -209,19 +211,19 @@ static NSString * const reuseIdentifier = @"Cell";
         markerPosition = 0;
     }
     
-    if([_drumModel shouldPlaySoundAt:markerPosition forIntrument:DrumMoodKick]){
+    if([_drumModel shouldPlaySoundAt:markerPosition forInstrument:DrumMoodKick]){
         [_drums playKick];
     }
     
-    if([_drumModel shouldPlaySoundAt:markerPosition forIntrument:DrumMoodClap]){
+    if([_drumModel shouldPlaySoundAt:markerPosition forInstrument:DrumMoodClap]){
         [_drums playClap];
     }
     
-    if([_drumModel shouldPlaySoundAt:markerPosition forIntrument:DrumMoodSnare]){
+    if([_drumModel shouldPlaySoundAt:markerPosition forInstrument:DrumMoodSnare]){
         [_drums playSnare];
     }
     
-    if([_drumModel shouldPlaySoundAt:markerPosition forIntrument:DrumMoodHiHats]){
+    if([_drumModel shouldPlaySoundAt:markerPosition forInstrument:DrumMoodHiHats]){
         [_drums playHats];
     }
     
@@ -234,7 +236,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void) dismissviewctrl {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) layoutInstrumentButtons {
@@ -282,7 +284,8 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void) setUpSequencerView {
-    sequencerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, [self window_width], 400)];
+    
+    sequencerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, [self window_width], 360)];
     sequencerContainerView.backgroundColor = [UIColor colorWithRed:0.129 green:0.165 blue:0.184 alpha:1];
     [self.view addSubview:sequencerContainerView];
     
@@ -296,7 +299,63 @@ static NSString * const reuseIdentifier = @"Cell";
     [_stepSequencerCollectionView setDataSource:self];
     [_stepSequencerCollectionView setDelegate:self];
     
+    /*
+    int yPos = 0;
+    for (int i = 0; i < 4; i++) {
+        
+        UILabel *headerView = [[UILabel alloc] initWithFrame:CGRectMake(0, yPos, 120, sequencerContainerView.frame.size.height/4)];
+        headerView.backgroundColor = [UIColor colorWithRed:0.18 green:0.224 blue:0.247 alpha:1];
+        headerView.textColor = [UIColor colorWithRed:0.122 green:0.157 blue:0.169 alpha:1];
+        headerView.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:20];
+        headerView.textAlignment = NSTextAlignmentCenter;
+
+        switch (i) {
+                
+            case 0:
+                [headerView setText:@"Kicks"];
+                break;
+                
+            case 1:
+                [headerView setText:@"Claps"];
+                break;
+                
+            case 2:
+                [headerView setText:@"Snares"];
+                break;
+                
+            case 3:
+                [headerView setText:@"Hi hats"];
+                break;
+                
+            default:
+                break;
+        }
+        yPos = (sequencerContainerView.frame.size.height/4)*(i+1);
+        [sequencerContainerView addSubview:headerView];
+    }
+    */
+    
+    tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 120, 360)];
+    [sequencerContainerView addSubview:tableView];
     [sequencerContainerView addSubview:_stepSequencerCollectionView];
+}
+
+- (void) setUpNavBar {
+    
+    UIView *custNavBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self window_width], 75)];
+    custNavBar.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:custNavBar];
+    
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(custNavBar.frame.size.width-70, 25, 30, 30)];
+    [closeButton addTarget:self action:@selector(dismissviewctrl) forControlEvents:UIControlEventTouchUpInside];
+    [closeButton setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
+    [custNavBar addSubview:closeButton];
+    
+    UIButton *settingsButton = [[UIButton alloc] initWithFrame:CGRectMake(custNavBar.frame.size.width-150, 25, 28, 28)];
+    //[settingsButton addTarget:self action:@selector(dismissviewctrl) forControlEvents:UIControlEventTouchUpInside];
+    [settingsButton setBackgroundImage:[UIImage imageNamed:@"settings.png"] forState:UIControlStateNormal];
+    //[custNavBar addSubview:settingsButton];
+    
 }
 
 - (CGFloat) window_height {
@@ -305,6 +364,10 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (CGFloat) window_width {
     return SCREEN_WIDTH;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end

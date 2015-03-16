@@ -6,12 +6,10 @@
 //  Copyright (c) 2015 SweetKeyNotes. All rights reserved.
 //
 
-#import "SelectableViewCell.h"
 #import <UIKit/UIKit.h>
 #import "Drums.h"
 #import "MarkerView.h"
 #import "DrumViewModel.h"
-#import "CollectionReusableHeaderView.h"
 
 @interface DrumPatternViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 

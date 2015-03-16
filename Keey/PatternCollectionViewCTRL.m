@@ -7,12 +7,16 @@
 //
 
 #import "PatternCollectionViewCTRL.h"
+#import "KeyBoardStepSequencer.h"
+
 
 @interface PatternCollectionViewCTRL ()
 
 @end
 
-@implementation PatternCollectionViewCTRL
+@implementation PatternCollectionViewCTRL {
+    KeyBoardStepSequencer *keyboardStepSeqViewCTRL;
+}
 
 static NSString * const reuseIdentifier = @"Cell";
 
@@ -96,38 +100,38 @@ static NSString * const reuseIdentifier = @"Cell";
             
         case InstrumentalTypePiano:
             [instrument ofType:InstrumentalTypePiano ofSize:BigSize];
-            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
-            [_currentPatterns addObject:_MidiPatternerCTRL];
+            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeTrumpet:
             [instrument ofType:InstrumentalTypeTrumpet ofSize:BigSize];
-            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
-            [_currentPatterns addObject:_MidiPatternerCTRL];
+            //_MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
+            //[_currentPatterns addObject:_MidiPatternerCTRL];
             break;
             
         case InstrumentalTypeGuitar:
             [instrument ofType:InstrumentalTypeGuitar ofSize:BigSize];
-            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
-            [_currentPatterns addObject:_MidiPatternerCTRL];
+            //_MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
+            //[_currentPatterns addObject:_MidiPatternerCTRL];
             break;
             
         case InstrumentalTypeFlute:
             [instrument ofType:InstrumentalTypeFlute ofSize:BigSize];
-            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
-            [_currentPatterns addObject:_MidiPatternerCTRL];
+            //_MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
+            //[_currentPatterns addObject:_MidiPatternerCTRL];
             break;
             
         case InstrumentalTypeSynth:
             [instrument ofType:InstrumentalTypeSynth ofSize:BigSize];
-            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
-            [_currentPatterns addObject:_MidiPatternerCTRL];
+           // _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
+           // [_currentPatterns addObject:_MidiPatternerCTRL];
             break;
             
         case InstrumentalTypeVox:
             [instrument ofType:InstrumentalTypeVox ofSize:BigSize];
-            _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
-            [_currentPatterns addObject:_MidiPatternerCTRL];
+            //_MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
+            //[_currentPatterns addObject:_MidiPatternerCTRL];
             break;
             
         default:

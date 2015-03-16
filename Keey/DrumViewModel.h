@@ -27,6 +27,6 @@ typedef enum DrumMood : NSUInteger {
 
 - (void) setupDrumIntruments : (int)steps;
 - (void) updateStepAt : (int)index forInstrument :(enum DrumMood) drumMood;
-- (BOOL) shouldPlaySoundAt : (int)index forIntrument :(enum DrumMood)drumMood;
+- (BOOL) shouldPlaySoundAt : (int)index forInstrument :(enum DrumMood)drumMood;
 
 @end
