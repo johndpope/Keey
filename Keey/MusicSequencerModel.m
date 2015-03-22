@@ -14,7 +14,20 @@
 @implementation MusicSequencerModel {
     MusicSequence sequence;
     MusicEventIterator eventIterator;
-    MusicTrack musicTrack;
+    
+    MusicTrack musicTrackForKeyB;
+    MusicTrack musicTrackForASharp;
+    MusicTrack musicTrackForKeyA;
+    MusicTrack musicTrackForGSharp;
+    MusicTrack musicTrackForKeyG;
+    MusicTrack musicTrackForFSharp;
+    MusicTrack musicTrackForKeyF;
+    MusicTrack musicTrackForKeyE;
+    MusicTrack musicTrackForDSharp;
+    MusicTrack musicTrackForKeyD;
+    MusicTrack musicTrackForCSharp;
+    MusicTrack musicTrackForKeyC;
+    
     MusicPlayer musicPlayer;
     AUGraph graph;
     AudioUnit samplerUnit;
@@ -34,10 +47,8 @@
     
     [self setupDrumBank];
     
-    timeDiff = 0.40;
+    timeDiff = 0.5;
     
-    NSLog(@"time diff is %f", timeDiff);
-
     NewMusicSequence(&(sequence));
     NewMusicPlayer(&(musicPlayer));
     NewAUGraph(&(graph));
@@ -63,10 +74,20 @@
     [self setInstrumentPreset :@"KeeyDrumkitsoundfont"];
     
     MusicSequenceSetAUGraph(sequence, graph);
-    MusicTrackSetDestNode(musicTrack, samplerNode);
-    MusicPlayerSetSequence(musicPlayer, sequence);
-    //[self playdemo];
+    MusicTrackSetDestNode(musicTrackForKeyB, samplerNode);
+    MusicTrackSetDestNode(musicTrackForASharp, samplerNode);
+    MusicTrackSetDestNode(musicTrackForKeyA, samplerNode);
+    MusicTrackSetDestNode(musicTrackForGSharp, samplerNode);
+    MusicTrackSetDestNode(musicTrackForKeyG, samplerNode);
+    MusicTrackSetDestNode(musicTrackForFSharp, samplerNode);
+    MusicTrackSetDestNode(musicTrackForKeyF, samplerNode);
+    MusicTrackSetDestNode(musicTrackForKeyE, samplerNode);
+    MusicTrackSetDestNode(musicTrackForDSharp, samplerNode);
+    MusicTrackSetDestNode(musicTrackForKeyD, samplerNode);
+    MusicTrackSetDestNode(musicTrackForCSharp, samplerNode);
+    MusicTrackSetDestNode(musicTrackForKeyC, samplerNode);
     
+    MusicPlayerSetSequence(musicPlayer, sequence);
     MusicPlayerStart(musicPlayer);
     
 }
@@ -78,15 +99,36 @@
     
     MusicTrackLoopInfo loopInfo;
     
-    MusicSequenceNewTrack(sequence, &(musicTrack));
+    MusicSequenceNewTrack(sequence, &(musicTrackForKeyB));
+    MusicSequenceNewTrack(sequence, &(musicTrackForASharp));
+    MusicSequenceNewTrack(sequence, &(musicTrackForKeyA));
+    MusicSequenceNewTrack(sequence, &(musicTrackForGSharp));
+    MusicSequenceNewTrack(sequence, &(musicTrackForKeyG));
+    MusicSequenceNewTrack(sequence, &(musicTrackForFSharp));
+    MusicSequenceNewTrack(sequence, &(musicTrackForKeyF));
+    MusicSequenceNewTrack(sequence, &(musicTrackForKeyE));
+    MusicSequenceNewTrack(sequence, &(musicTrackForDSharp));
+    MusicSequenceNewTrack(sequence, &(musicTrackForKeyD));
+    MusicSequenceNewTrack(sequence, &(musicTrackForCSharp));
+    MusicSequenceNewTrack(sequence, &(musicTrackForKeyC));
     
-    //MusicTrackNewMIDINoteEvent(musicTrack, timestampex, &notemessaged);
     
-    MusicTrackGetProperty(musicTrack, kSequenceTrackProperty_TrackLength, &trackLen, &trackLenLen);
+    MusicTrackGetProperty(musicTrackForKeyB, kSequenceTrackProperty_TrackLength, &trackLen, &trackLenLen);
     loopInfo.loopDuration = timeDiff*16;
     loopInfo.numberOfLoops = 0;
-    MusicTrackSetProperty(musicTrack, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    NSLog(@"track length is %f", trackLen);
+    
+    MusicTrackSetProperty(musicTrackForKeyB, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(musicTrackForASharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(musicTrackForKeyA, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(musicTrackForGSharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(musicTrackForKeyG, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(musicTrackForFSharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(musicTrackForKeyF, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(musicTrackForKeyE, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(musicTrackForDSharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(musicTrackForKeyD, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(musicTrackForCSharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(musicTrackForKeyC, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
     
 }
 
@@ -121,35 +163,6 @@
     NSURL *url = [[NSBundle mainBundle] URLForResource:name withExtension:@"sf2"];
     [self samplerUnit:samplerUnit loadFromDLSOrSoundFont:url withPatch:0];
     
-}
-
-- (void) playdemo {
-    //NewAUGraph(&(graph));
-    
-     //NewMusicSequence(&sequence);
-     
-     NSString *midiFilePath = [[NSBundle mainBundle]
-     pathForResource:@"teddybear"
-     ofType:@"mid"];
-     
-     // Create a new URL which points to the MIDI file
-     NSURL * midiFileURL = [NSURL fileURLWithPath:midiFilePath];
-     
-     MusicSequenceFileLoad(sequence, (__bridge CFURLRef)(midiFileURL), 0, 0);
-     
-     // Create a new music player
-     //MusicPlayer  p;
-     // Initialise the music player
-     //NewMusicPlayer(&p);
-     
-     // Load the sequence into the music player
-     MusicPlayerSetSequence(musicPlayer, sequence);
-     // Called to do some MusicPlayer setup. This just
-     // reduces latency when MusicPlayerStart is called
-     //MusicPlayerPreroll(p);
-     // Starts the music playing
-     //MusicPlayerStart(p);
-     
 }
 
 - (OSStatus)samplerUnit:(AudioUnit)sampler loadFromDLSOrSoundFont:(NSURL *)bankURL withPatch:(int)presetNumber
@@ -196,13 +209,13 @@
             
             notemessage.note = [[drumBank objectForKey:[drumType lowercaseString]] intValue];
             
-            MusicTrackNewMIDINoteEvent(musicTrack, timestamp, &notemessage);
+            //MusicTrackNewMIDINoteEvent(musicTrack, timestamp, &notemessage);
 
             break;
             
         case MidiEventTypeClear:
             
-            MusicTrackClear(musicTrack, timestamp, timestamp+timeDiff);
+            //MusicTrackClear(musicTrack, timestamp, timestamp+timeDiff);
             
         default:
             break;
@@ -210,7 +223,7 @@
 
 }
 
-- (void) addStepAtPosition: (int) stepPosition withStepLength: (int)stepLength withNoteKey:(int) noteKey {
+- (void) addStepAtPosition: (int) stepPosition withStepLength: (int)stepLength withNoteKey:(PianoRollKeyType) pianoRollKey {
     
     MusicTimeStamp timeStamp = timeDiff*stepPosition;
     MIDINoteMessage notemessage;
@@ -219,17 +232,205 @@
     notemessage.velocity = 90;
     notemessage.releaseVelocity = 0;
     notemessage.duration = timeDiff*stepLength;
-    notemessage.note = (12 - noteKey)+35;
+    notemessage.note = (12 - pianoRollKey)+71;
     
-    MusicTrackNewMIDINoteEvent(musicTrack, timeStamp, &notemessage);
+    //NSLog(@"%f", stepPosition*timeDiff);
+    
+    switch (pianoRollKey) {
+            
+        case PianoRollKeyTypeB:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyB, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeASharp:
+
+            MusicTrackNewMIDINoteEvent(musicTrackForASharp, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeA:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyA, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeGSharp:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForGSharp, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeG:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyG, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeFSharp:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForFSharp, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeF:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyF, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeE:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyE, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeDSharp:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForDSharp, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeD:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyD, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeCSharp:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForCSharp, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeC:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyC, timeStamp, &notemessage);
+            
+            break;
+            
+        default:
+            break;
+            
+    }
+    
+}
+
+- (void) setLengthForStepAtPosition: (int) stepPosition withStepLength: (int) stepLength forNote: (PianoRollKeyType) pianoRollKey {
+    
+    switch (pianoRollKey) {
+            
+        case PianoRollKeyTypeB:
+            
+            NewMusicEventIterator(musicTrackForKeyB, &(eventIterator));
+            
+            break;
+            
+        case PianoRollKeyTypeASharp:
+
+            NewMusicEventIterator(musicTrackForASharp, &(eventIterator));
+
+            break;
+            
+        case PianoRollKeyTypeA:
+            
+            NewMusicEventIterator(musicTrackForKeyA, &(eventIterator));
+            
+            break;
+            
+        case PianoRollKeyTypeGSharp:
+            
+            NewMusicEventIterator(musicTrackForGSharp, &(eventIterator));
+            
+            break;
+            
+        case PianoRollKeyTypeG:
+            
+            NewMusicEventIterator(musicTrackForKeyG, &(eventIterator));
+            
+            break;
+            
+        case PianoRollKeyTypeFSharp:
+            
+            NewMusicEventIterator(musicTrackForFSharp, &(eventIterator));
+            
+            break;
+            
+        case PianoRollKeyTypeF:
+            
+            NewMusicEventIterator(musicTrackForKeyF, &(eventIterator));
+            
+            break;
+            
+        case PianoRollKeyTypeE:
+            
+            NewMusicEventIterator(musicTrackForKeyE, &(eventIterator));
+            
+            break;
+            
+        case PianoRollKeyTypeDSharp:
+            
+            NewMusicEventIterator(musicTrackForDSharp, &(eventIterator));
+            
+            break;
+            
+        case PianoRollKeyTypeD:
+            
+            NewMusicEventIterator(musicTrackForKeyD, &(eventIterator));
+            
+            break;
+            
+        case PianoRollKeyTypeCSharp:
+            
+            NewMusicEventIterator(musicTrackForCSharp, &(eventIterator));
+            
+            break;
+            
+        case PianoRollKeyTypeC:
+            
+            NewMusicEventIterator(musicTrackForKeyC, &(eventIterator));
+            
+            break;
+            
+        default:
+            
+            break;
+            
+    }
+    
+    MusicEventIteratorSeek(eventIterator, stepPosition*timeDiff);
+    NSLog(@"%f", stepLength * timeDiff);
+    if (stepLength) {
+        
+        MusicDeviceNoteParams params;
+        params.argCount = 2;
+        params.mPitch = (12 - pianoRollKey)+71;
+        params.mVelocity = 90;
+    
+        ExtendedNoteOnEvent notemessage;
+        notemessage.extendedParams = params;
+        notemessage.groupID = 0;
+        notemessage.instrumentID = 0;
+        notemessage.duration = stepLength * timeDiff;
+    
+        MusicEventIteratorSetEventInfo(eventIterator, kMusicEventType_ExtendedNote, &notemessage);
+        
+    } else {
+         NSLog(@"should remove");
+        
+         MusicEventIteratorDeleteEvent(eventIterator);
+        
+    }
+    
+    DisposeMusicEventIterator(eventIterator);
+
     
 }
 
 
 - (void) setupIterator {
     
-    NewMusicEventIterator(musicTrack, &(eventIterator));
-
 }
 
 - (void) setupDrumBank {
@@ -241,4 +442,34 @@
                 [NSNumber numberWithInt:63],@"hihat",
                 nil];
 }
+
+- (void) playdemo {
+    //NewAUGraph(&(graph));
+    
+    //NewMusicSequence(&sequence);
+    
+    NSString *midiFilePath = [[NSBundle mainBundle]
+                              pathForResource:@"teddybear"
+                              ofType:@"mid"];
+    
+    // Create a new URL which points to the MIDI file
+    NSURL * midiFileURL = [NSURL fileURLWithPath:midiFilePath];
+    
+    MusicSequenceFileLoad(sequence, (__bridge CFURLRef)(midiFileURL), 0, 0);
+    
+    // Create a new music player
+    //MusicPlayer  p;
+    // Initialise the music player
+    //NewMusicPlayer(&p);
+    
+    // Load the sequence into the music player
+    MusicPlayerSetSequence(musicPlayer, sequence);
+    // Called to do some MusicPlayer setup. This just
+    // reduces latency when MusicPlayerStart is called
+    //MusicPlayerPreroll(p);
+    // Starts the music playing
+    //MusicPlayerStart(p);
+    
+}
+
 @end

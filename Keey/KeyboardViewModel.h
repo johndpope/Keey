@@ -32,7 +32,8 @@ typedef enum KeyType : NSUInteger {
 
 - (void) setupKeys : (int) steps;
 
-- (void) updateStepSeqForPosition: (int) stepPosition withlength: (int)keyLength withKeyNote: (int) keyNote;
+- (void) updateStepSeqForPosition: (int) stepPosition withlength: (int)keyLength withKeyNote: (NSUInteger) keyNote;
 
+- (void) setLengthForStepAtPosition: (int) stepPosition withStepLength: (int) stepLength forNote: (NSUInteger) noteKey;
 
 @end

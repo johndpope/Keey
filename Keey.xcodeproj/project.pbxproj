@@ -40,6 +40,7 @@
 		6DA78C0B1A8BC41B002FC88D /* PatternViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA78C0A1A8BC41B002FC88D /* PatternViewController.m */; };
 		6DA78C0E1A8BCF99002FC88D /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA78C0D1A8BCF99002FC88D /* PlaylistViewController.m */; };
 		6DA78C191A8BDBE8002FC88D /* PatternCollectionViewCTRL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA78C181A8BDBE8002FC88D /* PatternCollectionViewCTRL.m */; };
+		6DB10B021ABE3F6900024475 /* CustomModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB10B011ABE3F6900024475 /* CustomModal.m */; };
 		6DC5262B1AAD5DF20029D530 /* teddybear.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6DC5262A1AAD5DF20029D530 /* teddybear.mid */; };
 		6DC795F61AB2123200D32CCC /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC795F51AB2123200D32CCC /* close.png */; };
 		6DC795F81AB219BC00D32CCC /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC795F71AB219BC00D32CCC /* settings.png */; };
@@ -122,6 +123,8 @@
 		6DA78C0D1A8BCF99002FC88D /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
 		6DA78C171A8BDBE8002FC88D /* PatternCollectionViewCTRL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternCollectionViewCTRL.h; sourceTree = "<group>"; };
 		6DA78C181A8BDBE8002FC88D /* PatternCollectionViewCTRL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternCollectionViewCTRL.m; sourceTree = "<group>"; };
+		6DB10B001ABE3F6900024475 /* CustomModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomModal.h; sourceTree = "<group>"; };
+		6DB10B011ABE3F6900024475 /* CustomModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomModal.m; sourceTree = "<group>"; };
 		6DC5262A1AAD5DF20029D530 /* teddybear.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = teddybear.mid; sourceTree = "<group>"; };
 		6DC795F51AB2123200D32CCC /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		6DC795F71AB219BC00D32CCC /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
@@ -299,6 +302,15 @@
 			name = CollectionView;
 			sourceTree = "<group>";
 		};
+		6DB10AFF1ABE3F2500024475 /* Custom Modal */ = {
+			isa = PBXGroup;
+			children = (
+				6DB10B001ABE3F6900024475 /* CustomModal.h */,
+				6DB10B011ABE3F6900024475 /* CustomModal.m */,
+			);
+			name = "Custom Modal";
+			sourceTree = "<group>";
+		};
 		6DC795F91AB21C8F00D32CCC /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +426,7 @@
 		6DE2C7881A7FA88000FBE9D5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6DB10AFF1ABE3F2500024475 /* Custom Modal */,
 				6DE748501A98F56D0072B140 /* Markerview */,
 				6D0AEB651A8F186D00AFB84B /* Panel */,
 			);
@@ -594,6 +607,7 @@
 				6D0AEB641A8F117A00AFB84B /* DrawerViewController.m in Sources */,
 				6DEEEEE91A80FE4E008CF16F /* BubbleButton.m in Sources */,
 				6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */,
+				6DB10B021ABE3F6900024475 /* CustomModal.m in Sources */,
 				6DDE0E0C1A78D08D0087053D /* MainViewController.m in Sources */,
 				6DE748531A98F5A90072B140 /* MarkerView.m in Sources */,
 				6DF42B101AAD35A3001E754B /* MusicSequencerModel.m in Sources */,

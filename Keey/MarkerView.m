@@ -47,7 +47,7 @@
                             oldframe.origin.x =dest;
                             markerLine.frame = oldframe;
                             
-                        }completion:nil];
+                        } completion:nil ];
     
 }
 

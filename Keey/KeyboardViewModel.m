@@ -24,11 +24,15 @@
     
 }
 
-- (void) updateStepSeqForPosition: (int) stepPosition withlength: (int)keyLength withKeyNote: (int) keyNote {
+- (void) updateStepSeqForPosition: (int) stepPosition withlength: (int)keyLength withKeyNote: (NSUInteger) keyNote {
     
-    if (keyLength) {
-        [musicSeq addStepAtPosition:stepPosition withStepLength:keyLength withNoteKey:keyNote];
-    }
+    [musicSeq addStepAtPosition:stepPosition withStepLength:keyLength withNoteKey:keyNote];
+    
+}
+
+- (void) setLengthForStepAtPosition: (int) stepPosition withStepLength: (int) stepLength forNote: (NSUInteger) noteKey {
+    
+    [musicSeq setLengthForStepAtPosition:stepPosition withStepLength:stepLength forNote:noteKey];
     
 }
 

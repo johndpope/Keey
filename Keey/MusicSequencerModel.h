@@ -17,6 +17,22 @@ typedef enum MidiEventType : NSUInteger {
     
 } MidiEventType;
 
+typedef enum PianoRollKeyType : NSUInteger {
+    PianoRollKeyTypeB = 0,
+    PianoRollKeyTypeASharp = 1,
+    PianoRollKeyTypeA = 2,
+    PianoRollKeyTypeGSharp = 3,
+    PianoRollKeyTypeG = 4,
+    PianoRollKeyTypeFSharp = 5,
+    PianoRollKeyTypeF = 6,
+    PianoRollKeyTypeE = 7,
+    PianoRollKeyTypeDSharp = 8,
+    PianoRollKeyTypeD = 9,
+    PianoRollKeyTypeCSharp = 10,
+    PianoRollKeyTypeC = 12,
+    
+} PianoRollKeyType;
+
 - (void) setUpSequencer;
 
 //- (void) addNodeToAugraph;
@@ -25,7 +41,9 @@ typedef enum MidiEventType : NSUInteger {
 
 - (void) handleMidiEvent: (int) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType;
 
-- (void) addStepAtPosition: (int) stepPosition withStepLength: (int)stepLength withNoteKey:(int) noteKey;
+- (void) addStepAtPosition: (int) stepPosition withStepLength: (int)stepLength withNoteKey:(PianoRollKeyType) pianoRollKey;
+
+- (void) setLengthForStepAtPosition: (int) stepPosition withStepLength: (int) stepLength forNote: (PianoRollKeyType) noteKey;
 
 @property NSDictionary *soundfontPresets;
 

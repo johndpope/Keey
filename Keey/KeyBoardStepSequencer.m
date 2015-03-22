@@ -14,6 +14,7 @@
 #import "MusicSequencerModel.h"
 #import "KeyboardViewModel.h"
 #import "MarkerView.h"
+#import "CustomModal.h"
 
 
 @interface KeyBoardStepSequencer () {
@@ -25,6 +26,7 @@
     NSIndexPath *currentHighlightedIndexPath;
     int currentHighlightedIndexPathLength;
     MarkerView *marker;
+    CustomModal *customModalMenu;
 }
 
 @end
@@ -33,7 +35,21 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
+-(void)viewDidAppear:(BOOL)animated {
+    
+    marker = [[MarkerView alloc] initWithFrame:CGRectMake(0, 0, 1, seqcollectionview.frame.size.height)];
+    [marker displayMarkerLine];
+    [seqcollectionview addSubview:marker];
+    //[marker startAnimation:4 toDestination:seqcollectionview.frame.size.width];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated {
+    
+}
+
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1];
@@ -45,9 +61,10 @@ static NSString * const reuseIdentifier = @"Cell";
     keyboardViewModel = [[KeyboardViewModel alloc] init];
     [keyboardViewModel setupKeys:16];
     
-    marker = [[MarkerView alloc] initWithFrame:CGRectMake(0, 0, 1, seqcollectionview.frame.size.height)];
-    [marker displayMarkerLine];
-    [seqcollectionview addSubview:marker];
+    customModalMenu = [[CustomModal alloc] initWithFrame:CGRectMake(0, 0, [self window_width], [self window_height])];
+    [customModalMenu setupView];
+    [customModalMenu setHidden:YES];
+    [self.view addSubview:customModalMenu];
     
 }
 
@@ -69,12 +86,12 @@ static NSString * const reuseIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     cell.layer.borderColor = [[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] CGColor];
-    cell.layer.borderWidth = 3;
+    cell.layer.borderWidth = 4;
     cell.layer.cornerRadius = cell.frame.size.width/2;
     
     if ([indexPath row]%8 > 3){
         //EVERY 2nd bar
-        cell.layer.borderColor = [[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] CGColor];
+        cell.layer.borderColor = [[UIColor colorWithRed:0.145 green:0.188 blue:0.204 alpha:1] CGColor];
     }
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
@@ -136,6 +153,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     UIButton *octaveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     octaveButton.backgroundColor = [UIColor colorWithRed:0.141 green:0.184 blue:0.204 alpha:1];
+    [octaveButton addTarget:self action:@selector(handleMenuButtonClick) forControlEvents:UIControlEventTouchUpInside];
     //[octaveButton setBackgroundImage:[UIImage imageNamed:@"octave.png"] forState:UIControlStateNormal];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 20, 35, 35)];
@@ -146,14 +164,28 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
+- (void) handleMenuButtonClick {
+    
+    if ([customModalMenu isHidden]) {
+        
+        [customModalMenu setHidden:NO];
+        
+    } else {
+        
+        [customModalMenu setHidden:YES];
+        
+    }
+    
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell *cell = [seqcollectionview cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
     cell.layer.borderColor = [[UIColor clearColor] CGColor];
-
+    
+    
     [self addStepToSequencer:indexPath withLength:1];
-    [marker startAnimation:4 toDestination:collectionView.frame.size.width];
     
 }
 
@@ -164,15 +196,16 @@ static NSString * const reuseIdentifier = @"Cell";
     cell.backgroundColor = [UIColor clearColor];
     cell.layer.borderColor = [[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] CGColor];
     
-    [keyboardViewModel updateStepSeqForPosition:(int)[indexPath row] withlength:0 withKeyNote:(int)[indexPath section]];
-
+    [self addStepToSequencer:indexPath withLength:0];
+    
 }
 
 -(void) handleLongPress: (UIGestureRecognizer *)longPress {
 
     NSIndexPath *indexPath;
-        
+
     if (longPress.state==UIGestureRecognizerStateBegan) {
+        
         CGPoint pressPoint = [longPress locationInView:seqcollectionview];
         indexPath = [seqcollectionview indexPathForItemAtPoint:pressPoint];
         
@@ -182,7 +215,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
     }
 
-    
 }
 
 - (void) drawChord: (NSIndexPath *)indexPath {
@@ -206,21 +238,29 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)pan:(UIPanGestureRecognizer *)aPan{
     
+    
+    //CGPoint locationOfPan = [aPan locationInView:seqcollectionview];
     UIView *chord = aPan.view;
     
-    
+    NSLog(@"%f",chord.frame.origin.x);
+
     currentHighlightedIndexPathLength = [[NSString stringWithFormat:@"%.1f", chord.frame.size.width/50]floatValue];
     
     CGPoint currentPoint = [aPan locationInView:chord];
+
     
+    if (currentPoint.x > 0) {
+        
+        currentHighlightedIndexPath = [seqcollectionview indexPathForItemAtPoint:chord.frame.origin];
+
     [UIView animateWithDuration:0.01f
                      animations:^{
                          CGRect oldFrame = chord.frame;
-                         NSLog(@"%f", currentPoint.x);
-                         if (currentPoint.x > oldFrame.origin.x) {
+                         
                              chord.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.height+currentPoint.x, oldFrame.size.height);
-                         }
+                         
                      }];
+    }
     
     if (aPan.state == UIGestureRecognizerStateEnded) {
         
@@ -239,27 +279,35 @@ static NSString * const reuseIdentifier = @"Cell";
         
         oldFrame.size.width = 22*(chordLength-1) + 35*chordLength;
         chordView.frame = oldFrame;
-        [self addStepToSequencer:currentHighlightedIndexPath withLength:chordLength];
+        
+        [keyboardViewModel setLengthForStepAtPosition:[currentHighlightedIndexPath row] withStepLength:chordLength forNote:[currentHighlightedIndexPath section]];
 
     } else if (chordLength == 1) {
         
         oldFrame.size.width = 92;
         chordView.frame = oldFrame;
-        [self addStepToSequencer:currentHighlightedIndexPath withLength:chordLength];
         
+        [keyboardViewModel setLengthForStepAtPosition:[currentHighlightedIndexPath row] withStepLength:1 forNote:[currentHighlightedIndexPath section]];
+
     } else {
-        
-        [self addStepToSequencer:currentHighlightedIndexPath withLength:0];
+        [keyboardViewModel setLengthForStepAtPosition:[currentHighlightedIndexPath row] withStepLength:0 forNote:[currentHighlightedIndexPath section]];
         [chordView removeFromSuperview];
         
     }
     
 }
 
-
 - (void) addStepToSequencer: (NSIndexPath *)indexPath withLength: (int) length {
     
-    [keyboardViewModel updateStepSeqForPosition:[indexPath row] withlength:length withKeyNote:[indexPath section]];
+    if (length) {
+
+        [keyboardViewModel updateStepSeqForPosition:[indexPath row] withlength:length withKeyNote:[indexPath section]];
+        
+    } else {
+
+        [keyboardViewModel setLengthForStepAtPosition:[indexPath row] withStepLength:0 forNote:[indexPath section]];
+        
+    }
     
 }
 
