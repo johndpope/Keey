@@ -101,12 +101,12 @@
     
     switch ([sender tag]) {
         case 0:
-            [self moveSelected];
+            [self moveSelected:0];
             [self displayContentController:_patternViewCTRL];
             [self hideContentController:_playlistViewCTRL];
             break;
         case 1:
-            [self moveSelected];
+            [self moveSelected:1];
             [self hideContentController:_patternViewCTRL];
             [self displayContentController:_playlistViewCTRL];
             break;
@@ -115,30 +115,32 @@
     }
 }
 
-- (void) moveSelected {
+- (void) moveSelected: (int) selectedIndex{
     
-    if (_selectedView.frame.origin.x == 5) {
+    if (selectedIndex == 0) {
 
-    [UIView animateKeyframesWithDuration:0.3
-                                delay:0
-                                options:UIViewKeyframeAnimationOptionBeginFromCurrentState
-                                animations:^{
-                                    CGRect tempFrame = _selectedView.frame;
-                                    tempFrame.origin.x = 140;
-                                    _selectedView.frame = tempFrame;
-                                }
-                              completion:nil];
+        POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+
+        anim.toValue = @68;
+        anim.velocity = @40;
+        anim.springBounciness = 20.f;
+        anim.springSpeed = 30;
+        
+        [_selectedView.layer pop_addAnimation:anim forKey:@"springAnimation"];
+
+        
     } else {
         
-        [UIView animateKeyframesWithDuration:0.3
-                                       delay:0
-                                     options:UIViewKeyframeAnimationOptionBeginFromCurrentState
-                                  animations:^{
-                                      CGRect tempFrame = _selectedView.frame;
-                                      tempFrame.origin.x = 5;
-                                      _selectedView.frame = tempFrame;
-                                  }
-                                  completion:nil];
+        POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+
+        anim.toValue = @202;
+        anim.velocity = @40;
+        anim.springBounciness = 20.f;
+        anim.springSpeed = 30;
+        
+        [_selectedView.layer pop_addAnimation:anim forKey:@"springAnimation"];
+        
+        
     }
     
 }

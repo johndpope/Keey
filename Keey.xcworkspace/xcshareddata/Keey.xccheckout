@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D27386BB-2887-4F48-A215-09BE0D8FF441</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Keey</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BDBFE0E14AB87927E22DA7819550027A20163A09</key>
+		<string>https://github.com/IpaliboWhyte/Keey.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Keey.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BDBFE0E14AB87927E22DA7819550027A20163A09</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/IpaliboWhyte/Keey.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BDBFE0E14AB87927E22DA7819550027A20163A09</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BDBFE0E14AB87927E22DA7819550027A20163A09</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Keey</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,13 @@
+PODS:
+  - FastAnimationWithPOP (0.0.2):
+    - pop (~> 1.0.5)
+  - pop (1.0.7)
+
+DEPENDENCIES:
+  - FastAnimationWithPOP
+
+SPEC CHECKSUMS:
+  FastAnimationWithPOP: 453cac7e3671d27c57db04abec4f6c08a930f413
+  pop: 2f14a1ea61339767af9e66741b418c831b3844df
+
+COCOAPODS: 0.36.0

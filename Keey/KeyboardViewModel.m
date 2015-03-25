@@ -18,7 +18,7 @@
     
     musicSeq = [[MusicSequencerModel alloc] init];
     [musicSeq setUpSequencer];
-    [musicSeq setInstrumentPreset:@"GeneralUser GS MuseScore v1.442"];
+    [musicSeq setInstrumentPreset:@"LV - Hex"];
     
     switchVal = true;
     

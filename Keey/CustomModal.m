@@ -28,6 +28,10 @@
     background.backgroundColor = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:0.4];
     [self addSubview:background];
     
+    UITapGestureRecognizer *tapRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(overLayDidTap:)];
+    tapRecog.numberOfTapsRequired = 1;
+    [background addGestureRecognizer:tapRecog];
+    
     dashboardView = [[UIView alloc] init];
     dashboardView.frame = CGRectMake(self.frame.size.width/2-200, self.frame.size.height/2-200, 400, 400);
     dashboardView.backgroundColor = [UIColor whiteColor];
@@ -54,6 +58,10 @@
     chooseSampleLabel.textAlignment = NSTextAlignmentCenter;
     chooseSampleLabel.text = @"Choose a sample";
     [dashboardView addSubview:chooseSampleLabel];
+}
+
+- (void) overLayDidTap: (UITapGestureRecognizer*)sender {
+    [self.delegate CustomModalViewDelegateMethod:self];
 }
 
 @end

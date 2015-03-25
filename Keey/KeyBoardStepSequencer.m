@@ -14,7 +14,6 @@
 #import "MusicSequencerModel.h"
 #import "KeyboardViewModel.h"
 #import "MarkerView.h"
-#import "CustomModal.h"
 
 
 @interface KeyBoardStepSequencer () {
@@ -61,10 +60,7 @@ static NSString * const reuseIdentifier = @"Cell";
     keyboardViewModel = [[KeyboardViewModel alloc] init];
     [keyboardViewModel setupKeys:16];
     
-    customModalMenu = [[CustomModal alloc] initWithFrame:CGRectMake(0, 0, [self window_width], [self window_height])];
-    [customModalMenu setupView];
-    [customModalMenu setHidden:YES];
-    [self.view addSubview:customModalMenu];
+    [self setUpModalView];
     
 }
 
@@ -178,6 +174,21 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
+- (void) setUpModalView {
+    
+    customModalMenu = [[CustomModal alloc] initWithFrame:CGRectMake(0, 0, [self window_width], [self window_height])];
+    [customModalMenu setupView];
+    [customModalMenu setHidden:YES];
+    [self.view addSubview:customModalMenu];
+    
+    [customModalMenu setDelegate:self];
+    
+}
+
+- (void) CustomModalViewDelegateMethod:(CustomModal *)sender {
+    [self handleMenuButtonClick];
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell *cell = [seqcollectionview cellForItemAtIndexPath:indexPath];
@@ -237,7 +248,6 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void)pan:(UIPanGestureRecognizer *)aPan{
-    
     
     //CGPoint locationOfPan = [aPan locationInView:seqcollectionview];
     UIView *chord = aPan.view;

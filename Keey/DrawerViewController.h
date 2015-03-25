@@ -24,5 +24,6 @@
 @property NSArray *drawerElements;
 @property PanelView *panelView;
 - (void) displayDrawerElements: ( NSArray *) elements;
+- (void) animateDrawerIn;
 
 @end

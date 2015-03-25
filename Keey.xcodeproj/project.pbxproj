@@ -33,6 +33,8 @@
 		6D65E9971A8D00D700009CF3 /* Snares.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9961A8D00D700009CF3 /* Snares.m */; };
 		6D65E99A1A8D00EE00009CF3 /* HiHats.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E9991A8D00EE00009CF3 /* HiHats.m */; };
 		6D65E9A01A8D11FF00009CF3 /* Piano.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65E99F1A8D11FF00009CF3 /* Piano.m */; };
+		6D6F714A1AC0FA0700DF8626 /* LV - Game Plucks.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D6F71481AC0FA0700DF8626 /* LV - Game Plucks.sf2 */; };
+		6D6F714B1AC0FA0700DF8626 /* LV - Hex.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D6F71491AC0FA0700DF8626 /* LV - Hex.sf2 */; };
 		6D7C7FCD1AAECA0700BE7C7F /* BrassEnsembleSE.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D7C7FCC1AAECA0700BE7C7F /* BrassEnsembleSE.sf2 */; };
 		6D7C7FCF1AAEDA9500BE7C7F /* GeneralUser GS MuseScore v1.442.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D7C7FCE1AAEDA9500BE7C7F /* GeneralUser GS MuseScore v1.442.sf2 */; };
 		6D7C7FD11AAEDD3600BE7C7F /* x.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D7C7FD01AAEDD3600BE7C7F /* x.sf2 */; };
@@ -62,6 +64,7 @@
 		6DF42B021AABF981001E754B /* DrumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42B011AABF981001E754B /* DrumViewModel.m */; };
 		6DF42B091AACDE6A001E754B /* buffkick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6DF42B081AACDE6A001E754B /* buffkick.wav */; };
 		6DF42B101AAD35A3001E754B /* MusicSequencerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42B0F1AAD35A3001E754B /* MusicSequencerModel.m */; };
+		FF5E4E64025A66035CE067C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF810B647A2F9DF5085925B9 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		64B5F0C437AFFE1031D05AA0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6D0474E11AB207CE00B405AD /* InstrumentalHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentalHeaderView.h; sourceTree = "<group>"; };
 		6D0474E21AB207CE00B405AD /* InstrumentalHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentalHeaderView.m; sourceTree = "<group>"; };
 		6D0AEB621A8F117A00AFB84B /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 		6D65E9991A8D00EE00009CF3 /* HiHats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiHats.m; sourceTree = "<group>"; };
 		6D65E99E1A8D11FF00009CF3 /* Piano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Piano.h; sourceTree = "<group>"; };
 		6D65E99F1A8D11FF00009CF3 /* Piano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Piano.m; sourceTree = "<group>"; };
+		6D6F71481AC0FA0700DF8626 /* LV - Game Plucks.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LV - Game Plucks.sf2"; sourceTree = "<group>"; };
+		6D6F71491AC0FA0700DF8626 /* LV - Hex.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LV - Hex.sf2"; sourceTree = "<group>"; };
 		6D7C7FCC1AAECA0700BE7C7F /* BrassEnsembleSE.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = BrassEnsembleSE.sf2; sourceTree = "<group>"; };
 		6D7C7FCE1AAEDA9500BE7C7F /* GeneralUser GS MuseScore v1.442.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeneralUser GS MuseScore v1.442.sf2"; sourceTree = "<group>"; };
 		6D7C7FD01AAEDD3600BE7C7F /* x.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = x.sf2; sourceTree = "<group>"; };
@@ -161,6 +167,8 @@
 		6DF42B081AACDE6A001E754B /* buffkick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buffkick.wav; sourceTree = "<group>"; };
 		6DF42B0E1AAD35A3001E754B /* MusicSequencerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSequencerModel.h; sourceTree = "<group>"; };
 		6DF42B0F1AAD35A3001E754B /* MusicSequencerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSequencerModel.m; sourceTree = "<group>"; };
+		733B1C516DB3410D150F83D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		CF810B647A2F9DF5085925B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF5E4E64025A66035CE067C1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +190,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B4E636154D17C23359D6C8E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF810B647A2F9DF5085925B9 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6D0AEB651A8F186D00AFB84B /* Panel */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +212,8 @@
 			children = (
 				6D43548D1AB11FE9008BAE1C /* Audio - Sound Font - Sonic Implants Session Drums.sf2 */,
 				6D4354911AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 */,
+				6D6F71481AC0FA0700DF8626 /* LV - Game Plucks.sf2 */,
+				6D6F71491AC0FA0700DF8626 /* LV - Hex.sf2 */,
 				6D7C7FD01AAEDD3600BE7C7F /* x.sf2 */,
 				6D7C7FCE1AAEDA9500BE7C7F /* GeneralUser GS MuseScore v1.442.sf2 */,
 				6D7C7FCC1AAECA0700BE7C7F /* BrassEnsembleSE.sf2 */,
@@ -331,6 +350,8 @@
 				6DDE0DE31A78D0270087053D /* Keey */,
 				6DDE0DFD1A78D0270087053D /* KeeyTests */,
 				6DDE0DE21A78D0270087053D /* Products */,
+				B419B458D6AEFC0F41458696 /* Pods */,
+				3B4E636154D17C23359D6C8E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -465,6 +486,15 @@
 			name = StepSequencer;
 			sourceTree = "<group>";
 		};
+		B419B458D6AEFC0F41458696 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				733B1C516DB3410D150F83D9 /* Pods.debug.xcconfig */,
+				64B5F0C437AFFE1031D05AA0 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -472,9 +502,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6DDE0E041A78D0270087053D /* Build configuration list for PBXNativeTarget "Keey" */;
 			buildPhases = (
+				A299EE945B025935ABB24156 /* Check Pods Manifest.lock */,
 				6DDE0DDD1A78D0270087053D /* Sources */,
 				6DDE0DDE1A78D0270087053D /* Frameworks */,
 				6DDE0DDF1A78D0270087053D /* Resources */,
+				9BC769DBF80D021F36545000 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -546,6 +578,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D6F714A1AC0FA0700DF8626 /* LV - Game Plucks.sf2 in Resources */,
+				6D6F714B1AC0FA0700DF8626 /* LV - Hex.sf2 in Resources */,
 				6D7C7FD11AAEDD3600BE7C7F /* x.sf2 in Resources */,
 				6D7C7FCD1AAECA0700BE7C7F /* BrassEnsembleSE.sf2 in Resources */,
 				6D618B511A95507200CC3CDC /* guitaricon.png in Resources */,
@@ -584,6 +618,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9BC769DBF80D021F36545000 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A299EE945B025935ABB24156 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6DDE0DDD1A78D0270087053D /* Sources */ = {
@@ -730,6 +797,7 @@
 		};
 		6DDE0E051A78D0270087053D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 733B1C516DB3410D150F83D9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -745,6 +813,7 @@
 		};
 		6DDE0E061A78D0270087053D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64B5F0C437AFFE1031D05AA0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

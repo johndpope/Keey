@@ -174,7 +174,7 @@
     insdata.fileURL = (__bridge CFURLRef) bankURL;
     insdata.bankMSB  = kAUSampler_DefaultMelodicBankMSB;
     insdata.bankLSB  = kAUSampler_DefaultBankLSB;
-    insdata.presetID = (UInt8) presetNumber;
+    insdata.presetID = (UInt8) 0;
     insdata.instrumentType = kInstrumentType_DLSPreset; // DLS and SF2 are the same enum values
     
     // Load the instrument

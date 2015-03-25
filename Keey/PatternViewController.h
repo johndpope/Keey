@@ -11,6 +11,7 @@
 #import "InstrumentButton.h"
 #import "BubbleButton.h"
 #import "DrawerViewController.h"
+#import <pop/POP.h>
 
 @interface PatternViewController : UIViewController <DrawerViewControllerDelegate> {
     

@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class CustomModal;             //define class, so protocol can see MyClass
+@protocol CustomModalViewDelegate <NSObject>   //define delegate protocol
+- (void) CustomModalViewDelegateMethod: (CustomModal *) sender;  //define delegate method to be implemented within another class
+@end //end protocol
+
+
 @interface CustomModal : UIView
 
 - (void) setupView;
 
+@property (nonatomic, weak) id <CustomModalViewDelegate> delegate; //define MyClassDelegate as delegate
+
 @end
+

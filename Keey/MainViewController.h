@@ -12,6 +12,7 @@
 #import "BodyContentView.h"
 #import "PatternViewController.h"
 #import "PlaylistViewController.h"
+#import <pop/POP.h>
 
 
 @interface MainViewController : UIViewController
