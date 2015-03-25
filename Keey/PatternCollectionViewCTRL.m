@@ -106,32 +106,32 @@ static NSString * const reuseIdentifier = @"Cell";
             
         case InstrumentalTypeTrumpet:
             [instrument ofType:InstrumentalTypeTrumpet ofSize:BigSize];
-            //_MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
-            //[_currentPatterns addObject:_MidiPatternerCTRL];
+            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeGuitar:
             [instrument ofType:InstrumentalTypeGuitar ofSize:BigSize];
-            //_MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
-            //[_currentPatterns addObject:_MidiPatternerCTRL];
+            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeFlute:
             [instrument ofType:InstrumentalTypeFlute ofSize:BigSize];
-            //_MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
-            //[_currentPatterns addObject:_MidiPatternerCTRL];
+            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeSynth:
             [instrument ofType:InstrumentalTypeSynth ofSize:BigSize];
-           // _MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
-           // [_currentPatterns addObject:_MidiPatternerCTRL];
+            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeVox:
             [instrument ofType:InstrumentalTypeVox ofSize:BigSize];
-            //_MidiPatternerCTRL = [[MidiPatternViewController alloc] init];
-            //[_currentPatterns addObject:_MidiPatternerCTRL];
+            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         default:
@@ -149,7 +149,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self.navigationController presentViewController:[_currentPatterns objectAtIndex:[sender tag]] animated:YES completion:nil];
         
-    //NSLog(@"touched by %@", sender);
 }
 
 @end

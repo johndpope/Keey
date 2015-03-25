@@ -20,19 +20,21 @@
 @synthesize delegate; //synthesise  MyClassDelegate delegate
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
+    _backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self window_width], [self window_height])];
+    [self.view addSubview:_backgroundView];
     
     _panelView = [[PanelView alloc] initWithFrame:CGRectMake(0, [self window_height], [self window_width], 600)];
     [_panelView displayViewWithTitle:@"Add an Instrument"];
     [self.view addSubview:_panelView];
     
-    //[self animateDrawerIn];
+    [_panelView.panelHeaderCloseBtn addTarget:self action:@selector(OverLayDidTap) forControlEvents:UIControlEventTouchUpInside];
     
-    UITapGestureRecognizer *tapRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OverLayDidTap:)];
-    
+    UITapGestureRecognizer *tapRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OverLayDidTap)];
     tapRecog.numberOfTapsRequired = 1;
-    
-    [self.view addGestureRecognizer:tapRecog];
+    [_backgroundView addGestureRecognizer:tapRecog];
     
 }
 
@@ -44,27 +46,33 @@
     anim.velocity = [NSNumber numberWithFloat:50];
     anim.springSpeed = 30;
     anim.springBounciness = 10;
+    anim.removedOnCompletion = YES;
+    
+    [_panelView.layer pop_addAnimation:anim forKey:@"springAnimation"];
+
+}
+
+- (void) animateDrawerOut: (completionBlock) compBlock {
+    
+    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    anim.toValue = [NSNumber numberWithFloat:[self window_height]+370];
+    anim.velocity = [NSNumber numberWithFloat:50];
+    anim.springSpeed = 30;
+    anim.springBounciness = 10;
+    anim.removedOnCompletion = YES;
+    anim.completionBlock = ^(POPAnimation *anim, BOOL finished){
+        
+        compBlock(YES);
+        
+    };
     
     [_panelView.layer pop_addAnimation:anim forKey:@"springAnimation"];
     
-    /*
-    [UIView animateKeyframesWithDuration:0.4
-                                   delay:0.4
-                                 options:UIViewKeyframeAnimationOptionBeginFromCurrentState
-                              animations:^{
-                                  CGRect originalFrame = _panelView.frame;
-                                  originalFrame.origin.y = 250+120;
-                                  _panelView.frame = originalFrame;
-                              }
-                              completion:^(BOOL finished) {
-                                  
-                              }];
-     */
 }
 
-- (void) OverLayDidTap:(UITapGestureRecognizer*)sender {
+- (void) OverLayDidTap {
     //this will call the method implemented in your other class
-    [self.delegate DrawerViewControllerDelegateMethod:self];
+    [self.delegate closeDrawerController:self];
 }
 
 - (void) displayDrawerElements: ( NSArray *) elements {

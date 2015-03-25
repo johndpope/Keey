@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		6D0474E31AB207CE00B405AD /* InstrumentalHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0474E21AB207CE00B405AD /* InstrumentalHeaderView.m */; };
+		6D0A4EF91AC2A62400A2F6C2 /* closeicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4EF81AC2A62400A2F6C2 /* closeicon.png */; };
+		6D0A4EFD1AC2D4A300A2F6C2 /* BeatBarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A4EFC1AC2D4A300A2F6C2 /* BeatBarHeaderView.m */; };
+		6D0A4F011AC2D69F00A2F6C2 /* PianoRollConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A4F001AC2D69F00A2F6C2 /* PianoRollConfig.m */; };
+		6D0A4F051AC2E56500A2F6C2 /* sliderbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F041AC2E56500A2F6C2 /* sliderbar.png */; };
+		6D0A4F091AC2E6D700A2F6C2 /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F081AC2E6D700A2F6C2 /* slider.png */; };
+		6D0A4F0B1AC2E72600A2F6C2 /* thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F0A1AC2E72600A2F6C2 /* thumb.png */; };
+		6D0A4F0E1AC2FD5B00A2F6C2 /* thumb@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F0C1AC2FD5B00A2F6C2 /* thumb@1x.png */; };
+		6D0A4F0F1AC2FD5B00A2F6C2 /* thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F0D1AC2FD5B00A2F6C2 /* thumb@2x.png */; };
+		6D0A4F151AC312DE00A2F6C2 /* bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F141AC312DE00A2F6C2 /* bar@2x.png */; };
 		6D0AEB641A8F117A00AFB84B /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */; };
 		6D0AEB681A8F189000AFB84B /* PanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AEB671A8F189000AFB84B /* PanelView.m */; };
 		6D11E4431AAD575600FFDEEF /* StabBrass_JJ.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E4421AAD575600FFDEEF /* StabBrass_JJ.sf2 */; };
@@ -81,6 +90,17 @@
 		64B5F0C437AFFE1031D05AA0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6D0474E11AB207CE00B405AD /* InstrumentalHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentalHeaderView.h; sourceTree = "<group>"; };
 		6D0474E21AB207CE00B405AD /* InstrumentalHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentalHeaderView.m; sourceTree = "<group>"; };
+		6D0A4EF81AC2A62400A2F6C2 /* closeicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeicon.png; sourceTree = "<group>"; };
+		6D0A4EFB1AC2D4A300A2F6C2 /* BeatBarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatBarHeaderView.h; sourceTree = "<group>"; };
+		6D0A4EFC1AC2D4A300A2F6C2 /* BeatBarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatBarHeaderView.m; sourceTree = "<group>"; };
+		6D0A4EFF1AC2D69F00A2F6C2 /* PianoRollConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianoRollConfig.h; sourceTree = "<group>"; };
+		6D0A4F001AC2D69F00A2F6C2 /* PianoRollConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianoRollConfig.m; sourceTree = "<group>"; };
+		6D0A4F041AC2E56500A2F6C2 /* sliderbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderbar.png; sourceTree = "<group>"; };
+		6D0A4F081AC2E6D700A2F6C2 /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
+		6D0A4F0A1AC2E72600A2F6C2 /* thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb.png; sourceTree = "<group>"; };
+		6D0A4F0C1AC2FD5B00A2F6C2 /* thumb@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb@1x.png"; sourceTree = "<group>"; };
+		6D0A4F0D1AC2FD5B00A2F6C2 /* thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb@2x.png"; sourceTree = "<group>"; };
+		6D0A4F141AC312DE00A2F6C2 /* bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar@2x.png"; sourceTree = "<group>"; };
 		6D0AEB621A8F117A00AFB84B /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
 		6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
 		6D0AEB661A8F189000AFB84B /* PanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelView.h; sourceTree = "<group>"; };
@@ -198,6 +218,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6D0A4EFA1AC2D47700A2F6C2 /* BarHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				6D0A4EFB1AC2D4A300A2F6C2 /* BeatBarHeaderView.h */,
+				6D0A4EFC1AC2D4A300A2F6C2 /* BeatBarHeaderView.m */,
+			);
+			name = BarHeaderView;
+			sourceTree = "<group>";
+		};
+		6D0A4EFE1AC2D67400A2F6C2 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				6D0A4EFF1AC2D69F00A2F6C2 /* PianoRollConfig.h */,
+				6D0A4F001AC2D69F00A2F6C2 /* PianoRollConfig.m */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
 		6D0AEB651A8F186D00AFB84B /* Panel */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,10 +295,16 @@
 		6D618B541A95507400CC3CDC /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				6D0A4F0C1AC2FD5B00A2F6C2 /* thumb@1x.png */,
+				6D0A4F0D1AC2FD5B00A2F6C2 /* thumb@2x.png */,
 				6DE1E7151AB2348A001BC4BA /* octave.png */,
+				6D0A4F0A1AC2E72600A2F6C2 /* thumb.png */,
 				6DC795F71AB219BC00D32CCC /* settings.png */,
+				6D0A4EF81AC2A62400A2F6C2 /* closeicon.png */,
 				6DC795F51AB2123200D32CCC /* close.png */,
+				6D0A4F081AC2E6D700A2F6C2 /* slider.png */,
 				6DE748541A98F6DB0072B140 /* Marker.png */,
+				6D0A4F041AC2E56500A2F6C2 /* sliderbar.png */,
 				6D618B5C1A9650C400CC3CDC /* addicon.png */,
 				6D618B561A958C3E00CC3CDC /* fluteicon.png */,
 				6D618B571A958C3E00CC3CDC /* synthicon.png */,
@@ -268,6 +312,7 @@
 				6D618B4E1A95507200CC3CDC /* guitaricon.png */,
 				6D618B4F1A95507200CC3CDC /* pianoicon.png */,
 				6D618B501A95507200CC3CDC /* trumpeticon.png */,
+				6D0A4F141AC312DE00A2F6C2 /* bar@2x.png */,
 				6D618B4C1A954ADD00CC3CDC /* drumicon.png */,
 			);
 			name = icons;
@@ -279,13 +324,6 @@
 				6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */,
 			);
 			name = mp3;
-			sourceTree = "<group>";
-		};
-		6D65E9911A8D004300009CF3 /* Midi sound objects */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Midi sound objects";
 			sourceTree = "<group>";
 		};
 		6D9014E31A968F5800B59B67 /* InstrumentCTRL */ = {
@@ -301,7 +339,6 @@
 			isa = PBXGroup;
 			children = (
 				6D9014E31A968F5800B59B67 /* InstrumentCTRL */,
-				6DA78C0F1A8BD51D002FC88D /* CollectionView */,
 				6DA78C0C1A8BCF99002FC88D /* PlaylistViewController.h */,
 				6DA78C0D1A8BCF99002FC88D /* PlaylistViewController.m */,
 				6DA78C091A8BC41B002FC88D /* PatternViewController.h */,
@@ -333,6 +370,7 @@
 		6DC795F91AB21C8F00D32CCC /* models */ = {
 			isa = PBXGroup;
 			children = (
+				6D0A4EFE1AC2D67400A2F6C2 /* Config */,
 				6DF42B001AABF981001E754B /* DrumViewModel.h */,
 				6DF42B011AABF981001E754B /* DrumViewModel.m */,
 				6DF42B0E1AAD35A3001E754B /* MusicSequencerModel.h */,
@@ -371,7 +409,6 @@
 				6DF42AFF1AABF954001E754B /* StepSequencer */,
 				6DA78C081A8BC3E0002FC88D /* Controllers */,
 				6DE2C7881A7FA88000FBE9D5 /* Views */,
-				6D65E9911A8D004300009CF3 /* Midi sound objects */,
 				6DE068321A7DA68100F3D04B /* Instrument Objects */,
 				6DE068291A7D966700F3D04B /* Sound Objects */,
 				6DDE0DF11A78D0270087053D /* Images.xcassets */,
@@ -447,6 +484,8 @@
 		6DE2C7881A7FA88000FBE9D5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6DA78C0F1A8BD51D002FC88D /* CollectionView */,
+				6D0A4EFA1AC2D47700A2F6C2 /* BarHeaderView */,
 				6DB10AFF1ABE3F2500024475 /* Custom Modal */,
 				6DE748501A98F56D0072B140 /* Markerview */,
 				6D0AEB651A8F186D00AFB84B /* Panel */,
@@ -580,11 +619,13 @@
 			files = (
 				6D6F714A1AC0FA0700DF8626 /* LV - Game Plucks.sf2 in Resources */,
 				6D6F714B1AC0FA0700DF8626 /* LV - Hex.sf2 in Resources */,
+				6D0A4F0B1AC2E72600A2F6C2 /* thumb.png in Resources */,
 				6D7C7FD11AAEDD3600BE7C7F /* x.sf2 in Resources */,
 				6D7C7FCD1AAECA0700BE7C7F /* BrassEnsembleSE.sf2 in Resources */,
 				6D618B511A95507200CC3CDC /* guitaricon.png in Resources */,
 				6D11E4431AAD575600FFDEEF /* StabBrass_JJ.sf2 in Resources */,
 				6D618B591A958C3E00CC3CDC /* fluteicon.png in Resources */,
+				6D0A4F0F1AC2FD5B00A2F6C2 /* thumb@2x.png in Resources */,
 				6D618B5B1A958C3E00CC3CDC /* voxicon.png in Resources */,
 				6DF42B091AACDE6A001E754B /* buffkick.wav in Resources */,
 				6D618B4D1A954ADD00CC3CDC /* drumicon.png in Resources */,
@@ -596,10 +637,15 @@
 				6D43548E1AB11FE9008BAE1C /* Audio - Sound Font - Sonic Implants Session Drums.sf2 in Resources */,
 				6D618B521A95507200CC3CDC /* pianoicon.png in Resources */,
 				6DC795F61AB2123200D32CCC /* close.png in Resources */,
+				6D0A4F151AC312DE00A2F6C2 /* bar@2x.png in Resources */,
 				6D618B5D1A9650C400CC3CDC /* addicon.png in Resources */,
+				6D0A4F0E1AC2FD5B00A2F6C2 /* thumb@1x.png in Resources */,
 				6D7C7FCF1AAEDA9500BE7C7F /* GeneralUser GS MuseScore v1.442.sf2 in Resources */,
 				6D4354921AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 in Resources */,
+				6D0A4F091AC2E6D700A2F6C2 /* slider.png in Resources */,
+				6D0A4EF91AC2A62400A2F6C2 /* closeicon.png in Resources */,
 				6DDE0DF51A78D0270087053D /* LaunchScreen.xib in Resources */,
+				6D0A4F051AC2E56500A2F6C2 /* sliderbar.png in Resources */,
 				6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */,
 				6DDE0DF21A78D0270087053D /* Images.xcassets in Resources */,
 				6D2EC4CF1A97EC5900712D44 /* HiHat.wav in Resources */,
@@ -668,6 +714,8 @@
 				6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */,
 				6DDE0DEA1A78D0270087053D /* AppDelegate.m in Sources */,
 				6D65E99A1A8D00EE00009CF3 /* HiHats.m in Sources */,
+				6D0A4EFD1AC2D4A300A2F6C2 /* BeatBarHeaderView.m in Sources */,
+				6D0A4F011AC2D69F00A2F6C2 /* PianoRollConfig.m in Sources */,
 				6DA78C0B1A8BC41B002FC88D /* PatternViewController.m in Sources */,
 				6D9014E61A968F9C00B59B67 /* DrumStepSequencerViewController.m in Sources */,
 				6D65E9A01A8D11FF00009CF3 /* Piano.m in Sources */,

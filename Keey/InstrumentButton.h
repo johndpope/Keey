@@ -30,5 +30,6 @@ typedef enum InstrumentalSize : NSUInteger {
 - ( void ) ofType : (enum InstrumentalType) type ofSize : (enum InstrumentalSize) size;
 
 @property (nonatomic, assign) InstrumentalType instrumentType;
+@property (nonatomic, assign) InstrumentalSize instrumentSize;
 
 @end

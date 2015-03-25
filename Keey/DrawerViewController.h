@@ -12,7 +12,7 @@
 
 @class DrawerViewController;             //define class, so protocol can see MyClass
 @protocol DrawerViewControllerDelegate <NSObject>   //define delegate protocol
-- (void) DrawerViewControllerDelegateMethod: (DrawerViewController *) sender;  //define delegate method to be implemented within another class
+- (void) closeDrawerController: (DrawerViewController *) sender;  //define delegate method to be implemented within another class
 @end //end protocol
 
 
@@ -21,9 +21,14 @@
 }
 
 @property (nonatomic, weak) id <DrawerViewControllerDelegate> delegate; //define MyClassDelegate as delegate
+typedef void(^completionBlock)(BOOL);
 @property NSArray *drawerElements;
+@property UIView *backgroundView;
 @property PanelView *panelView;
+
 - (void) displayDrawerElements: ( NSArray *) elements;
 - (void) animateDrawerIn;
+- (void) animateDrawerOut: (completionBlock) compBlock;
+
 
 @end

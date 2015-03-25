@@ -14,6 +14,7 @@
 
 @property UIView *panelHeader;
 @property UIView *panelContent;
+@property UIButton *panelHeaderCloseBtn;
 
 - (void) displayViewWithTitle: (NSString *)title;
 - (void) displayContent: (NSArray *) instruments;

@@ -14,6 +14,8 @@
 #import "MusicSequencerModel.h"
 #import "KeyboardViewModel.h"
 #import "MarkerView.h"
+#import "BeatBarHeaderView.h"
+#import "PianoRollConfig.h"
 
 
 @interface KeyBoardStepSequencer () {
@@ -26,6 +28,8 @@
     int currentHighlightedIndexPathLength;
     MarkerView *marker;
     CustomModal *customModalMenu;
+    BeatBarHeaderView *barheaderView;
+    PianoRollConfig *config;
 }
 
 @end
@@ -55,6 +59,10 @@ static NSString * const reuseIdentifier = @"Cell";
 
     [self setUpNavBar];
     
+    config = [[PianoRollConfig alloc] init];
+    config.currentOctave = OctaveTypeMid;
+    config.currentMeasure = 1;
+    
     [self setUpSequencerView];
     
     keyboardViewModel = [[KeyboardViewModel alloc] init];
@@ -82,12 +90,13 @@ static NSString * const reuseIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     cell.layer.borderColor = [[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] CGColor];
-    cell.layer.borderWidth = 4;
+    cell.layer.borderWidth = 2;
     cell.layer.cornerRadius = cell.frame.size.width/2;
     
     if ([indexPath row]%8 > 3){
         //EVERY 2nd bar
-        cell.layer.borderColor = [[UIColor colorWithRed:0.145 green:0.188 blue:0.204 alpha:1] CGColor];
+        //cell.layer.borderWidth = 3;
+        //cell.layer.borderColor = [[UIColor colorWithRed:0.145 green:0.188 blue:0.204 alpha:1] CGColor];
     }
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
@@ -124,6 +133,10 @@ static NSString * const reuseIdentifier = @"Cell";
     keyboardView = [[InstrumentalHeaderView alloc] initWithFrame:CGRectMake(0, 0, 100, sequencerContainerView.frame.size.height)];
     [keyboardView setUpHeaders:16 withType:HeaderTypeKeyboard];
     [sequencerContainerView addSubview:keyboardView];
+    
+    barheaderView = [[BeatBarHeaderView alloc] init];
+    [barheaderView setUpViewWithCount:4 withSpacing:((35*4) + (20*3)+6)+23];
+    [seqcollectionview addSubview:barheaderView];
 }
 
 - (UIEdgeInsets)collectionView:
@@ -252,8 +265,6 @@ static NSString * const reuseIdentifier = @"Cell";
     //CGPoint locationOfPan = [aPan locationInView:seqcollectionview];
     UIView *chord = aPan.view;
     
-    NSLog(@"%f",chord.frame.origin.x);
-
     currentHighlightedIndexPathLength = [[NSString stringWithFormat:@"%.1f", chord.frame.size.width/50]floatValue];
     
     CGPoint currentPoint = [aPan locationInView:chord];

@@ -16,6 +16,9 @@
     
     self.backgroundColor = [UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1];
     
+    UIImage *btnImage = [[UIImage alloc] init];
+    
+    
     _panelHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self window_width], 60)];
     _panelHeader.backgroundColor = [UIColor colorWithRed:0.216 green:0.271 blue:0.294 alpha:1];
     [self addSubview:_panelHeader];
@@ -26,6 +29,11 @@
     panelTitle.textAlignment = NSTextAlignmentCenter;
     panelTitle.text = @"Add an Instrument";
     [_panelHeader addSubview: panelTitle];
+    
+    _panelHeaderCloseBtn = [[UIButton alloc] initWithFrame:CGRectMake([self window_width]-60, 20, 20, 20)];
+    btnImage = [UIImage imageNamed:@"closeicon.png"];
+    [_panelHeaderCloseBtn setBackgroundImage:btnImage forState:UIControlStateNormal];
+    [_panelHeader addSubview:_panelHeaderCloseBtn];
 }
 
 - (void) displayContent: (NSArray *) instruments {

@@ -19,6 +19,7 @@
 @implementation PatternViewController
 
 - (void) viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
         
@@ -42,8 +43,8 @@
     
 }
 
-- (void) DrawerViewControllerDelegateMethod: (DrawerViewController *) sender {
-    [self hideViewController:_drawerViewController];
+- (void) closeDrawerController: (DrawerViewController *) sender {
+    [self hideDrawerController:_drawerViewController];
 }
 
 - (void) displayContentController: (UICollectionViewController *) content {
@@ -55,7 +56,7 @@
     
 }
 
-- (void) displayDrawerController: (UIViewController*) content {
+- (void) displayDrawerController: (DrawerViewController*) content {
     
     [self addChildViewController:content];
     content.view.frame = CGRectMake(0, -120, [self window_width], [self window_height]+120);
@@ -67,26 +68,36 @@
     anim.toValue = [UIColor colorWithRed:0.133 green:0.192 blue:0.212 alpha:0.8];
     anim.springSpeed = 30;
     anim.springBounciness = 0;
+    anim.removedOnCompletion = YES;
     anim.completionBlock = ^(POPAnimation *anim, BOOL finished){
         
-        [(DrawerViewController *)content animateDrawerIn];
+        [content animateDrawerIn];
         
     };
     
     [content.view pop_addAnimation:anim forKey:@"springAnimation"];
 
-    /*
-    [UIView animateKeyframesWithDuration:0.4
-                                   delay:0
-                                 options:UIViewKeyframeAnimationOptionBeginFromCurrentState
-                              animations:^{
-                                  content.view.backgroundColor = [UIColor colorWithRed:0.133 green:0.192 blue:0.212 alpha:0.8];
+}
 
-                              }
-                              completion:^(BOOL finished) {
-                                  // block fires when animaiton has finished
-                              }];
-    */
+- (void) hideDrawerController: (DrawerViewController*) drawerViewCtrl {
+    
+    [(DrawerViewController *)drawerViewCtrl animateDrawerOut:^(BOOL finished){
+        
+        POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewBackgroundColor];
+        anim.toValue = [UIColor colorWithRed:0.133 green:0.192 blue:0.212 alpha:0];
+        anim.springSpeed = 30;
+        anim.springBounciness = 0;
+        anim.removedOnCompletion = YES;
+        anim.completionBlock = ^(POPAnimation *anim, BOOL finished){
+            
+            [self hideViewController:drawerViewCtrl];
+            
+        };
+        
+        [drawerViewCtrl.backgroundView pop_addAnimation:anim forKey:@"springAnimation"];
+        
+    }];
+
 }
 
 - (void) hideViewController: (UIViewController*) content {

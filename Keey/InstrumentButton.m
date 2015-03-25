@@ -7,6 +7,7 @@
 //
 
 #import "InstrumentButton.h"
+#import <pop/POP.h>
 
 @implementation InstrumentButton
 
@@ -18,7 +19,7 @@
     switch (type) {
             
         case InstrumentalTypeDrums:
-            self.backgroundColor = [UIColor colorWithRed:0.961 green:0.651 blue:0.137 alpha:1];
+            self.backgroundColor = [UIColor colorWithRed:0.961 green:0.522 blue:0.137 alpha:1];
             [self setTitle:@"Drums" forState:UIControlStateNormal];
             imageView.image = [UIImage imageNamed:@"drumicon.png"];
             _instrumentType = InstrumentalTypeDrums;
@@ -97,6 +98,66 @@
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:18];
     self.layer.cornerRadius = self.frame.size.height/2;
+    
+    UITapGestureRecognizer *buttonTapRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonDidTap)];
+    buttonTapRec.cancelsTouchesInView = NO;
+    buttonTapRec.numberOfTapsRequired = 1;
+    [self addGestureRecognizer:buttonTapRec];
+    
+    _instrumentSize = size;
+    
+}
+
+- (void) buttonDidTap {
+    
+    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewSize];
+    POPSpringAnimation *animCorner = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerCornerRadius];
+
+    switch (_instrumentSize) {
+            
+        case BigSize:
+            
+            // Animation for actual size
+            anim.fromValue = [NSValue valueWithCGSize:CGSizeMake(100, 100)];
+            anim.toValue = [NSValue valueWithCGSize:CGSizeMake(150, 150)];
+            anim.springSpeed = 30;
+            anim.springBounciness = 10;
+            anim.removedOnCompletion = YES;
+            [self pop_addAnimation:anim forKey:@"springAnimation"];
+            
+            // animation for corner radius
+            animCorner.fromValue = @50;
+            animCorner.toValue = @75;
+            animCorner.springSpeed = 30;
+            animCorner.springBounciness = 10;
+            animCorner.removedOnCompletion = YES;
+            [self.layer pop_addAnimation:animCorner forKey:@"springAnimation"];
+            
+            break;
+            
+        case SmallSize:
+            
+            // Animation for actual size
+            anim.fromValue = [NSValue valueWithCGSize:CGSizeMake(80, 80)];
+            anim.toValue = [NSValue valueWithCGSize:CGSizeMake(120, 120)];
+            anim.springSpeed = 30;
+            anim.springBounciness = 10;
+            anim.removedOnCompletion = YES;
+            [self pop_addAnimation:anim forKey:@"springAnimation"];
+            
+            // animation for corner radius
+            animCorner.fromValue = @40;
+            animCorner.toValue = @60;
+            animCorner.springSpeed = 30;
+            animCorner.springBounciness = 10;
+            animCorner.removedOnCompletion = YES;
+            [self.layer pop_addAnimation:animCorner forKey:@"springAnimation"];
+            
+            break;
+            
+        default:
+            break;
+    }
     
 }
 
