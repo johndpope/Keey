@@ -84,14 +84,14 @@
     
     UIButton *first = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 135, 45)];
     [first addTarget:self action:@selector(HandleSegCtrlClick:) forControlEvents:UIControlEventTouchUpInside];
-    first.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:16];
+    first.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:14];
     [first setTitle:@"pattern" forState:UIControlStateNormal];
     [first setTag:0];
     [cusSegControl addSubview:first];
     
     UIButton *second = [[UIButton alloc] initWithFrame:CGRectMake(135, 5, 135, 45)];
     [second addTarget:self action:@selector(HandleSegCtrlClick:) forControlEvents:UIControlEventTouchUpInside];
-    second.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:16];
+    second.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:14];
     [second setTitle:@"playlist" forState:UIControlStateNormal];
     [second setTag:1];
     [cusSegControl addSubview:second];

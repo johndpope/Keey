@@ -30,10 +30,18 @@ typedef enum KeyType : NSUInteger {
     
 } KeyType;
 
+@property NSMutableDictionary *stepSeqStates;
+
+
 - (void) setupKeys : (int) steps;
+
+- (void) createStepStatesWithSections :(int) sectionCount withKeyNoteCount :(int)rowCount;
 
 - (void) updateStepSeqForPosition: (int) stepPosition withlength: (int)keyLength withKeyNote: (NSUInteger) keyNote;
 
-- (void) setLengthForStepAtPosition: (int) stepPosition withStepLength: (int) stepLength forNote: (NSUInteger) noteKey;
+//- (void) setLengthForStepAtPosition: (int) stepPosition withStepLength: (int) stepLength forNote: (NSUInteger) noteKey;
+
+- (BOOL) isStateSelectedAt :(int)noteNumber positionInPianoRoll:(int) position;
+
 
 @end

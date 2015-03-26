@@ -14,7 +14,7 @@
     
     int horizontalSpace = 0;
     
-    for (int i = 0; i<4; i++) {
+    for (int i = 0; i<barsCount; i++) {
         
         UIView *barIndicator = [[UIView alloc] init];
         barIndicator.frame = CGRectMake(horizontalSpace, 0, (35*4) + (20*3)+6, 3);

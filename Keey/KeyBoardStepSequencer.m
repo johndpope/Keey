@@ -16,9 +16,12 @@
 #import "MarkerView.h"
 #import "BeatBarHeaderView.h"
 #import "PianoRollConfig.h"
+#import "StepViewCell.h"
+#import "StepState.h"
 
 
 @interface KeyBoardStepSequencer () {
+    
     UICollectionView *seqcollectionview;
     InstrumentalHeaderView *keyboardView;
     KeyboardViewModel *keyboardViewModel;
@@ -30,6 +33,8 @@
     CustomModal *customModalMenu;
     BeatBarHeaderView *barheaderView;
     PianoRollConfig *config;
+    StepViewCell *customCell;
+
 }
 
 @end
@@ -38,7 +43,7 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
--(void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     
     marker = [[MarkerView alloc] initWithFrame:CGRectMake(0, 0, 1, seqcollectionview.frame.size.height)];
     [marker displayMarkerLine];
@@ -47,37 +52,34 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
--(void) viewDidDisappear:(BOOL)animated {
-    
-}
-
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1];
-
+    
     [self setUpNavBar];
     
     config = [[PianoRollConfig alloc] init];
     config.currentOctave = OctaveTypeMid;
     config.currentMeasure = 1;
     
-    [self setUpSequencerView];
-    
     keyboardViewModel = [[KeyboardViewModel alloc] init];
+    [keyboardViewModel createStepStatesWithSections:32 withKeyNoteCount:12];
     [keyboardViewModel setupKeys:16];
+    
+    [self setUpSequencerView];
     
     [self setUpModalView];
     
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 12;
+    return 32;
 }
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 16;
+    return 12;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionView *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -87,22 +89,31 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    StepViewCell *stepCell;
+    stepCell = (StepViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:@"StepViewCell" forIndexPath:indexPath];
     
-    cell.layer.borderColor = [[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] CGColor];
-    cell.layer.borderWidth = 2;
-    cell.layer.cornerRadius = cell.frame.size.width/2;
+    stepCell.layer.borderColor = [[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] CGColor];
+    stepCell.layer.borderWidth = 2;
+    stepCell.layer.cornerRadius = stepCell.frame.size.width/2;
     
     if ([indexPath row]%8 > 3){
         //EVERY 2nd bar
-        //cell.layer.borderWidth = 3;
-        //cell.layer.borderColor = [[UIColor colorWithRed:0.145 green:0.188 blue:0.204 alpha:1] CGColor];
+       
+    }
+    
+    stepCell.backgroundColor = [UIColor clearColor];
+    
+    if ([keyboardViewModel isStateSelectedAt:[indexPath row] positionInPianoRoll:[indexPath section]]) {
+        
+        stepCell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
+        stepCell.layer.borderColor = [[UIColor clearColor] CGColor];
+        
     }
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    [cell addGestureRecognizer:longPress];
+    [stepCell addGestureRecognizer:longPress];
     
-    return cell;
+    return stepCell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,18 +121,45 @@ static NSString * const reuseIdentifier = @"Cell";
     return CGSizeMake(35, 35);
 }
 
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(11, 0, 11, 22);
+}
+
+- (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionViewCell *cell = [seqcollectionview cellForItemAtIndexPath:indexPath];
+    //cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
+    cell.layer.borderColor = [[UIColor clearColor] CGColor];
+    
+    [seqcollectionview reloadData];
+    [self addStepToSequencer:indexPath withLength:1];
+    
+}
+
+- (void) collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionViewCell *cell = [seqcollectionview cellForItemAtIndexPath:indexPath];
+    
+    cell.backgroundColor = [UIColor clearColor];
+    cell.layer.borderColor = [[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] CGColor];
+    
+    [self addStepToSequencer:indexPath withLength:0];
+    
+}
+
 - (void) setUpSequencerView {
     
-    sequencerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, custNavBar.frame.size.height, [self window_width], [self window_height]- custNavBar.frame.size.height)];
+    sequencerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, custNavBar.frame.size.height, [self window_width]*2, [self window_height]- custNavBar.frame.size.height)];
     sequencerContainerView.backgroundColor = [UIColor colorWithRed:0.129 green:0.165 blue:0.184 alpha:1];
     [self.view addSubview:sequencerContainerView];
     
     UICollectionViewFlowLayout *sequencerLayout = [[UICollectionViewFlowLayout alloc]init];
-    [sequencerLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [sequencerLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [sequencerLayout setMinimumLineSpacing:0];
     
-    seqcollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(120, 0, sequencerContainerView.frame.size.width-130, sequencerContainerView.frame.size.height) collectionViewLayout:sequencerLayout];
-    [seqcollectionview registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    seqcollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(120, 0, (sequencerContainerView.frame.size.width/2) -120, sequencerContainerView.frame.size.height) collectionViewLayout:sequencerLayout];
+    [seqcollectionview registerClass:[StepViewCell class] forCellWithReuseIdentifier:@"StepViewCell"];
     seqcollectionview.backgroundColor = [UIColor clearColor];
     [seqcollectionview setDataSource:self];
     [seqcollectionview setDelegate:self];
@@ -135,13 +173,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [sequencerContainerView addSubview:keyboardView];
     
     barheaderView = [[BeatBarHeaderView alloc] init];
-    [barheaderView setUpViewWithCount:4 withSpacing:((35*4) + (20*3)+6)+23];
+    [barheaderView setUpViewWithCount:8 withSpacing:((35*4) + (20*3)+6)+23];
     [seqcollectionview addSubview:barheaderView];
-}
-
-- (UIEdgeInsets)collectionView:
-(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(11, 0, 11, 0);
 }
 
 - (void) setUpNavBar {
@@ -202,29 +235,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self handleMenuButtonClick];
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UICollectionViewCell *cell = [seqcollectionview cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
-    cell.layer.borderColor = [[UIColor clearColor] CGColor];
-    
-    
-    [self addStepToSequencer:indexPath withLength:1];
-    
-}
-
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UICollectionViewCell *cell = [seqcollectionview cellForItemAtIndexPath:indexPath];
-    
-    cell.backgroundColor = [UIColor clearColor];
-    cell.layer.borderColor = [[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] CGColor];
-    
-    [self addStepToSequencer:indexPath withLength:0];
-    
-}
-
--(void) handleLongPress: (UIGestureRecognizer *)longPress {
+- (void) handleLongPress: (UIGestureRecognizer *)longPress {
 
     NSIndexPath *indexPath;
 
@@ -256,11 +267,11 @@ static NSString * const reuseIdentifier = @"Cell";
     pan.maximumNumberOfTouches = pan.minimumNumberOfTouches = 1;
     [chord addGestureRecognizer:pan];
     
-    [self addStepToSequencer:currentHighlightedIndexPath withLength:2];
+    //[self addStepToSequencer:currentHighlightedIndexPath withLength:2];
 
 }
 
-- (void)pan:(UIPanGestureRecognizer *)aPan{
+- (void) pan:(UIPanGestureRecognizer *)aPan{
     
     //CGPoint locationOfPan = [aPan locationInView:seqcollectionview];
     UIView *chord = aPan.view;
@@ -293,46 +304,38 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void) summariseBarLength: (UIView *)chordView :(int)chordLength {
-    
+    //NSLog(@"%d", chordLength);
     CGRect oldFrame = chordView.frame;
     
     if (chordLength > 1) {
         
         oldFrame.size.width = 22*(chordLength-1) + 35*chordLength;
         chordView.frame = oldFrame;
-        
-        [keyboardViewModel setLengthForStepAtPosition:[currentHighlightedIndexPath row] withStepLength:chordLength forNote:[currentHighlightedIndexPath section]];
 
     } else if (chordLength == 1) {
         
         oldFrame.size.width = 92;
         chordView.frame = oldFrame;
         
-        [keyboardViewModel setLengthForStepAtPosition:[currentHighlightedIndexPath row] withStepLength:1 forNote:[currentHighlightedIndexPath section]];
-
     } else {
-        [keyboardViewModel setLengthForStepAtPosition:[currentHighlightedIndexPath row] withStepLength:0 forNote:[currentHighlightedIndexPath section]];
+        //[keyboardViewModel setLengthForStepAtPosition:[currentHighlightedIndexPath section] withStepLength:0 forNote:[currentHighlightedIndexPath row]];
         [chordView removeFromSuperview];
         
     }
+    
+    [self addStepToSequencer:currentHighlightedIndexPath withLength:chordLength];
+
     
 }
 
 - (void) addStepToSequencer: (NSIndexPath *)indexPath withLength: (int) length {
     
-    if (length) {
-
-        [keyboardViewModel updateStepSeqForPosition:[indexPath row] withlength:length withKeyNote:[indexPath section]];
-        
-    } else {
-
-        [keyboardViewModel setLengthForStepAtPosition:[indexPath row] withStepLength:0 forNote:[indexPath section]];
-        
-    }
+    [keyboardViewModel updateStepSeqForPosition:[indexPath section] withlength:length withKeyNote:[indexPath row]];
     
 }
 
 - (void) dismissviewctrl {
+    //[seqcollectionview scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:30] atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -344,7 +347,7 @@ static NSString * const reuseIdentifier = @"Cell";
     return SCREEN_WIDTH;
 }
 
-- (BOOL)prefersStatusBarHidden {
+- (BOOL) prefersStatusBarHidden {
     return YES;
 }
 

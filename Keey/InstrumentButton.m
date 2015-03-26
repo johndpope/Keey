@@ -96,7 +96,7 @@
     // General Button Properties
     [self addSubview:imageView];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:18];
+    self.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:14];
     self.layer.cornerRadius = self.frame.size.height/2;
     
     UITapGestureRecognizer *buttonTapRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonDidTap)];

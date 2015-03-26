@@ -7,6 +7,8 @@
 //
 
 #import "MusicSequencerModel.h"
+#import "StepState.h"
+
 
 #define DEFAULT_TIME_DIFF 0.25
 #define NUM_SAMPLER_UNITS 1
@@ -114,7 +116,7 @@
     
     
     MusicTrackGetProperty(musicTrackForKeyB, kSequenceTrackProperty_TrackLength, &trackLen, &trackLenLen);
-    loopInfo.loopDuration = timeDiff*16;
+    loopInfo.loopDuration = timeDiff*32;
     loopInfo.numberOfLoops = 0;
     
     MusicTrackSetProperty(musicTrackForKeyB, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
@@ -191,7 +193,6 @@
     
     return result;
 }
-
 
 -(void) handleMidiEvent: (int) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType {
     
@@ -428,7 +429,6 @@
     
 }
 
-
 - (void) setupIterator {
     
 }
@@ -441,6 +441,119 @@
                 [NSNumber numberWithInt:62],@"clap",
                 [NSNumber numberWithInt:63],@"hihat",
                 nil];
+}
+
+- (void) populateMusicTrack: (NSDictionary*)tracksDic {
+    
+    for(id key in tracksDic) {
+        
+        NSMutableArray *stepsInRow = (NSMutableArray *)[tracksDic objectForKey:key];
+        
+        for (StepState *step in stepsInRow) {
+
+        MusicTimeStamp timeStamp = timeDiff* step.position;
+        MIDINoteMessage notemessage;
+        notemessage.channel = 0;
+        notemessage.velocity = 90;
+        notemessage.releaseVelocity = 0;
+        notemessage.duration = timeDiff*step.length;
+        notemessage.note = (12 - (int)[key integerValue])+71;
+            
+            if (step.selected) {
+                [self addStepToTrack:(int)[key integerValue] withTimeStamp:timeStamp noteMessage:notemessage];
+            }
+            
+        }
+
+    }
+}
+
+- (void) addStepToTrack: (PianoRollKeyType) pianoRollKeyType withTimeStamp: (int)timeStamp noteMessage:(MIDINoteMessage) notemessage {
+    
+    switch (pianoRollKeyType) {
+            
+        case PianoRollKeyTypeB:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyB, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeASharp:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForASharp, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeA:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyA, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeGSharp:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForGSharp, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeG:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyG, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeFSharp:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForFSharp, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeF:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyF, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeE:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyE, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeDSharp:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForDSharp, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeD:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyD, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeCSharp:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForCSharp, timeStamp, &notemessage);
+            
+            break;
+            
+        case PianoRollKeyTypeC:
+            
+            MusicTrackNewMIDINoteEvent(musicTrackForKeyC, timeStamp, &notemessage);
+            
+            break;
+            
+        default:
+            break;
+            
+    }
+
+    
+}
+
+- (void) resetAllMusicTracks {
+    MusicTrackClear(musicTrackForASharp, 0, 10);
 }
 
 - (void) playdemo {

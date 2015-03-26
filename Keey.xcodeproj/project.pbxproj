@@ -17,6 +17,13 @@
 		6D0A4F0E1AC2FD5B00A2F6C2 /* thumb@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F0C1AC2FD5B00A2F6C2 /* thumb@1x.png */; };
 		6D0A4F0F1AC2FD5B00A2F6C2 /* thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F0D1AC2FD5B00A2F6C2 /* thumb@2x.png */; };
 		6D0A4F151AC312DE00A2F6C2 /* bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F141AC312DE00A2F6C2 /* bar@2x.png */; };
+		6D0A4F181AC3228000A2F6C2 /* RockoFLF-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F161AC3228000A2F6C2 /* RockoFLF-Bold.ttf */; };
+		6D0A4F191AC3228000A2F6C2 /* RockoFLF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F171AC3228000A2F6C2 /* RockoFLF.ttf */; };
+		6D0A4F1E1AC3244900A2F6C2 /* Gotham-Rounded-Medium_21022.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F1B1AC3244900A2F6C2 /* Gotham-Rounded-Medium_21022.ttf */; };
+		6D0A4F1F1AC3244900A2F6C2 /* gothamrnd-book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F1C1AC3244900A2F6C2 /* gothamrnd-book.ttf */; };
+		6D0A4F201AC3244900A2F6C2 /* gothamrnd-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A4F1D1AC3244900A2F6C2 /* gothamrnd-light.ttf */; };
+		6D0A4F241AC33D6600A2F6C2 /* StepViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A4F231AC33D6600A2F6C2 /* StepViewCell.m */; };
+		6D0A4F281AC34BD000A2F6C2 /* StepState.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A4F271AC34BD000A2F6C2 /* StepState.m */; };
 		6D0AEB641A8F117A00AFB84B /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */; };
 		6D0AEB681A8F189000AFB84B /* PanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AEB671A8F189000AFB84B /* PanelView.m */; };
 		6D11E4431AAD575600FFDEEF /* StabBrass_JJ.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E4421AAD575600FFDEEF /* StabBrass_JJ.sf2 */; };
@@ -101,6 +108,15 @@
 		6D0A4F0C1AC2FD5B00A2F6C2 /* thumb@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb@1x.png"; sourceTree = "<group>"; };
 		6D0A4F0D1AC2FD5B00A2F6C2 /* thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb@2x.png"; sourceTree = "<group>"; };
 		6D0A4F141AC312DE00A2F6C2 /* bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar@2x.png"; sourceTree = "<group>"; };
+		6D0A4F161AC3228000A2F6C2 /* RockoFLF-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RockoFLF-Bold.ttf"; sourceTree = "<group>"; };
+		6D0A4F171AC3228000A2F6C2 /* RockoFLF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RockoFLF.ttf; sourceTree = "<group>"; };
+		6D0A4F1B1AC3244900A2F6C2 /* Gotham-Rounded-Medium_21022.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Rounded-Medium_21022.ttf"; sourceTree = "<group>"; };
+		6D0A4F1C1AC3244900A2F6C2 /* gothamrnd-book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "gothamrnd-book.ttf"; sourceTree = "<group>"; };
+		6D0A4F1D1AC3244900A2F6C2 /* gothamrnd-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "gothamrnd-light.ttf"; sourceTree = "<group>"; };
+		6D0A4F221AC33D6600A2F6C2 /* StepViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepViewCell.h; sourceTree = "<group>"; };
+		6D0A4F231AC33D6600A2F6C2 /* StepViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepViewCell.m; sourceTree = "<group>"; };
+		6D0A4F261AC34BD000A2F6C2 /* StepState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepState.h; sourceTree = "<group>"; };
+		6D0A4F271AC34BD000A2F6C2 /* StepState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepState.m; sourceTree = "<group>"; };
 		6D0AEB621A8F117A00AFB84B /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
 		6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
 		6D0AEB661A8F189000AFB84B /* PanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelView.h; sourceTree = "<group>"; };
@@ -234,6 +250,37 @@
 				6D0A4F001AC2D69F00A2F6C2 /* PianoRollConfig.m */,
 			);
 			name = Config;
+			sourceTree = "<group>";
+		};
+		6D0A4F1A1AC3228400A2F6C2 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6D0A4F1B1AC3244900A2F6C2 /* Gotham-Rounded-Medium_21022.ttf */,
+				6D0A4F1C1AC3244900A2F6C2 /* gothamrnd-book.ttf */,
+				6D0A4F1D1AC3244900A2F6C2 /* gothamrnd-light.ttf */,
+				6D0A4F161AC3228000A2F6C2 /* RockoFLF-Bold.ttf */,
+				6D0A4F171AC3228000A2F6C2 /* RockoFLF.ttf */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
+		6D0A4F211AC33D3900A2F6C2 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				6D0A4F251AC34B8800A2F6C2 /* Step */,
+				6D0A4F221AC33D6600A2F6C2 /* StepViewCell.h */,
+				6D0A4F231AC33D6600A2F6C2 /* StepViewCell.m */,
+			);
+			name = CustomCell;
+			sourceTree = "<group>";
+		};
+		6D0A4F251AC34B8800A2F6C2 /* Step */ = {
+			isa = PBXGroup;
+			children = (
+				6D0A4F261AC34BD000A2F6C2 /* StepState.h */,
+				6D0A4F271AC34BD000A2F6C2 /* StepState.m */,
+			);
+			name = Step;
 			sourceTree = "<group>";
 		};
 		6D0AEB651A8F186D00AFB84B /* Panel */ = {
@@ -384,6 +431,7 @@
 		6DDE0DD81A78D0270087053D = {
 			isa = PBXGroup;
 			children = (
+				6D0A4F211AC33D3900A2F6C2 /* CustomCell */,
 				6DE068361A7DA74600F3D04B /* AudioToolbox.framework */,
 				6DDE0DE31A78D0270087053D /* Keey */,
 				6DDE0DFD1A78D0270087053D /* KeeyTests */,
@@ -428,6 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				6DC5262A1AAD5DF20029D530 /* teddybear.mid */,
+				6D0A4F1A1AC3228400A2F6C2 /* fonts */,
 				6D11E4411AAD574900FFDEEF /* sf2 */,
 				6D2EC4C91A97EC5000712D44 /* wav */,
 				6D618B551A95508500CC3CDC /* mp3 */,
@@ -627,6 +676,7 @@
 				6D618B591A958C3E00CC3CDC /* fluteicon.png in Resources */,
 				6D0A4F0F1AC2FD5B00A2F6C2 /* thumb@2x.png in Resources */,
 				6D618B5B1A958C3E00CC3CDC /* voxicon.png in Resources */,
+				6D0A4F1F1AC3244900A2F6C2 /* gothamrnd-book.ttf in Resources */,
 				6DF42B091AACDE6A001E754B /* buffkick.wav in Resources */,
 				6D618B4D1A954ADD00CC3CDC /* drumicon.png in Resources */,
 				6D2EC4D01A97EC5900712D44 /* Kick.wav in Resources */,
@@ -648,10 +698,14 @@
 				6D0A4F051AC2E56500A2F6C2 /* sliderbar.png in Resources */,
 				6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */,
 				6DDE0DF21A78D0270087053D /* Images.xcassets in Resources */,
+				6D0A4F181AC3228000A2F6C2 /* RockoFLF-Bold.ttf in Resources */,
+				6D0A4F1E1AC3244900A2F6C2 /* Gotham-Rounded-Medium_21022.ttf in Resources */,
 				6D2EC4CF1A97EC5900712D44 /* HiHat.wav in Resources */,
 				6D618B5A1A958C3E00CC3CDC /* synthicon.png in Resources */,
+				6D0A4F191AC3228000A2F6C2 /* RockoFLF.ttf in Resources */,
 				6DC5262B1AAD5DF20029D530 /* teddybear.mid in Resources */,
 				6D618B531A95507200CC3CDC /* trumpeticon.png in Resources */,
+				6D0A4F201AC3244900A2F6C2 /* gothamrnd-light.ttf in Resources */,
 				6DE748551A98F6DB0072B140 /* Marker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -705,6 +759,7 @@
 			files = (
 				6DE068351A7DA69400F3D04B /* kicks.m in Sources */,
 				6D35A9DF1A791A5300A38A58 /* HeaderView.m in Sources */,
+				6D0A4F281AC34BD000A2F6C2 /* StepState.m in Sources */,
 				6D65E9971A8D00D700009CF3 /* Snares.m in Sources */,
 				6D35A9E31A792BC800A38A58 /* BodyView.m in Sources */,
 				6DA78C0E1A8BCF99002FC88D /* PlaylistViewController.m in Sources */,
@@ -731,6 +786,7 @@
 				6DC795FD1AB21D0D00D32CCC /* KeyBoardStepSequencer.m in Sources */,
 				6DE1E7191AB23612001BC4BA /* KeyboardViewModel.m in Sources */,
 				6DF42B021AABF981001E754B /* DrumViewModel.m in Sources */,
+				6D0A4F241AC33D6600A2F6C2 /* StepViewCell.m in Sources */,
 				6DDE0DE71A78D0270087053D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

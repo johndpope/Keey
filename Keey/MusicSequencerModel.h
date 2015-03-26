@@ -35,7 +35,7 @@ typedef enum PianoRollKeyType : NSUInteger {
 
 - (void) setUpSequencer;
 
-//- (void) addNodeToAugraph;
+- (void) populateMusicTrack: (NSDictionary*)tracksDic;
 
 - (void) setInstrumentPreset : (NSString *)name;
 
