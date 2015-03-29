@@ -10,7 +10,9 @@
 
 @class CustomModal;             //define class, so protocol can see MyClass
 @protocol CustomModalViewDelegate <NSObject>   //define delegate protocol
-- (void) CustomModalViewDelegateMethod: (CustomModal *) sender;  //define delegate method to be implemented within another class
+- (void) CustomModalHandleOverlayTap: (CustomModal *) sender;  //define delegate method to be implemented within another class
+- (void) CustomModalHandleBarChange: (int) bars;  //define delegate method to be implemented within another class
+
 @end //end protocol
 
 

@@ -31,22 +31,16 @@
     
     musicSeq = [[MusicSequencerModel alloc] init];
     [musicSeq setUpSequencer];
-    [musicSeq setInstrumentPreset:@"LV - Hex"];
+    [musicSeq setInstrumentPreset:@"GeneralUser GS MuseScore v1.442"];
         
 }
 
 - (void) updateStepSeqForPosition: (int) stepPosition withlength: (int)keyLength withKeyNote: (NSUInteger) keyNote {
-    NSLog(@"%d", keyLength);
+    
     NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInt:keyNote]];
     StepState *currentStepForNote = [rowAtNote objectAtIndex:stepPosition];
     
-    if (currentStepForNote.selected) {
-        currentStepForNote.selected = NO;
-        currentStepForNote.length = 0;
-    } else {
-        currentStepForNote.selected = YES;
-        currentStepForNote.length = keyLength;
-    }
+    currentStepForNote.length = keyLength;
     
     [musicSeq populateMusicTrack:_stepSeqStates];
     //[musicSeq addStepAtPosition:stepPosition withStepLength:keyLength withNoteKey:keyNote];
@@ -58,7 +52,7 @@
     NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInteger:noteNumber]];
     StepState *currentStepForNote = [rowAtNote objectAtIndex:position];
     
-    if (currentStepForNote.selected) {
+    if (currentStepForNote.length) {
         
         return true;
         
@@ -82,7 +76,7 @@
     for (int i = 0; i<count; i++) {
         StepState *stepState = [[StepState alloc] init];
         stepState.position = i;
-        stepState.length = 1;
+        stepState.length = 0;
         [steps addObject:stepState];
     }
     

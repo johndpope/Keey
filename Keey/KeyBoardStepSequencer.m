@@ -89,31 +89,35 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    StepViewCell *stepCell;
-    stepCell = (StepViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:@"StepViewCell" forIndexPath:indexPath];
+    //StepViewCell *stepCell;
+    //stepCell = (StepViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:@"StepViewCell" forIndexPath:indexPath];
     
-    stepCell.layer.borderColor = [[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] CGColor];
-    stepCell.layer.borderWidth = 2;
-    stepCell.layer.cornerRadius = stepCell.frame.size.width/2;
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+
     
-    if ([indexPath row]%8 > 3){
+    cell.layer.borderColor = [[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] CGColor];
+    cell.layer.borderWidth = 2;
+    cell.layer.cornerRadius = cell.frame.size.width/2;
+    
+    if ([indexPath row]%8 > 3) {
+        
         //EVERY 2nd bar
        
     }
     
-    stepCell.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor clearColor];
     
     if ([keyboardViewModel isStateSelectedAt:[indexPath row] positionInPianoRoll:[indexPath section]]) {
         
-        stepCell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
-        stepCell.layer.borderColor = [[UIColor clearColor] CGColor];
+        cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
+        cell.layer.borderColor = [[UIColor clearColor] CGColor];
         
     }
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    [stepCell addGestureRecognizer:longPress];
+    [cell addGestureRecognizer:longPress];
     
-    return stepCell;
+    return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -128,24 +132,18 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [seqcollectionview cellForItemAtIndexPath:indexPath];
-    //cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
-    cell.layer.borderColor = [[UIColor clearColor] CGColor];
+    if ([keyboardViewModel isStateSelectedAt:[indexPath row] positionInPianoRoll:[indexPath section]]) {
+        
+        [self addStepToSequencer:indexPath withLength:0];
+
+    } else {
+        
+        [self addStepToSequencer:indexPath withLength:1];
+
+    }
     
     [seqcollectionview reloadData];
-    [self addStepToSequencer:indexPath withLength:1];
-    
-}
 
-- (void) collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UICollectionViewCell *cell = [seqcollectionview cellForItemAtIndexPath:indexPath];
-    
-    cell.backgroundColor = [UIColor clearColor];
-    cell.layer.borderColor = [[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] CGColor];
-    
-    [self addStepToSequencer:indexPath withLength:0];
-    
 }
 
 - (void) setUpSequencerView {
@@ -159,12 +157,14 @@ static NSString * const reuseIdentifier = @"Cell";
     [sequencerLayout setMinimumLineSpacing:0];
     
     seqcollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(120, 0, (sequencerContainerView.frame.size.width/2) -120, sequencerContainerView.frame.size.height) collectionViewLayout:sequencerLayout];
-    [seqcollectionview registerClass:[StepViewCell class] forCellWithReuseIdentifier:@"StepViewCell"];
+    //[seqcollectionview registerClass:[StepViewCell class] forCellWithReuseIdentifier:@"StepViewCell"];
+    [seqcollectionview registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     seqcollectionview.backgroundColor = [UIColor clearColor];
     [seqcollectionview setDataSource:self];
     [seqcollectionview setDelegate:self];
     
     seqcollectionview.allowsMultipleSelection = YES;
+    seqcollectionview.scrollEnabled = NO;
     
     [sequencerContainerView addSubview:seqcollectionview];
     
@@ -231,8 +231,23 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
-- (void) CustomModalViewDelegateMethod:(CustomModal *)sender {
+- (void) CustomModalHandleOverlayTap:(CustomModal *)sender {
     [self handleMenuButtonClick];
+}
+
+- (void) CustomModalHandleBarChange: (int) bars {
+    
+    if (bars == 2) {
+        
+        [seqcollectionview scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:16] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+        
+    } else {
+        
+        [seqcollectionview scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+        
+    }
+
+    
 }
 
 - (void) handleLongPress: (UIGestureRecognizer *)longPress {
@@ -256,7 +271,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     UICollectionViewCell *cell = [seqcollectionview cellForItemAtIndexPath:indexPath];
 
-    UIView *chord = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, 92, 34)];
+    UIButton *chord = [[UIButton alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, 92, 34)];
     chord.layer.cornerRadius = 17;
     chord.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
     
@@ -267,8 +282,6 @@ static NSString * const reuseIdentifier = @"Cell";
     pan.maximumNumberOfTouches = pan.minimumNumberOfTouches = 1;
     [chord addGestureRecognizer:pan];
     
-    //[self addStepToSequencer:currentHighlightedIndexPath withLength:2];
-
 }
 
 - (void) pan:(UIPanGestureRecognizer *)aPan{
@@ -325,11 +338,10 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self addStepToSequencer:currentHighlightedIndexPath withLength:chordLength];
 
-    
 }
 
 - (void) addStepToSequencer: (NSIndexPath *)indexPath withLength: (int) length {
-    
+
     [keyboardViewModel updateStepSeqForPosition:[indexPath section] withlength:length withKeyNote:[indexPath row]];
     
 }

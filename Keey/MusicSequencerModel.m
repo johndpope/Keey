@@ -10,7 +10,7 @@
 #import "StepState.h"
 
 
-#define DEFAULT_TIME_DIFF 0.25
+#define DEFAULT_TIME_DIFF 0.50
 #define NUM_SAMPLER_UNITS 1
 
 @implementation MusicSequencerModel {
@@ -49,7 +49,7 @@
     
     [self setupDrumBank];
     
-    timeDiff = 0.5;
+    timeDiff = DEFAULT_TIME_DIFF;
     
     NewMusicSequence(&(sequence));
     NewMusicPlayer(&(musicPlayer));
@@ -116,7 +116,7 @@
     
     
     MusicTrackGetProperty(musicTrackForKeyB, kSequenceTrackProperty_TrackLength, &trackLen, &trackLenLen);
-    loopInfo.loopDuration = timeDiff*32;
+    loopInfo.loopDuration = timeDiff*16;
     loopInfo.numberOfLoops = 0;
     
     MusicTrackSetProperty(musicTrackForKeyB, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
@@ -167,34 +167,7 @@
     
 }
 
-- (OSStatus)samplerUnit:(AudioUnit)sampler loadFromDLSOrSoundFont:(NSURL *)bankURL withPatch:(int)presetNumber
-{
-    OSStatus result = noErr;
-    
-    // Fill out the sampler instrument data structure
-    AUSamplerInstrumentData insdata;
-    insdata.fileURL = (__bridge CFURLRef) bankURL;
-    insdata.bankMSB  = kAUSampler_DefaultMelodicBankMSB;
-    insdata.bankLSB  = kAUSampler_DefaultBankLSB;
-    insdata.presetID = (UInt8) 0;
-    insdata.instrumentType = kInstrumentType_DLSPreset; // DLS and SF2 are the same enum values
-    
-    // Load the instrument
-    result = AudioUnitSetProperty(sampler,
-                                  kAUSamplerProperty_LoadInstrument,
-                                  kAudioUnitScope_Global,
-                                  0,
-                                  &insdata,
-                                  sizeof(insdata));
-    
-    NSCAssert (result == noErr,
-               @"Unable to set the preset property on the Sampler. Error code: %d",
-               (int) result);
-    
-    return result;
-}
-
--(void) handleMidiEvent: (int) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType {
+- (void) handleMidiEvent: (int) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType {
     
     MusicTimeStamp timestamp = timeDiff*index;
     MIDINoteMessage notemessage;
@@ -233,9 +206,7 @@
     notemessage.velocity = 90;
     notemessage.releaseVelocity = 0;
     notemessage.duration = timeDiff*stepLength;
-    notemessage.note = (12 - pianoRollKey)+71;
-    
-    //NSLog(@"%f", stepPosition*timeDiff);
+    notemessage.note = (12 - pianoRollKey)+47;
     
     switch (pianoRollKey) {
             
@@ -323,13 +294,14 @@
     switch (pianoRollKey) {
             
         case PianoRollKeyTypeB:
-            
+
             NewMusicEventIterator(musicTrackForKeyB, &(eventIterator));
             
             break;
             
         case PianoRollKeyTypeASharp:
-
+            
+            [self resetMusicTracksFor:musicTrackForKeyB];
             NewMusicEventIterator(musicTrackForASharp, &(eventIterator));
 
             break;
@@ -401,7 +373,6 @@
     }
     
     MusicEventIteratorSeek(eventIterator, stepPosition*timeDiff);
-    NSLog(@"%f", stepLength * timeDiff);
     if (stepLength) {
         
         MusicDeviceNoteParams params;
@@ -418,7 +389,6 @@
         MusicEventIteratorSetEventInfo(eventIterator, kMusicEventType_ExtendedNote, &notemessage);
         
     } else {
-         NSLog(@"should remove");
         
          MusicEventIteratorDeleteEvent(eventIterator);
         
@@ -445,6 +415,8 @@
 
 - (void) populateMusicTrack: (NSDictionary*)tracksDic {
     
+    [self clearAllMusicTracks];
+    
     for(id key in tracksDic) {
         
         NSMutableArray *stepsInRow = (NSMutableArray *)[tracksDic objectForKey:key];
@@ -457,10 +429,12 @@
         notemessage.velocity = 90;
         notemessage.releaseVelocity = 0;
         notemessage.duration = timeDiff*step.length;
-        notemessage.note = (12 - (int)[key integerValue])+71;
+        notemessage.note = (12 - (int)[key integerValue])+35;
             
-            if (step.selected) {
+            if (step.length) {
+                
                 [self addStepToTrack:(int)[key integerValue] withTimeStamp:timeStamp noteMessage:notemessage];
+                
             }
             
         }
@@ -468,7 +442,7 @@
     }
 }
 
-- (void) addStepToTrack: (PianoRollKeyType) pianoRollKeyType withTimeStamp: (int)timeStamp noteMessage:(MIDINoteMessage) notemessage {
+- (void) addStepToTrack: (PianoRollKeyType) pianoRollKeyType withTimeStamp: (MusicTimeStamp)timeStamp noteMessage:(MIDINoteMessage) notemessage {
     
     switch (pianoRollKeyType) {
             
@@ -552,8 +526,27 @@
     
 }
 
-- (void) resetAllMusicTracks {
-    MusicTrackClear(musicTrackForASharp, 0, 10);
+- (void) resetMusicTracksFor: (MusicTrack)musicTrack {
+
+    MusicTrackClear(musicTrack, 0, 16);
+
+}
+
+- (void) clearAllMusicTracks {
+    
+    [self resetMusicTracksFor:musicTrackForKeyA];
+    [self resetMusicTracksFor:musicTrackForKeyB];
+    [self resetMusicTracksFor:musicTrackForKeyC];
+    [self resetMusicTracksFor:musicTrackForKeyD];
+    [self resetMusicTracksFor:musicTrackForKeyE];
+    [self resetMusicTracksFor:musicTrackForKeyF];
+    [self resetMusicTracksFor:musicTrackForKeyG];
+    [self resetMusicTracksFor:musicTrackForASharp];
+    [self resetMusicTracksFor:musicTrackForCSharp];
+    [self resetMusicTracksFor:musicTrackForDSharp];
+    [self resetMusicTracksFor:musicTrackForFSharp];
+    [self resetMusicTracksFor:musicTrackForGSharp];
+    
 }
 
 - (void) playdemo {
@@ -583,6 +576,32 @@
     // Starts the music playing
     //MusicPlayerStart(p);
     
+}
+
+- (OSStatus)samplerUnit:(AudioUnit)sampler loadFromDLSOrSoundFont:(NSURL *)bankURL withPatch:(int)presetNumber{
+    OSStatus result = noErr;
+    
+    // Fill out the sampler instrument data structure
+    AUSamplerInstrumentData insdata;
+    insdata.fileURL = (__bridge CFURLRef) bankURL;
+    insdata.bankMSB  = kAUSampler_DefaultMelodicBankMSB;
+    insdata.bankLSB  = kAUSampler_DefaultBankLSB;
+    insdata.presetID = (UInt8) 0;
+    insdata.instrumentType = kInstrumentType_DLSPreset; // DLS and SF2 are the same enum values
+    
+    // Load the instrument
+    result = AudioUnitSetProperty(sampler,
+                                  kAUSamplerProperty_LoadInstrument,
+                                  kAudioUnitScope_Global,
+                                  0,
+                                  &insdata,
+                                  sizeof(insdata));
+    
+    NSCAssert (result == noErr,
+               @"Unable to set the preset property on the Sampler. Error code: %d",
+               (int) result);
+    
+    return result;
 }
 
 @end

@@ -35,7 +35,6 @@
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.textColor = [UIColor colorWithRed:0.122 green:0.157 blue:0.169 alpha:1];
     cell.textLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:20];
-
     
     if ([indexPath row] % 12 < 6) {
         switch ([indexPath row] % 2) {
@@ -54,11 +53,10 @@
         switch ([indexPath row] % 2) {
             case 0:
                 cell.backgroundColor = [UIColor colorWithRed:0.141 green:0.184 blue:0.204 alpha:1];
-
                 break;
             case 1:
                 cell.backgroundColor = [UIColor clearColor];
-
+                
                 break;
             default:
                 break;

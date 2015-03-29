@@ -139,11 +139,15 @@
         case 1:
             [self setActiveBarButton:barOne];
             [self resetBarButton:barTwo];
+            [self.delegate CustomModalHandleBarChange:1];
+
             break;
             
         case 2:
             [self setActiveBarButton:barTwo];
             [self resetBarButton:barOne];
+            [self.delegate CustomModalHandleBarChange:2];
+
             break;
             
         default:
@@ -197,23 +201,7 @@
 }
 
 - (void) overLayDidTap: (UITapGestureRecognizer*)sender {
-    [self.delegate CustomModalViewDelegateMethod:self];
+    [self.delegate CustomModalHandleOverlayTap:self];
 }
-
-
-/*
-
-NSString *string = @"Octave";
-NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
-
-float spacing = 5.0f;
-[attributedString addAttribute:NSKernAttributeName
-                         value:@(spacing)
-                         range:NSMakeRange(0, [string length])];
-
-octaveLabel.attributedText = attributedString;
-
-
-*/
 
 @end
