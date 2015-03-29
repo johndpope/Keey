@@ -94,26 +94,34 @@
     chooseSampleLabel.textColor = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:1];
     chooseSampleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:20];
     chooseSampleLabel.textAlignment = NSTextAlignmentCenter;
-    chooseSampleLabel.text = @"Choose a sample";
+    chooseSampleLabel.text = @"Switch Sample";
     [dashboardView addSubview:chooseSampleLabel];
     
     sampleOne = [[UIButton alloc] initWithFrame:CGRectMake(dashboardView.frame.size.width/2-100, 330, 50, 50)];
     [sampleOne setBackgroundColor:[UIColor colorWithRed:0.459 green:0.745 blue:0.894 alpha:1]];
+    [sampleOne.layer setBorderColor:[[UIColor colorWithRed:0.459 green:0.745 blue:0.894 alpha:1] CGColor]];
+    [sampleOne addTarget:self action:@selector(handleSampleChange:) forControlEvents:UIControlEventTouchUpInside];
     sampleOne.layer.cornerRadius = 25;
+    sampleOne.tag = 1;
     [dashboardView addSubview:sampleOne];
     
-    sampleTwo = [[UIButton alloc] initWithFrame:CGRectMake(dashboardView.frame.size.width/2-20, 330, 50, 50)];
-    [sampleTwo setBackgroundColor:[UIColor clearColor]];
+    sampleTwo = [[UIButton alloc] initWithFrame:CGRectMake(dashboardView.frame.size.width/2-10, 350, 15, 15)];
+    [sampleTwo addTarget:self action:@selector(handleSampleChange:) forControlEvents:UIControlEventTouchUpInside];
     [sampleTwo.layer setBorderColor:[[UIColor colorWithRed:0.706 green:0.894 blue:0.459 alpha:1] CGColor]];
+    [sampleTwo setBackgroundColor:[UIColor clearColor]];
     sampleTwo.layer.borderWidth = 3;
-    sampleTwo.layer.cornerRadius = 25;
+    sampleTwo.layer.cornerRadius = 7.5;
+    sampleTwo.tag = 2;
     [dashboardView addSubview:sampleTwo];
     
-    sampleThree = [[UIButton alloc] initWithFrame:CGRectMake(dashboardView.frame.size.width/2+60, 330, 50, 50)];
-    [sampleThree setBackgroundColor:[UIColor clearColor]];
+    sampleThree = [[UIButton alloc] initWithFrame:CGRectMake(dashboardView.frame.size.width/2+60, 350, 15, 15)];
+    [sampleThree addTarget:self action:@selector(handleSampleChange:) forControlEvents:UIControlEventTouchUpInside];
     [sampleThree.layer setBorderColor:[[UIColor colorWithRed:0.459 green:0.894 blue:0.627 alpha:1] CGColor]];
+    [sampleThree setBackgroundColor:[UIColor clearColor]];
+
     sampleThree.layer.borderWidth = 3;
-    sampleThree.layer.cornerRadius = 25;
+    sampleThree.layer.cornerRadius = 7.5;
+    sampleThree.tag = 3;
     [dashboardView addSubview:sampleThree];
     
     [barOne sendActionsForControlEvents: UIControlEventTouchUpInside];
@@ -124,11 +132,11 @@
     
     UISlider *slider = (UISlider *)sender;
     
-    int roundedVal = slider.value;
+    int OctaveroundedVal = slider.value;
     
-    NSLog(@"%d", roundedVal);
+    slider.value = OctaveroundedVal;
     
-    slider.value = roundedVal;
+    [self.delegate CustomModalHandleOctaveChange:OctaveroundedVal];
 
 }
 
@@ -156,6 +164,15 @@
     
 }
 
+- (void) handleSampleChange: (id)sender {
+    
+    UIButton *sampleBtn = (UIButton *)sender;
+    
+    [self.delegate CustomModalSwitchPreset:sampleBtn.tag];
+    [self setActiveSampleButton:sender];
+    
+}
+
 - (void) resetBarButton: (UIButton*)barBtn {
     
     [barBtn setTitleColor:[UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:1] forState:UIControlStateNormal];
@@ -176,6 +193,38 @@
     
     [barBtn pop_addAnimation:animframe forKey:@"springAnimation"];
     [barBtn pop_addAnimation:anim forKey:@"springAnimation"];
+
+}
+
+- (void) setActiveSampleButton: (UIButton *)sampleBtn {
+    
+    
+    [sampleOne setFrame:CGRectMake(dashboardView.frame.size.width/2-90, 350, 15, 15)];
+    [sampleOne setBackgroundColor:[UIColor clearColor]];
+    sampleOne.layer.borderWidth = 3;
+    sampleOne.layer.cornerRadius = 7.5;
+    
+    [sampleTwo setFrame:CGRectMake(dashboardView.frame.size.width/2-10, 350, 15, 15)];
+    [sampleTwo setBackgroundColor:[UIColor clearColor]];
+    sampleTwo.layer.borderWidth = 3;
+    sampleTwo.layer.cornerRadius = 7.5;
+    
+    [sampleThree setFrame:CGRectMake(dashboardView.frame.size.width/2+60, 350, 15, 15)];
+    [sampleThree setBackgroundColor:[UIColor clearColor]];
+    sampleThree.layer.borderWidth = 3;
+    sampleThree.layer.cornerRadius = 7.5;
+    
+    POPSpringAnimation *animframe = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerSize];
+            
+            animframe.fromValue = [NSValue valueWithCGSize:CGSizeMake(0, 0)];
+            animframe.toValue = [NSValue valueWithCGSize:CGSizeMake(50, 50)];
+            animframe.springSpeed = 40;
+            animframe.springBounciness = 10;
+            animframe.removedOnCompletion = YES;
+            sampleBtn.layer.cornerRadius = 25;
+            sampleBtn.layer.backgroundColor = (sampleBtn.layer.borderColor);
+            [sampleBtn.layer pop_addAnimation:animframe forKey:@"springAnimation"];
+            
 
 }
 

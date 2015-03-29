@@ -10,7 +10,7 @@
 #import "StepState.h"
 
 
-#define DEFAULT_TIME_DIFF 0.50
+#define DEFAULT_TIME_DIFF 0.25
 #define NUM_SAMPLER_UNITS 1
 
 @implementation MusicSequencerModel {
@@ -42,6 +42,7 @@
     float timeDiff;
     
     NSDictionary *drumBank;
+    NSUInteger currentOctaveNumber;
     
 }
 
@@ -73,7 +74,7 @@
         AUGraphStart(graph);
     }
     
-    [self setInstrumentPreset :@"KeeyDrumkitsoundfont"];
+    [self setInstrumentPreset :@"KeeyDrumkitsoundfont" withPatch:0];
     
     MusicSequenceSetAUGraph(sequence, graph);
     MusicTrackSetDestNode(musicTrackForKeyB, samplerNode);
@@ -95,11 +96,7 @@
 }
 
 - (void) setupMusicTracks {
-    
-    MusicTimeStamp trackLen = 0;
-    UInt32 trackLenLen = sizeof(trackLen);
-    
-    MusicTrackLoopInfo loopInfo;
+
     
     MusicSequenceNewTrack(sequence, &(musicTrackForKeyB));
     MusicSequenceNewTrack(sequence, &(musicTrackForASharp));
@@ -115,8 +112,19 @@
     MusicSequenceNewTrack(sequence, &(musicTrackForKeyC));
     
     
+    [self setLoopDuration:16];
+    currentOctaveNumber = 71;
+}
+
+- (void) setLoopDuration :(int) duration {
+    
+    MusicTimeStamp trackLen = 0;
+    UInt32 trackLenLen = sizeof(trackLen);
+    
+    MusicTrackLoopInfo loopInfo;
+    
     MusicTrackGetProperty(musicTrackForKeyB, kSequenceTrackProperty_TrackLength, &trackLen, &trackLenLen);
-    loopInfo.loopDuration = timeDiff*16;
+    loopInfo.loopDuration = timeDiff*duration;
     loopInfo.numberOfLoops = 0;
     
     MusicTrackSetProperty(musicTrackForKeyB, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
@@ -131,7 +139,6 @@
     MusicTrackSetProperty(musicTrackForKeyD, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
     MusicTrackSetProperty(musicTrackForCSharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
     MusicTrackSetProperty(musicTrackForKeyC, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    
 }
 
 - (void) setupAudioUnitGraph {
@@ -160,10 +167,10 @@
     AUGraphConnectNodeInput(graph, samplerNode, 0, outputNode, 0);
 }
 
-- (void) setInstrumentPreset : (NSString *)name {
+- (void) setInstrumentPreset : (NSString *)name withPatch: (int) patchNumber {
     
     NSURL *url = [[NSBundle mainBundle] URLForResource:name withExtension:@"sf2"];
-    [self samplerUnit:samplerUnit loadFromDLSOrSoundFont:url withPatch:0];
+    [self samplerUnit:samplerUnit loadFromDLSOrSoundFont:url withPatch:patchNumber];
     
 }
 
@@ -399,6 +406,11 @@
     
 }
 
+- (void) setTracksOctave :(NSUInteger) octaveNumber {
+    currentOctaveNumber = octaveNumber;
+    NSLog(@"%lu", (unsigned long)currentOctaveNumber);
+}
+
 - (void) setupIterator {
     
 }
@@ -429,7 +441,7 @@
         notemessage.velocity = 90;
         notemessage.releaseVelocity = 0;
         notemessage.duration = timeDiff*step.length;
-        notemessage.note = (12 - (int)[key integerValue])+35;
+        notemessage.note = (12 - (int)[key integerValue])+currentOctaveNumber;
             
             if (step.length) {
                 

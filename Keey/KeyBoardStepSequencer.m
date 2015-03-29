@@ -18,6 +18,7 @@
 #import "PianoRollConfig.h"
 #import "StepViewCell.h"
 #import "StepState.h"
+#import <pop/POP.h>
 
 
 @interface KeyBoardStepSequencer () {
@@ -34,6 +35,15 @@
     BeatBarHeaderView *barheaderView;
     PianoRollConfig *config;
     StepViewCell *customCell;
+    
+    int numberofSections;
+    
+    UIButton *firstBarControlBtn;
+    UIButton *secondBarControlBtn;
+    
+    UIView *currentBarIndicatorViwContainer;
+    
+    BOOL isfirstTimeAppearing;
 
 }
 
@@ -45,10 +55,20 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidAppear:(BOOL)animated {
     
+    if (!isfirstTimeAppearing) {
+        
     marker = [[MarkerView alloc] initWithFrame:CGRectMake(0, 0, 1, seqcollectionview.frame.size.height)];
     [marker displayMarkerLine];
     [seqcollectionview addSubview:marker];
-    //[marker startAnimation:4 toDestination:seqcollectionview.frame.size.width];
+    [marker startAnimation:2 toDestination:seqcollectionview.frame.size.width];
+    
+    keyboardViewModel = [[KeyboardViewModel alloc] init];
+    [keyboardViewModel createStepStatesWithSections:numberofSections withKeyNoteCount:12];
+    [keyboardViewModel setupKeys:16];
+        
+        isfirstTimeAppearing = true;
+        
+    }
     
 }
 
@@ -64,9 +84,7 @@ static NSString * const reuseIdentifier = @"Cell";
     config.currentOctave = OctaveTypeMid;
     config.currentMeasure = 1;
     
-    keyboardViewModel = [[KeyboardViewModel alloc] init];
-    [keyboardViewModel createStepStatesWithSections:32 withKeyNoteCount:12];
-    [keyboardViewModel setupKeys:16];
+    numberofSections = 16;
     
     [self setUpSequencerView];
     
@@ -75,7 +93,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 32;
+    return numberofSections;
 }
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -202,19 +220,114 @@ static NSString * const reuseIdentifier = @"Cell";
     imageView.image = [UIImage imageNamed:@"octave.png"];
     [octaveButton addSubview:imageView];
     
+    currentBarIndicatorViwContainer = [[UIView alloc] initWithFrame:CGRectMake([self window_width]/2-50, 30, 100, 30)];
+    currentBarIndicatorViwContainer.hidden = YES;
+    [custNavBar addSubview:currentBarIndicatorViwContainer];
+    
+    firstBarControlBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 20, 20)];
+    [firstBarControlBtn addTarget:self action:@selector(handleBarSwitch:) forControlEvents:UIControlEventTouchUpInside];
+    firstBarControlBtn.backgroundColor = [UIColor whiteColor];
+    firstBarControlBtn.layer.cornerRadius = 10;
+    firstBarControlBtn.tag = 1;
+    [currentBarIndicatorViwContainer addSubview:firstBarControlBtn];
+    
+    secondBarControlBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 2.5, 15, 15)];
+    [secondBarControlBtn addTarget:self action:@selector(handleBarSwitch:) forControlEvents:UIControlEventTouchUpInside];
+    secondBarControlBtn.backgroundColor = [UIColor colorWithRed:0.129 green:0.165 blue:0.184 alpha:1];
+    secondBarControlBtn.layer.cornerRadius = 7.5;
+    secondBarControlBtn.tag = 2;
+    [currentBarIndicatorViwContainer addSubview:secondBarControlBtn];
+    
     [custNavBar addSubview:octaveButton];
     
 }
 
+- (void) handleBarSwitch: (UIButton *)sender {
+    
+    switch (sender.tag) {
+            
+        case 1:
+            [seqcollectionview scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+            break;
+            
+        case 2:
+            NSLog(@"hello");
+            [seqcollectionview scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:16] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self setCurrentBarIndicatorStyle:sender.tag];
+    
+}
+
+- (void) setCurrentBarIndicatorStyle: (NSUInteger) index {
+    
+    CGRect oldFrame;
+    
+    switch (index) {
+            
+        case 1:
+            
+            oldFrame = firstBarControlBtn.frame;
+            oldFrame.origin.y = 0;
+            oldFrame.size = CGSizeMake(20, 20);
+            firstBarControlBtn.frame = oldFrame;
+            firstBarControlBtn.backgroundColor = [UIColor whiteColor];
+            firstBarControlBtn.layer.cornerRadius = 10;
+            
+            oldFrame = secondBarControlBtn.frame;
+            oldFrame.origin.y = 2.5;
+            oldFrame.size = CGSizeMake(15, 15);
+            secondBarControlBtn.frame = oldFrame;
+            secondBarControlBtn.backgroundColor = [UIColor colorWithRed:0.129 green:0.165 blue:0.184 alpha:1];
+            secondBarControlBtn.layer.cornerRadius = 7.5;
+            
+            break;
+            
+        case 2:
+            
+            oldFrame = firstBarControlBtn.frame;
+            oldFrame.origin.y = 2.5;
+            oldFrame.size = CGSizeMake(15, 15);
+            firstBarControlBtn.frame = oldFrame;
+            firstBarControlBtn.backgroundColor = [UIColor colorWithRed:0.129 green:0.165 blue:0.184 alpha:1];
+            firstBarControlBtn.layer.cornerRadius = 7.5;
+            
+            oldFrame = secondBarControlBtn.frame;
+            oldFrame.origin.y = 0;
+            oldFrame.size = CGSizeMake(20, 20);
+            secondBarControlBtn.frame = oldFrame;
+            secondBarControlBtn.backgroundColor = [UIColor whiteColor];
+            secondBarControlBtn.layer.cornerRadius = 10;
+            
+            break;
+            
+        default:
+            break;
+    }
+}
 - (void) handleMenuButtonClick {
     
     if ([customModalMenu isHidden]) {
         
         [customModalMenu setHidden:NO];
+
+        POPSpringAnimation *animframe = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+        
+        animframe.fromValue = [NSValue valueWithCGSize:CGSizeMake(0, 0)];
+        animframe.toValue = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
+        animframe.springSpeed = 40;
+        animframe.springBounciness = 5;
+        animframe.removedOnCompletion = YES;
+        [customModalMenu.layer pop_addAnimation:animframe forKey:@"springAnimation"];
         
     } else {
-        
-        [customModalMenu setHidden:YES];
+   
+            [customModalMenu setHidden:YES];
         
     }
     
@@ -237,17 +350,56 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void) CustomModalHandleBarChange: (int) bars {
     
+    
     if (bars == 2) {
         
-        [seqcollectionview scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:16] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+        // 32 beats 2bars
+        numberofSections = 32;
+        [keyboardViewModel handleBarChangewithBars:2];
+        [seqcollectionview reloadData];
+
+        [secondBarControlBtn sendActionsForControlEvents:UIControlEventTouchUpInside];
+        currentBarIndicatorViwContainer.hidden = NO;
         
     } else {
         
-        [seqcollectionview scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+        // 16 beats 1bars
+        
+        numberofSections = 16;
+        [keyboardViewModel handleBarChangewithBars:1];
+        [seqcollectionview reloadData];
+        
+        [firstBarControlBtn sendActionsForControlEvents:UIControlEventTouchUpInside];
+        currentBarIndicatorViwContainer.hidden = YES;
         
     }
 
     
+}
+
+- (void) CustomModalHandleOctaveChange:(OctaveType)octave {
+    
+    switch (octave) {
+            
+        case OctaveTypeHigh:
+            [keyboardViewModel handleOctaveChange:octave];
+            break;
+            
+        case OctaveTypeMid:
+            [keyboardViewModel handleOctaveChange:octave];
+            break;
+            
+        case OctaveTypeLow:
+            [keyboardViewModel handleOctaveChange:octave];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void) CustomModalSwitchPreset: (NSUInteger) presetNumber {
+    [keyboardViewModel handleSwitchPreset:presetNumber];
 }
 
 - (void) handleLongPress: (UIGestureRecognizer *)longPress {

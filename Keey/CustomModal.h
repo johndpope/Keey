@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PianoRollConfig.h"
 
 @class CustomModal;             //define class, so protocol can see MyClass
 @protocol CustomModalViewDelegate <NSObject>   //define delegate protocol
 - (void) CustomModalHandleOverlayTap: (CustomModal *) sender;  //define delegate method to be implemented within another class
-- (void) CustomModalHandleBarChange: (int) bars;  //define delegate method to be implemented within another class
+- (void) CustomModalHandleBarChange: (int) bars;
+- (void) CustomModalHandleOctaveChange: (OctaveType) octave;
+- (void) CustomModalSwitchPreset: (NSUInteger) presetNumber;
 
 @end //end protocol
-
 
 @interface CustomModal : UIView
 

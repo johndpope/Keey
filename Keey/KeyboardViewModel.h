@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PianoRollConfig.h"
 
 @interface KeyboardViewModel : NSObject
 
@@ -43,5 +44,10 @@ typedef enum KeyType : NSUInteger {
 
 - (BOOL) isStateSelectedAt :(int)noteNumber positionInPianoRoll:(int) position;
 
+- (void) handleBarChangewithBars :(int)bars;
+
+- (void) handleOctaveChange: (OctaveType) octave;
+
+- (void) handleSwitchPreset: (NSUInteger) presetIndex;
 
 @end

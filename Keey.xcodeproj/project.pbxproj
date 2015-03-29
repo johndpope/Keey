@@ -26,6 +26,8 @@
 		6D0A4F281AC34BD000A2F6C2 /* StepState.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A4F271AC34BD000A2F6C2 /* StepState.m */; };
 		6D0AEB641A8F117A00AFB84B /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */; };
 		6D0AEB681A8F189000AFB84B /* PanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AEB671A8F189000AFB84B /* PanelView.m */; };
+		6D100E171AC86EEE00D60245 /* keeylogonew@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D100E151AC86EEE00D60245 /* keeylogonew@1x.png */; };
+		6D100E181AC86EEE00D60245 /* keeylogonew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D100E161AC86EEE00D60245 /* keeylogonew@2x.png */; };
 		6D11E4431AAD575600FFDEEF /* StabBrass_JJ.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E4421AAD575600FFDEEF /* StabBrass_JJ.sf2 */; };
 		6D2EC4CE1A97EC5900712D44 /* Clap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CA1A97EC5900712D44 /* Clap.wav */; };
 		6D2EC4CF1A97EC5900712D44 /* HiHat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CB1A97EC5900712D44 /* HiHat.wav */; };
@@ -125,6 +127,8 @@
 		6D0AEB631A8F117A00AFB84B /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
 		6D0AEB661A8F189000AFB84B /* PanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelView.h; sourceTree = "<group>"; };
 		6D0AEB671A8F189000AFB84B /* PanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelView.m; sourceTree = "<group>"; };
+		6D100E151AC86EEE00D60245 /* keeylogonew@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keeylogonew@1x.png"; sourceTree = "<group>"; };
+		6D100E161AC86EEE00D60245 /* keeylogonew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keeylogonew@2x.png"; sourceTree = "<group>"; };
 		6D11E4421AAD575600FFDEEF /* StabBrass_JJ.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = StabBrass_JJ.sf2; sourceTree = "<group>"; };
 		6D2EC4CA1A97EC5900712D44 /* Clap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Clap.wav; sourceTree = "<group>"; };
 		6D2EC4CB1A97EC5900712D44 /* HiHat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HiHat.wav; sourceTree = "<group>"; };
@@ -351,6 +355,8 @@
 		6D618B541A95507400CC3CDC /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				6D100E151AC86EEE00D60245 /* keeylogonew@1x.png */,
+				6D100E161AC86EEE00D60245 /* keeylogonew@2x.png */,
 				6DF575411AC5823C00CC6EB6 /* keeyappicon@1x.png */,
 				6DF575421AC5823C00CC6EB6 /* keeyappicon@2x.png */,
 				6DF575431AC5823C00CC6EB6 /* keeyappicon@3x.png */,
@@ -691,6 +697,7 @@
 				6D618B5B1A958C3E00CC3CDC /* voxicon.png in Resources */,
 				6D0A4F1F1AC3244900A2F6C2 /* gothamrnd-book.ttf in Resources */,
 				6DF42B091AACDE6A001E754B /* buffkick.wav in Resources */,
+				6D100E171AC86EEE00D60245 /* keeylogonew@1x.png in Resources */,
 				6D618B4D1A954ADD00CC3CDC /* drumicon.png in Resources */,
 				6D2EC4D01A97EC5900712D44 /* Kick.wav in Resources */,
 				6D2EC4D11A97EC5900712D44 /* Snare.wav in Resources */,
@@ -719,6 +726,7 @@
 				6D618B5A1A958C3E00CC3CDC /* synthicon.png in Resources */,
 				6D0A4F191AC3228000A2F6C2 /* RockoFLF.ttf in Resources */,
 				6DC5262B1AAD5DF20029D530 /* teddybear.mid in Resources */,
+				6D100E181AC86EEE00D60245 /* keeylogonew@2x.png in Resources */,
 				6D618B531A95507200CC3CDC /* trumpeticon.png in Resources */,
 				6DF575451AC5823C00CC6EB6 /* keeyappicon@2x.png in Resources */,
 				6D0A4F201AC3244900A2F6C2 /* gothamrnd-light.ttf in Resources */,

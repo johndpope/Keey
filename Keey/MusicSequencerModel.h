@@ -37,13 +37,17 @@ typedef enum PianoRollKeyType : NSUInteger {
 
 - (void) populateMusicTrack: (NSDictionary*)tracksDic;
 
-- (void) setInstrumentPreset : (NSString *)name;
+- (void) setInstrumentPreset : (NSString *)name withPatch: (int) patchNumber;
 
 - (void) handleMidiEvent: (int) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType;
 
 - (void) addStepAtPosition: (int) stepPosition withStepLength: (int)stepLength withNoteKey:(PianoRollKeyType) pianoRollKey;
 
 - (void) setLengthForStepAtPosition: (int) stepPosition withStepLength: (int) stepLength forNote: (PianoRollKeyType) noteKey;
+
+- (void) setLoopDuration :(int) duration;
+
+- (void) setTracksOctave :(NSUInteger) octaveKey;
 
 @property NSDictionary *soundfontPresets;
 

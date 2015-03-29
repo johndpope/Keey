@@ -14,10 +14,11 @@
 @implementation KeyboardViewModel {
     
     MusicSequencerModel *musicSeq;
+    int totalBars;
     
 }
 
-- (void) createStepStatesWithSections :(int) sectionCount withKeyNoteCount :(int)rowCount {
+- (void) createStepStatesWithSections: (int) sectionCount withKeyNoteCount: (int)rowCount {
 
     _stepSeqStates = [[NSMutableDictionary alloc] init];
 
@@ -25,18 +26,76 @@
         [_stepSeqStates setObject:[self generateSteps:sectionCount] forKey:[NSNumber numberWithInt:i]];
     }
     
+    totalBars = 1;
 }
 
-- (void) setupKeys : (int) steps {
+- (void) handleBarChangewithBars: (int)bars {
+    
+    switch (bars) {
+            
+        case 1:
+            
+            if (totalBars == 2) {
+                
+                totalBars = 1;
+                
+                [musicSeq setLoopDuration:16];
+                
+                for (int i = 0; i<12; i++) {
+                    
+                    NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInt:i]];
+                    
+                    [self removePureSteps:32 withStepstate:rowAtNote];
+                    
+                }
+                
+                [musicSeq populateMusicTrack:_stepSeqStates];
+            }
+
+            
+            break;
+            
+        case 2:
+            
+            if (totalBars == 1) {
+                
+                totalBars = 2;
+                
+                [musicSeq setLoopDuration:32];
+
+                for (int i = 0; i<12; i++) {
+                    
+                    NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInt:i]];
+
+                    for (int j = 0; j<16; j++) {
+                        
+                        [rowAtNote addObject:[self generatePureStepswithPosition:16+j]];
+
+                    }
+                    
+                }
+                
+                [musicSeq populateMusicTrack:_stepSeqStates];
+            }
+            
+            break;
+    
+        default:
+            break;
+    }
+    
+}
+
+- (void) setupKeys: (int) steps {
     
     musicSeq = [[MusicSequencerModel alloc] init];
     [musicSeq setUpSequencer];
-    [musicSeq setInstrumentPreset:@"GeneralUser GS MuseScore v1.442"];
+    [musicSeq setInstrumentPreset:@"Keey-Guitarsoundfont" withPatch:0];
         
 }
 
 - (void) updateStepSeqForPosition: (int) stepPosition withlength: (int)keyLength withKeyNote: (NSUInteger) keyNote {
-    
+
     NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInt:keyNote]];
     StepState *currentStepForNote = [rowAtNote objectAtIndex:stepPosition];
     
@@ -47,7 +106,7 @@
     
 }
 
-- (BOOL) isStateSelectedAt :(int)noteNumber positionInPianoRoll:(int) position {
+- (BOOL) isStateSelectedAt: (int)noteNumber positionInPianoRoll:(int) position {
     
     NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInteger:noteNumber]];
     StepState *currentStepForNote = [rowAtNote objectAtIndex:position];
@@ -61,15 +120,52 @@
     return false;
 }
 
-/*
-- (void) setLengthForStepAtPosition: (int) stepPosition withStepLength: (int) stepLength forNote: (NSUInteger) keyNote {
+- (void) handleOctaveChange: (OctaveType) octave {
     
-    //[musicSeq setLengthForStepAtPosition:stepPosition withStepLength:stepLength forNote:noteKey];
+    switch (octave) {
+            
+        case OctaveTypeHigh:
+            [musicSeq setTracksOctave:71];
+            break;
+            
+        case OctaveTypeMid:
+            [musicSeq setTracksOctave:47];
+            break;
+            
+        case OctaveTypeLow:
+            [musicSeq setTracksOctave:23];
+            break;
+            
+        default:
+            break;
+    }
+    
+    [musicSeq populateMusicTrack:_stepSeqStates];
     
 }
- */
 
-- (NSMutableArray*) generateSteps :(int)count {
+- (void) handleSwitchPreset:(NSUInteger)presetIndex {
+
+    switch (presetIndex) {
+            
+        case 1:
+            [musicSeq setInstrumentPreset:@"Keey-Guitarsoundfont" withPatch:0];
+            break;
+            
+        case 2:
+            [musicSeq setInstrumentPreset:@"LV - Hex" withPatch:0];
+            break;
+            
+        case 3:
+            [musicSeq setInstrumentPreset:@"GeneralUser GS MuseScore v1.442" withPatch:0];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (NSMutableArray*) generateSteps: (int)count {
     
     NSMutableArray *steps = [[NSMutableArray alloc] init];
     
@@ -81,6 +177,27 @@
     }
     
     return steps;
+}
+
+- (StepState*) generatePureStepswithPosition: (int) position {
+    
+        StepState *stepState = [[StepState alloc] init];
+        stepState.length = 0;
+        stepState.position = position;
+    
+    return stepState;
+}
+
+- (NSMutableArray*) removePureSteps: (int) count withStepstate: (NSMutableArray*) stateSteps {
+    
+    for (int i = count-1; i > 15; i--) {
+        
+        [stateSteps removeObjectAtIndex:i];
+    }
+    
+    //NSLog(@"%d", [stateSteps count]);
+
+    return stateSteps;
 }
 
 @end
