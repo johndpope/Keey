@@ -94,7 +94,7 @@
             
         };
         
-        [drawerViewCtrl.backgroundView pop_addAnimation:anim forKey:@"springAnimation"];
+        [drawerViewCtrl.view pop_addAnimation:anim forKey:@"springAnimation"];
         
     }];
 

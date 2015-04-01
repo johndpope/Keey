@@ -101,36 +101,48 @@ static NSString * const reuseIdentifier = @"Cell";
         case InstrumentalTypePiano:
             [instrument ofType:InstrumentalTypePiano ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
+            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeTrumpet:
             [instrument ofType:InstrumentalTypeTrumpet ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
+            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeGuitar:
             [instrument ofType:InstrumentalTypeGuitar ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
+            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeFlute:
             [instrument ofType:InstrumentalTypeFlute ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
+            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeSynth:
             [instrument ofType:InstrumentalTypeSynth ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
+            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeVox:
             [instrument ofType:InstrumentalTypeVox ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
+            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             

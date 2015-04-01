@@ -9,7 +9,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomModal.h"
+#import "PianoRollConfig.h"
+
 
 @interface KeyBoardStepSequencer : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, CustomModalViewDelegate>
+
+@property PianoRollConfig *config;
+@property NSString *instrumentTitle;
+@property UIColor *instrumentBgColor;
 
 @end

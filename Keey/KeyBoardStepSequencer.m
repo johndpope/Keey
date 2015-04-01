@@ -33,7 +33,6 @@
     MarkerView *marker;
     CustomModal *customModalMenu;
     BeatBarHeaderView *barheaderView;
-    PianoRollConfig *config;
     StepViewCell *customCell;
     
     int numberofSections;
@@ -84,9 +83,9 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self setUpNavBar];
     
-    config = [[PianoRollConfig alloc] init];
-    config.currentOctave = OctaveTypeMid;
-    config.currentMeasure = 1;
+    _config = [[PianoRollConfig alloc] init];
+    _config.currentOctave = OctaveTypeMid;
+    _config.currentMeasure = 1;
     
     numberofSections = 16;
     
@@ -244,6 +243,14 @@ static NSString * const reuseIdentifier = @"Cell";
     [currentBarIndicatorViwContainer addSubview:secondBarControlBtn];
     
     [custNavBar addSubview:octaveButton];
+    
+    UIButton *instumentTitleBtn = [[UIButton alloc] initWithFrame:CGRectMake(120, 20, 100, 40)];
+    //[instumentTitleBtn setBackgroundColor: [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1]];
+    [instumentTitleBtn setBackgroundColor: _instrumentBgColor];
+    instumentTitleBtn.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:12];
+    [instumentTitleBtn setTitle:_instrumentTitle forState:UIControlStateNormal];
+    instumentTitleBtn.layer.cornerRadius = 20;
+    [custNavBar addSubview:instumentTitleBtn];
     
 }
 
@@ -585,7 +592,7 @@ static NSString * const reuseIdentifier = @"Cell";
         if (nowIntersecting != wasIntersected) {
             
             if (nowIntersecting && [keyboardViewModel isStateSelectedAt:[cellPath row] positionInPianoRoll:[cellPath section]]) {
-                NSLog(@"row is: %d section is: %d", [cellPath row], [cellPath section]);
+                //NSLog(@"row is: %d section is: %d", [cellPath row], [cellPath section]);
                 
                 cell.backgroundColor = [UIColor whiteColor];
 

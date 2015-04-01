@@ -62,10 +62,8 @@
     anim.removedOnCompletion = YES;
     anim.completionBlock = ^(POPAnimation *anim, BOOL finished){
         
-        compBlock(YES);
-        
     };
-    
+    compBlock(YES);
     [_panelView.layer pop_addAnimation:anim forKey:@"springAnimation"];
     
 }
