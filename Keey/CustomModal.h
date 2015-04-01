@@ -22,6 +22,9 @@
 
 - (void) setupView;
 
+@property UIView *background;
+@property UIView *dashboardView;
+
 @property (nonatomic, weak) id <CustomModalViewDelegate> delegate; //define MyClassDelegate as delegate
 
 @end

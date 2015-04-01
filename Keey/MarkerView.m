@@ -9,7 +9,7 @@
 #import "MarkerView.h"
 
 @implementation MarkerView {
-    UIView *markerLine;
+    ;
 }
 
 - (void) displayHead {
@@ -27,11 +27,11 @@
 
 - (void) displayMarkerLine {
     
-    markerLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, self.frame.size.height)];
+    _markerLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, self.frame.size.height)];
     
-    markerLine.backgroundColor = [UIColor colorWithRed:1 green:0.518 blue:0.486 alpha:1];
+    _markerLine.backgroundColor = [UIColor colorWithRed:1 green:0.518 blue:0.486 alpha:1];
     
-    [self addSubview:markerLine];
+    [self addSubview:_markerLine];
     
 }
 
@@ -43,9 +43,9 @@
                         options: UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                      animations:^{
                             
-                            CGRect oldframe = markerLine.frame;
+                            CGRect oldframe = _markerLine.frame;
                             oldframe.origin.x =dest;
-                            markerLine.frame = oldframe;
+                            _markerLine.frame = oldframe;
                             
                         } completion:nil ];
     

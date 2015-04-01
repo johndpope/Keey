@@ -57,6 +57,7 @@ static NSString * const reuseIdentifier = @"Cell";
     //[self layoutInstrumentButtons];
 
     headerView = [[InstrumentalHeaderView alloc] initWithFrame:CGRectMake(0, 0, 120, 360)];
+    [headerView setTotalNotes:4];
     [headerView setUpHeaders:6 withType:HeaderTypeDetailed];
     
     [sequencerContainerView addSubview:headerView];

@@ -19,4 +19,6 @@ typedef enum HeaderType : NSUInteger {
 
 - (void) setUpHeaders: (int) headerCount withType: (HeaderType) headerType;
 
+@property int totalNotes;
+
 @end

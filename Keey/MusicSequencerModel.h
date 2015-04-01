@@ -29,7 +29,7 @@ typedef enum PianoRollKeyType : NSUInteger {
     PianoRollKeyTypeDSharp = 8,
     PianoRollKeyTypeD = 9,
     PianoRollKeyTypeCSharp = 10,
-    PianoRollKeyTypeC = 12,
+    PianoRollKeyTypeC = 11,
     
 } PianoRollKeyType;
 

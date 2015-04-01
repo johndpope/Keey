@@ -69,12 +69,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 12;
+    return _totalNotes;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return self.frame.size.height/12;
+    return self.frame.size.height/_totalNotes;
     
 }
 

@@ -77,9 +77,9 @@
     cusSegControl.layer.cornerRadius = 27.5;
     [self.view addSubview:cusSegControl];
     
-    _selectedView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 125, 45)];
+    _selectedView = [[UIView alloc] initWithFrame:CGRectMake(-5, -3, 140, 60)];
     _selectedView.backgroundColor = [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1];
-    _selectedView.layer.cornerRadius = 22.5;
+    _selectedView.layer.cornerRadius = 30;
     [cusSegControl addSubview:_selectedView];
     
     UIButton *first = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 135, 45)];

@@ -14,4 +14,6 @@
 - (void) displayMarkerLine;
 - (void) startAnimation: (int)duration toDestination: (int)dest;
 
+@property UIView *markerLine;
+
 @end

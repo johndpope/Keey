@@ -44,6 +44,7 @@
     UIView *currentBarIndicatorViwContainer;
     
     BOOL isfirstTimeAppearing;
+    BOOL wasIntersected;
 
 }
 
@@ -68,6 +69,9 @@ static NSString * const reuseIdentifier = @"Cell";
         
         isfirstTimeAppearing = true;
         
+        
+        //CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayLinkHandler)];
+        //[displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     }
     
 }
@@ -187,6 +191,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [sequencerContainerView addSubview:seqcollectionview];
     
     keyboardView = [[InstrumentalHeaderView alloc] initWithFrame:CGRectMake(0, 0, 100, sequencerContainerView.frame.size.height)];
+    [keyboardView setTotalNotes:12];
     [keyboardView setUpHeaders:16 withType:HeaderTypeKeyboard];
     [sequencerContainerView addSubview:keyboardView];
     
@@ -310,25 +315,70 @@ static NSString * const reuseIdentifier = @"Cell";
             break;
     }
 }
+
 - (void) handleMenuButtonClick {
     
     if ([customModalMenu isHidden]) {
-        
+                
         [customModalMenu setHidden:NO];
-
-        POPSpringAnimation *animframe = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+        [customModalMenu.dashboardView setHidden:YES];
         
-        animframe.fromValue = [NSValue valueWithCGSize:CGSizeMake(0, 0)];
-        animframe.toValue = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
-        animframe.springSpeed = 40;
-        animframe.springBounciness = 5;
-        animframe.removedOnCompletion = YES;
-        [customModalMenu.layer pop_addAnimation:animframe forKey:@"springAnimation"];
+        POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewBackgroundColor];
+        anim.fromValue = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+        anim.toValue = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:0.2];
+        //anim.toValue = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        anim.springSpeed = 30;
+        anim.springBounciness = 0;
+        anim.removedOnCompletion = YES;
+        anim.completionBlock = ^(POPAnimation *anim, BOOL finished){
+            
+            [customModalMenu.dashboardView setHidden:NO];
+            
+            POPSpringAnimation *animframe = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+            animframe.fromValue = [NSNumber numberWithFloat:[self window_height]];
+            animframe.toValue = [NSNumber numberWithFloat:[self window_height]/2];
+            animframe.velocity = [NSNumber numberWithFloat:50];
+            animframe.springSpeed = 30;
+            animframe.springBounciness = 10;
+            animframe.removedOnCompletion = YES;
+            
+            [customModalMenu.dashboardView.layer pop_addAnimation:animframe forKey:@"springAnimation"];
+
+        };
+        
+        [customModalMenu.background pop_addAnimation:anim forKey:@"springAnimation"];
+
+
         
     } else {
-   
-            [customModalMenu setHidden:YES];
         
+        POPSpringAnimation *animframe = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+        animframe.toValue = [NSNumber numberWithFloat:[self window_height]+200];
+        animframe.velocity = [NSNumber numberWithFloat:50];
+        animframe.springSpeed = 30;
+        animframe.springBounciness = 0;
+        animframe.removedOnCompletion = YES;
+        
+        [customModalMenu.dashboardView.layer pop_addAnimation:animframe forKey:@"springAnimation"];
+        
+        animframe.completionBlock = ^(POPAnimation *animpop, BOOL finished){
+
+        };
+        
+        [customModalMenu.dashboardView setHidden:NO];
+        
+        POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewBackgroundColor];
+        anim.toValue = [UIColor clearColor];
+        anim.springSpeed = 30;
+        anim.springBounciness = 0;
+        anim.removedOnCompletion = YES;
+        
+        anim.completionBlock = ^(POPAnimation *animpop, BOOL finished){
+            
+            [customModalMenu setHidden:YES];
+        };
+        
+        [customModalMenu.background pop_addAnimation:anim forKey:@"springAnimation"];
     }
     
 }
@@ -434,6 +484,8 @@ static NSString * const reuseIdentifier = @"Cell";
     pan.maximumNumberOfTouches = pan.minimumNumberOfTouches = 1;
     [chord addGestureRecognizer:pan];
     
+    [self addStepToSequencer:indexPath withLength:2];
+    
 }
 
 - (void) pan:(UIPanGestureRecognizer *)aPan{
@@ -513,6 +565,43 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (BOOL) prefersStatusBarHidden {
     return YES;
+}
+
+- (void) displayLinkHandler {
+    
+    id presentationLayer1 = marker.markerLine.layer.presentationLayer;
+    
+    for (NSIndexPath* cellPath in [seqcollectionview indexPathsForVisibleItems]) {
+        
+        UICollectionViewCell *cell = [seqcollectionview cellForItemAtIndexPath:cellPath];
+        
+        id presentationLayer2 = cell.layer.presentationLayer;
+        
+        BOOL nowIntersecting = CGRectIntersectsRect([presentationLayer1 frame], [presentationLayer2 frame]);
+        
+        // I'll keep track of whether the two views were intersected in a class property,
+        // and therefore only display a message if the intersected state changes.
+        
+        if (nowIntersecting != wasIntersected) {
+            
+            if (nowIntersecting && [keyboardViewModel isStateSelectedAt:[cellPath row] positionInPianoRoll:[cellPath section]]) {
+                NSLog(@"row is: %d section is: %d", [cellPath row], [cellPath section]);
+                
+                cell.backgroundColor = [UIColor whiteColor];
+
+ 
+            }else{
+                
+                
+                    cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
+
+                //cell.backgroundColor = [UIColor clearColor];
+                //NSLog(@"imageviews no longer intersecting");
+            }
+            wasIntersected = nowIntersecting;
+        }
+    }
+
 }
 
 @end

@@ -30,6 +30,8 @@
     MusicTrack musicTrackForCSharp;
     MusicTrack musicTrackForKeyC;
     
+    MusicTrack exampleTrack;
+    
     MusicPlayer musicPlayer;
     AUGraph graph;
     AudioUnit samplerUnit;
@@ -111,6 +113,8 @@
     MusicSequenceNewTrack(sequence, &(musicTrackForCSharp));
     MusicSequenceNewTrack(sequence, &(musicTrackForKeyC));
     
+    MusicSequenceNewTrack(sequence, &(exampleTrack));
+    
     
     [self setLoopDuration:16];
     currentOctaveNumber = 71;
@@ -127,6 +131,8 @@
     loopInfo.loopDuration = timeDiff*duration;
     loopInfo.numberOfLoops = 0;
     
+    MusicTrackSetProperty(exampleTrack, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+
     MusicTrackSetProperty(musicTrackForKeyB, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
     MusicTrackSetProperty(musicTrackForASharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
     MusicTrackSetProperty(musicTrackForKeyA, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
@@ -190,13 +196,13 @@
             
             notemessage.note = [[drumBank objectForKey:[drumType lowercaseString]] intValue];
             
-            //MusicTrackNewMIDINoteEvent(musicTrack, timestamp, &notemessage);
+            MusicTrackNewMIDINoteEvent(exampleTrack, timestamp, &notemessage);
 
             break;
             
         case MidiEventTypeClear:
             
-            //MusicTrackClear(musicTrack, timestamp, timestamp+timeDiff);
+            MusicTrackClear(exampleTrack, timestamp, timestamp+timeDiff);
             
         default:
             break;

@@ -10,8 +10,6 @@
 #import <pop/POP.h>
 
 @implementation CustomModal {
-    UIView *background;
-    UIView *dashboardView;
     UIButton *barOne;
     UIButton *barTwo;
     
@@ -22,31 +20,32 @@
 
 - (void) setupView {
     
-    background = [[UIView alloc] init];
-    background.frame = self.frame;
-    background.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
-    [self addSubview:background];
+    _background = [[UIView alloc] init];
+    _background.frame = self.frame;
+    //background.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
+    //_background.backgroundColor = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:0.2];
+    [self addSubview:_background];
     
     UITapGestureRecognizer *tapRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(overLayDidTap:)];
     tapRecog.numberOfTapsRequired = 1;
-    [background addGestureRecognizer:tapRecog];
+    [_background addGestureRecognizer:tapRecog];
     
-    dashboardView = [[UIView alloc] init];
-    dashboardView.frame = CGRectMake(self.frame.size.width/2-250, self.frame.size.height/2-200, 500, 400);
-    dashboardView.backgroundColor = [UIColor whiteColor];
-    dashboardView.layer.cornerRadius = 10;
-    [self addSubview:dashboardView];
+    _dashboardView = [[UIView alloc] init];
+    _dashboardView.frame = CGRectMake(self.frame.size.width/2-250, self.frame.size.height/2-200, 500, 400);
+    _dashboardView.backgroundColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:1];
+    _dashboardView.layer.cornerRadius = 10;
+    [self addSubview:_dashboardView];
     
     /* Octave Slider */
     
-    UILabel *octaveLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, dashboardView.frame.size.width, 30)];
+    UILabel *octaveLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, _dashboardView.frame.size.width, 30)];
     octaveLabel.textColor = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:1];
     octaveLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:20];
     octaveLabel.textAlignment = NSTextAlignmentCenter;
     octaveLabel.text = @"Octave";
-    [dashboardView addSubview:octaveLabel];
+    [_dashboardView addSubview:octaveLabel];
     
-    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(dashboardView.frame.size.width/2-125, 70, 250, 30)];
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(_dashboardView.frame.size.width/2-125, 70, 250, 30)];
     slider.continuous = NO;
     [slider addTarget:self action:@selector(handleOctaveChange:) forControlEvents:UIControlEventValueChanged];
     slider.minimumValue = 0;
@@ -60,61 +59,61 @@
     UIImage *sliderRightTrackImage = [[UIImage imageNamed: @"bar@2x.png"] stretchableImageWithLeftCapWidth: 4 topCapHeight: 0];
     [slider setMinimumTrackImage: sliderLeftTrackImage forState: UIControlStateNormal];
     [slider setMaximumTrackImage: sliderRightTrackImage forState: UIControlStateNormal];
-    [dashboardView addSubview:slider];
+    [_dashboardView addSubview:slider];
     
     /* Bars */
     
-    UILabel *barsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 140, dashboardView.frame.size.width, 30)];
+    UILabel *barsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 140, _dashboardView.frame.size.width, 30)];
     barsLabel.textColor = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:1];
     barsLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:20];
     barsLabel.textAlignment = NSTextAlignmentCenter;
     barsLabel.text = @"Bars";
-    [dashboardView addSubview:barsLabel];
+    [_dashboardView addSubview:barsLabel];
     
-    barOne = [[UIButton alloc] initWithFrame:CGRectMake(dashboardView.frame.size.width/2-55, 200, 50, 50)];
+    barOne = [[UIButton alloc] initWithFrame:CGRectMake(_dashboardView.frame.size.width/2-55, 200, 50, 50)];
     [barOne setTitleColor:[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] forState:UIControlStateNormal];
     [barOne addTarget:self action:@selector(handleBarChange:) forControlEvents:UIControlEventTouchUpInside];
     barOne.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:30];
     barOne.layer.cornerRadius = 25;
     [barOne setTitle:@"1" forState:UIControlStateNormal];
     barOne.tag = 1;
-    [dashboardView addSubview:barOne];
+    [_dashboardView addSubview:barOne];
     
-    barTwo = [[UIButton alloc] initWithFrame:CGRectMake(dashboardView.frame.size.width/2+5, 200, 50, 50)];
+    barTwo = [[UIButton alloc] initWithFrame:CGRectMake(_dashboardView.frame.size.width/2+5, 200, 50, 50)];
     [barTwo setTitleColor:[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] forState:UIControlStateNormal];
     [barTwo addTarget:self action:@selector(handleBarChange:) forControlEvents:UIControlEventTouchUpInside];
     barTwo.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:30];
     barTwo.layer.cornerRadius = 25;
     [barTwo setTitle:@"2" forState:UIControlStateNormal];
     barTwo.tag = 2;
-    [dashboardView addSubview:barTwo];
+    [_dashboardView addSubview:barTwo];
     
     
-    UILabel *chooseSampleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 280, dashboardView.frame.size.width, 30)];
+    UILabel *chooseSampleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 280, _dashboardView.frame.size.width, 30)];
     chooseSampleLabel.textColor = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:1];
     chooseSampleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:20];
     chooseSampleLabel.textAlignment = NSTextAlignmentCenter;
     chooseSampleLabel.text = @"Switch Sample";
-    [dashboardView addSubview:chooseSampleLabel];
+    [_dashboardView addSubview:chooseSampleLabel];
     
-    sampleOne = [[UIButton alloc] initWithFrame:CGRectMake(dashboardView.frame.size.width/2-100, 330, 50, 50)];
+    sampleOne = [[UIButton alloc] initWithFrame:CGRectMake(_dashboardView.frame.size.width/2-100, 330, 50, 50)];
     [sampleOne setBackgroundColor:[UIColor colorWithRed:0.459 green:0.745 blue:0.894 alpha:1]];
     [sampleOne.layer setBorderColor:[[UIColor colorWithRed:0.459 green:0.745 blue:0.894 alpha:1] CGColor]];
     [sampleOne addTarget:self action:@selector(handleSampleChange:) forControlEvents:UIControlEventTouchUpInside];
     sampleOne.layer.cornerRadius = 25;
     sampleOne.tag = 1;
-    [dashboardView addSubview:sampleOne];
+    [_dashboardView addSubview:sampleOne];
     
-    sampleTwo = [[UIButton alloc] initWithFrame:CGRectMake(dashboardView.frame.size.width/2-10, 350, 15, 15)];
+    sampleTwo = [[UIButton alloc] initWithFrame:CGRectMake(_dashboardView.frame.size.width/2-10, 350, 15, 15)];
     [sampleTwo addTarget:self action:@selector(handleSampleChange:) forControlEvents:UIControlEventTouchUpInside];
     [sampleTwo.layer setBorderColor:[[UIColor colorWithRed:0.706 green:0.894 blue:0.459 alpha:1] CGColor]];
     [sampleTwo setBackgroundColor:[UIColor clearColor]];
     sampleTwo.layer.borderWidth = 3;
     sampleTwo.layer.cornerRadius = 7.5;
     sampleTwo.tag = 2;
-    [dashboardView addSubview:sampleTwo];
+    [_dashboardView addSubview:sampleTwo];
     
-    sampleThree = [[UIButton alloc] initWithFrame:CGRectMake(dashboardView.frame.size.width/2+60, 350, 15, 15)];
+    sampleThree = [[UIButton alloc] initWithFrame:CGRectMake(_dashboardView.frame.size.width/2+60, 350, 15, 15)];
     [sampleThree addTarget:self action:@selector(handleSampleChange:) forControlEvents:UIControlEventTouchUpInside];
     [sampleThree.layer setBorderColor:[[UIColor colorWithRed:0.459 green:0.894 blue:0.627 alpha:1] CGColor]];
     [sampleThree setBackgroundColor:[UIColor clearColor]];
@@ -122,7 +121,7 @@
     sampleThree.layer.borderWidth = 3;
     sampleThree.layer.cornerRadius = 7.5;
     sampleThree.tag = 3;
-    [dashboardView addSubview:sampleThree];
+    [_dashboardView addSubview:sampleThree];
     
     [barOne sendActionsForControlEvents: UIControlEventTouchUpInside];
     
@@ -199,17 +198,17 @@
 - (void) setActiveSampleButton: (UIButton *)sampleBtn {
     
     
-    [sampleOne setFrame:CGRectMake(dashboardView.frame.size.width/2-90, 350, 15, 15)];
+    [sampleOne setFrame:CGRectMake(_dashboardView.frame.size.width/2-90, 350, 15, 15)];
     [sampleOne setBackgroundColor:[UIColor clearColor]];
     sampleOne.layer.borderWidth = 3;
     sampleOne.layer.cornerRadius = 7.5;
     
-    [sampleTwo setFrame:CGRectMake(dashboardView.frame.size.width/2-10, 350, 15, 15)];
+    [sampleTwo setFrame:CGRectMake(_dashboardView.frame.size.width/2-10, 350, 15, 15)];
     [sampleTwo setBackgroundColor:[UIColor clearColor]];
     sampleTwo.layer.borderWidth = 3;
     sampleTwo.layer.cornerRadius = 7.5;
     
-    [sampleThree setFrame:CGRectMake(dashboardView.frame.size.width/2+60, 350, 15, 15)];
+    [sampleThree setFrame:CGRectMake(_dashboardView.frame.size.width/2+60, 350, 15, 15)];
     [sampleThree setBackgroundColor:[UIColor clearColor]];
     sampleThree.layer.borderWidth = 3;
     sampleThree.layer.cornerRadius = 7.5;
