@@ -8,6 +8,7 @@
 
 #define SCREEN_WIDTH (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)
 #define SCREEN_HEIGHT (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
+#define MAXLENGTH 10
 
 #import "KeyBoardStepSequencer.h"
 #import "InstrumentalHeaderView.h"
@@ -50,6 +51,8 @@
 @end
 
 @implementation KeyBoardStepSequencer
+
+@synthesize instrumentButton;
 
 static NSString * const reuseIdentifier = @"Cell";
 
@@ -244,13 +247,20 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [custNavBar addSubview:octaveButton];
     
-    UIButton *instumentTitleBtn = [[UIButton alloc] initWithFrame:CGRectMake(120, 20, 100, 40)];
+    UITextField *instumentTitleTextField = [[UITextField alloc] initWithFrame:CGRectMake(120, 20, 100, 40)];
     //[instumentTitleBtn setBackgroundColor: [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1]];
-    [instumentTitleBtn setBackgroundColor: _instrumentBgColor];
-    instumentTitleBtn.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:12];
-    [instumentTitleBtn setTitle:_instrumentTitle forState:UIControlStateNormal];
-    instumentTitleBtn.layer.cornerRadius = 20;
-    [custNavBar addSubview:instumentTitleBtn];
+    [instumentTitleTextField setBackgroundColor: instrumentButton.backgroundColor];
+    instumentTitleTextField.textAlignment = NSTextAlignmentCenter;
+    instumentTitleTextField.textColor = [UIColor whiteColor];
+    instumentTitleTextField.text = instrumentButton.titleLabel.text;
+    instumentTitleTextField.font = [UIFont fontWithName:@"Gotham Rounded" size:12];
+    instumentTitleTextField.layer.cornerRadius = 20;
+    [instumentTitleTextField setDelegate:self];
+    instumentTitleTextField.returnKeyType = UIReturnKeyDone;
+    [instumentTitleTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [[UITextField appearance] setTintColor:[UIColor whiteColor]];
+
+    [custNavBar addSubview:instumentTitleTextField];
     
 }
 
@@ -263,7 +273,7 @@ static NSString * const reuseIdentifier = @"Cell";
             break;
             
         case 2:
-            NSLog(@"hello");
+
             [seqcollectionview scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:16] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
             
             break;
@@ -609,6 +619,28 @@ static NSString * const reuseIdentifier = @"Cell";
         }
     }
 
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSUInteger oldLength = [textField.text length];
+    NSUInteger replacementLength = [string length];
+    NSUInteger rangeLength = range.length;
+    
+    NSUInteger newLength = oldLength - rangeLength + replacementLength;
+    
+    BOOL returnKey = [string rangeOfString: @"\n"].location != NSNotFound;
+    
+    return newLength <= MAXLENGTH || returnKey;
+    
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [instrumentButton setTitle:textField.text forState:UIControlStateNormal];
+    [textField resignFirstResponder];
+    
+    return true;
 }
 
 @end

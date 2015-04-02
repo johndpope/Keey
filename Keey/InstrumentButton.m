@@ -102,7 +102,7 @@
     UITapGestureRecognizer *buttonTapRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonDidTap)];
     buttonTapRec.cancelsTouchesInView = NO;
     buttonTapRec.numberOfTapsRequired = 1;
-    [self addGestureRecognizer:buttonTapRec];
+    //[self addGestureRecognizer:buttonTapRec];
     
     _instrumentSize = size;
     

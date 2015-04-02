@@ -56,10 +56,10 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Do any additional setup after loading the view.
     
-    [self addPatternInstrument:drumins];
-    [self addPatternInstrument:pianoins];
-    [self addPatternInstrument:trumpetins];
-    [self addPatternInstrument:guitarinns];
+    //[self addPatternInstrument:drumins];
+    //[self addPatternInstrument:pianoins];
+    //[self addPatternInstrument:trumpetins];
+    //[self addPatternInstrument:guitarinns];
 
 }
 
@@ -101,48 +101,42 @@ static NSString * const reuseIdentifier = @"Cell";
         case InstrumentalTypePiano:
             [instrument ofType:InstrumentalTypePiano ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
-            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
+            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeTrumpet:
             [instrument ofType:InstrumentalTypeTrumpet ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
-            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
+            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeGuitar:
             [instrument ofType:InstrumentalTypeGuitar ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
-            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
+            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeFlute:
             [instrument ofType:InstrumentalTypeFlute ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
-            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
+            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeSynth:
             [instrument ofType:InstrumentalTypeSynth ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
-            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
+            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeVox:
             [instrument ofType:InstrumentalTypeVox ofSize:BigSize];
             keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentTitle:instrument.titleLabel.text];
-            [keyboardStepSeqViewCTRL setInstrumentBgColor:instrument.backgroundColor];
+            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
             [_currentPatterns addObject:keyboardStepSeqViewCTRL];
             break;
             
@@ -155,10 +149,11 @@ static NSString * const reuseIdentifier = @"Cell";
     [_patternInstruments addObject: instrument];
 
     [self.collectionView reloadData];
+    
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:[_patternInstruments count]-1 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
 }
 
-- (void) handleInstrumentClick: sender {
-    
+- (void) handleInstrumentClick: (InstrumentButton *)sender {
     [self.navigationController presentViewController:[_currentPatterns objectAtIndex:[sender tag]] animated:YES completion:nil];
         
 }
