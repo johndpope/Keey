@@ -7,7 +7,6 @@
 //
 
 #import "PatternCollectionViewCTRL.h"
-#import "KeyBoardStepSequencer.h"
 
 
 @interface PatternCollectionViewCTRL ()
@@ -15,7 +14,7 @@
 @end
 
 @implementation PatternCollectionViewCTRL {
-    KeyBoardStepSequencer *keyboardStepSeqViewCTRL;
+    
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -100,44 +99,44 @@ static NSString * const reuseIdentifier = @"Cell";
             
         case InstrumentalTypePiano:
             [instrument ofType:InstrumentalTypePiano ofSize:BigSize];
-            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
-            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
+            _keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_keyboardStepSeqViewCTRL setInstrumentButton:instrument];
+            [_currentPatterns addObject:_keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeTrumpet:
             [instrument ofType:InstrumentalTypeTrumpet ofSize:BigSize];
-            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
-            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
+            _keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_keyboardStepSeqViewCTRL setInstrumentButton:instrument];
+            [_currentPatterns addObject:_keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeGuitar:
             [instrument ofType:InstrumentalTypeGuitar ofSize:BigSize];
-            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
-            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
+            _keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_keyboardStepSeqViewCTRL setInstrumentButton:instrument];
+            [_currentPatterns addObject:_keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeFlute:
             [instrument ofType:InstrumentalTypeFlute ofSize:BigSize];
-            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
-            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
+            _keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_keyboardStepSeqViewCTRL setInstrumentButton:instrument];
+            [_currentPatterns addObject:_keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeSynth:
             [instrument ofType:InstrumentalTypeSynth ofSize:BigSize];
-            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
-            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
+            _keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_keyboardStepSeqViewCTRL setInstrumentButton:instrument];
+            [_currentPatterns addObject:_keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypeVox:
             [instrument ofType:InstrumentalTypeVox ofSize:BigSize];
-            keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
-            [keyboardStepSeqViewCTRL setInstrumentButton:instrument];
-            [_currentPatterns addObject:keyboardStepSeqViewCTRL];
+            _keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_keyboardStepSeqViewCTRL setInstrumentButton:instrument];
+            [_currentPatterns addObject:_keyboardStepSeqViewCTRL];
             break;
             
         default:
@@ -145,7 +144,8 @@ static NSString * const reuseIdentifier = @"Cell";
             
     }
     
-    
+    [_keyboardStepSeqViewCTRL setDelegate:self];
+
     [_patternInstruments addObject: instrument];
 
     [self.collectionView reloadData];
@@ -155,7 +155,15 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void) handleInstrumentClick: (InstrumentButton *)sender {
     [self.navigationController presentViewController:[_currentPatterns objectAtIndex:[sender tag]] animated:YES completion:nil];
-        
+}
+
+- (void)HandleKeyBoardStepSequencerClose:(KeyBoardStepSequencer *)stepSequencerViewCtrl {
+    [stepSequencerViewCtrl stopMusicPlayer];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

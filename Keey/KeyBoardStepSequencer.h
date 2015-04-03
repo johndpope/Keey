@@ -11,11 +11,23 @@
 #import "CustomModal.h"
 #import "PianoRollConfig.h"
 #import "InstrumentButton.h"
+#import "KeyboardViewModel.h"
 
+@class KeyBoardStepSequencer;             //define class, so protocol can see MyClass
+@protocol KeyBoardStepSequencerDelegate <NSObject>   //define delegate protocol
+- (void)  HandleKeyBoardStepSequencerClose: (UIViewController *)stepSequencerViewCtrl;  //define delegate method to be implemented within another class
+
+@end //end protocol
 
 @interface KeyBoardStepSequencer : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, CustomModalViewDelegate, UITextFieldDelegate>
 
 @property PianoRollConfig *config;
 @property InstrumentButton *instrumentButton;
+@property KeyboardViewModel *keyboardViewModel;
+
+@property (nonatomic, weak) id <KeyBoardStepSequencerDelegate> delegate; //define MyClassDelegate as delegate
+
+- (void) stopMusicPlayer;
+- (void) startMusicPlayer;
 
 @end

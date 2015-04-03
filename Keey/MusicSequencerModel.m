@@ -32,7 +32,6 @@
     
     MusicTrack exampleTrack;
     
-    MusicPlayer musicPlayer;
     AUGraph graph;
     AudioUnit samplerUnit;
     AudioUnit outputUnit;
@@ -55,7 +54,7 @@
     timeDiff = DEFAULT_TIME_DIFF;
     
     NewMusicSequence(&(sequence));
-    NewMusicPlayer(&(musicPlayer));
+    NewMusicPlayer(&(_musicPlayer));
     NewAUGraph(&(graph));
     
     [self setupMusicTracks];
@@ -92,8 +91,8 @@
     MusicTrackSetDestNode(musicTrackForCSharp, samplerNode);
     MusicTrackSetDestNode(musicTrackForKeyC, samplerNode);
     
-    MusicPlayerSetSequence(musicPlayer, sequence);
-    MusicPlayerStart(musicPlayer);
+    MusicPlayerSetSequence(_musicPlayer, sequence);
+    MusicPlayerStart(_musicPlayer);
     
 }
 
@@ -587,7 +586,7 @@
     //NewMusicPlayer(&p);
     
     // Load the sequence into the music player
-    MusicPlayerSetSequence(musicPlayer, sequence);
+    MusicPlayerSetSequence(_musicPlayer, sequence);
     // Called to do some MusicPlayer setup. This just
     // reduces latency when MusicPlayerStart is called
     //MusicPlayerPreroll(p);
@@ -621,5 +620,7 @@
     
     return result;
 }
+
+
 
 @end

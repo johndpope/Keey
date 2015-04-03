@@ -12,8 +12,16 @@
 #import "Piano.h"
 #import "InstrumentButton.h"
 #import "DrumStepSequencerViewController.h"
+#import "KeyBoardStepSequencer.h"
 
-@interface PatternCollectionViewCTRL : UICollectionViewController
+@class PatternCollectionViewCTRL;
+@protocol PatternCollectionViewCTRLDelegate <NSObject>
+
+- (void) updatePlaylistPatterns: (NSMutableArray *) patterns;
+
+@end
+
+@interface PatternCollectionViewCTRL : UICollectionViewController <KeyBoardStepSequencerDelegate>
 
 typedef NS_ENUM (NSInteger, InstumentType) {
     InstumentTypeDrums,
@@ -25,10 +33,12 @@ typedef NS_ENUM (NSInteger, InstumentType) {
 @property NSMutableArray *patternInstruments;
 
 @property DrumPatternViewController *DrumPatternerCTRL;
+@property KeyBoardStepSequencer *keyboardStepSeqViewCTRL;
 
 @property Drums *drums;
 @property Piano *piano;
 @property BubbleButton *instrumentButton;
+@property (nonatomic, weak) id <PatternCollectionViewCTRLDelegate> delegate; //define MyClassDelegate as delegate
 
 - (void) addPatternInstrument:(UIButton *) instrument;
 

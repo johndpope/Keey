@@ -49,6 +49,10 @@ typedef enum PianoRollKeyType : NSUInteger {
 
 - (void) setTracksOctave :(NSUInteger) octaveKey;
 
+- (void) stopMusicPlayer;
+
 @property NSDictionary *soundfontPresets;
+
+@property MusicPlayer musicPlayer;
 
 @end

@@ -10,6 +10,7 @@
 #define SCREEN_HEIGHT (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
 
 #import "PatternViewController.h"
+#import "TLSpringFlowLayout.h"
 #import <pop/POP.h>
 
 @interface PatternViewController ()
@@ -23,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
         
-    UICollectionViewFlowLayout *aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
+    TLSpringFlowLayout *aFlowLayout = [[TLSpringFlowLayout alloc] init];
     [aFlowLayout setItemSize:CGSizeMake(100, 100)];
     [aFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     _patternCollectionCTRL = [[PatternCollectionViewCTRL alloc] initWithCollectionViewLayout:aFlowLayout];
@@ -104,6 +105,7 @@
     [content willMoveToParentViewController:nil];  // 1
     [content.view removeFromSuperview];            // 2
     [content removeFromParentViewController];      // 3
+    
 }
 
 - (void) createDrawerInstruments {
@@ -172,5 +174,19 @@
     return SCREEN_WIDTH;
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (NSMutableArray *) getAllPatternsButtons {
+    
+    return _patternCollectionCTRL.patternInstruments;
+}
+
+- (NSMutableArray *) getAllCurrentPatternControllers {
+    
+    return _patternCollectionCTRL.currentPatterns;
+}
 
 @end

@@ -29,10 +29,13 @@
 		6D100E171AC86EEE00D60245 /* keeylogonew@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D100E151AC86EEE00D60245 /* keeylogonew@1x.png */; };
 		6D100E181AC86EEE00D60245 /* keeylogonew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D100E161AC86EEE00D60245 /* keeylogonew@2x.png */; };
 		6D11E4431AAD575600FFDEEF /* StabBrass_JJ.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E4421AAD575600FFDEEF /* StabBrass_JJ.sf2 */; };
+		6D1B17BF1ACE48B300482FC4 /* TLSpringFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B17BE1ACE48B300482FC4 /* TLSpringFlowLayout.m */; };
+		6D1B17C21ACE4BAB00482FC4 /* TimeViewPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B17C11ACE4BAB00482FC4 /* TimeViewPort.m */; };
 		6D2EC4CE1A97EC5900712D44 /* Clap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CA1A97EC5900712D44 /* Clap.wav */; };
 		6D2EC4CF1A97EC5900712D44 /* HiHat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CB1A97EC5900712D44 /* HiHat.wav */; };
 		6D2EC4D01A97EC5900712D44 /* Kick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CC1A97EC5900712D44 /* Kick.wav */; };
 		6D2EC4D11A97EC5900712D44 /* Snare.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CD1A97EC5900712D44 /* Snare.wav */; };
+		6D32B52A1ACE57D00091C407 /* PlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D32B5291ACE57D00091C407 /* PlaylistModel.m */; };
 		6D35A9DF1A791A5300A38A58 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9DE1A791A5300A38A58 /* HeaderView.m */; };
 		6D35A9E31A792BC800A38A58 /* BodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E21A792BC800A38A58 /* BodyView.m */; };
 		6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E51A792F5F00A38A58 /* BodyContentView.m */; };
@@ -86,6 +89,8 @@
 		6DF575451AC5823C00CC6EB6 /* keeyappicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF575421AC5823C00CC6EB6 /* keeyappicon@2x.png */; };
 		6DF575461AC5823C00CC6EB6 /* keeyappicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF575431AC5823C00CC6EB6 /* keeyappicon@3x.png */; };
 		6DF575481AC7395000CC6EB6 /* Keey-Guitarsoundfont.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6DF575471AC7395000CC6EB6 /* Keey-Guitarsoundfont.sf2 */; };
+		6DFC8F6B1ACCF60500FB4A1B /* PlaylistPatternPortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFC8F6A1ACCF60500FB4A1B /* PlaylistPatternPortView.m */; };
+		6DFC8F711ACD10AA00FB4A1B /* PlaylistCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFC8F701ACD10AA00FB4A1B /* PlaylistCollectionViewController.m */; };
 		FF5E4E64025A66035CE067C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF810B647A2F9DF5085925B9 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -130,10 +135,16 @@
 		6D100E151AC86EEE00D60245 /* keeylogonew@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keeylogonew@1x.png"; sourceTree = "<group>"; };
 		6D100E161AC86EEE00D60245 /* keeylogonew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keeylogonew@2x.png"; sourceTree = "<group>"; };
 		6D11E4421AAD575600FFDEEF /* StabBrass_JJ.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = StabBrass_JJ.sf2; sourceTree = "<group>"; };
+		6D1B17BD1ACE48B300482FC4 /* TLSpringFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSpringFlowLayout.h; sourceTree = "<group>"; };
+		6D1B17BE1ACE48B300482FC4 /* TLSpringFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSpringFlowLayout.m; sourceTree = "<group>"; };
+		6D1B17C01ACE4BAB00482FC4 /* TimeViewPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeViewPort.h; sourceTree = "<group>"; };
+		6D1B17C11ACE4BAB00482FC4 /* TimeViewPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeViewPort.m; sourceTree = "<group>"; };
 		6D2EC4CA1A97EC5900712D44 /* Clap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Clap.wav; sourceTree = "<group>"; };
 		6D2EC4CB1A97EC5900712D44 /* HiHat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HiHat.wav; sourceTree = "<group>"; };
 		6D2EC4CC1A97EC5900712D44 /* Kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Kick.wav; sourceTree = "<group>"; };
 		6D2EC4CD1A97EC5900712D44 /* Snare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Snare.wav; sourceTree = "<group>"; };
+		6D32B5281ACE57D00091C407 /* PlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistModel.h; sourceTree = "<group>"; };
+		6D32B5291ACE57D00091C407 /* PlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistModel.m; sourceTree = "<group>"; };
 		6D35A9DD1A791A5300A38A58 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		6D35A9DE1A791A5300A38A58 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		6D35A9E11A792BC800A38A58 /* BodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyView.h; sourceTree = "<group>"; };
@@ -215,6 +226,10 @@
 		6DF575421AC5823C00CC6EB6 /* keeyappicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keeyappicon@2x.png"; sourceTree = "<group>"; };
 		6DF575431AC5823C00CC6EB6 /* keeyappicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keeyappicon@3x.png"; sourceTree = "<group>"; };
 		6DF575471AC7395000CC6EB6 /* Keey-Guitarsoundfont.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Keey-Guitarsoundfont.sf2"; sourceTree = "<group>"; };
+		6DFC8F691ACCF60500FB4A1B /* PlaylistPatternPortView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistPatternPortView.h; sourceTree = "<group>"; };
+		6DFC8F6A1ACCF60500FB4A1B /* PlaylistPatternPortView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistPatternPortView.m; sourceTree = "<group>"; };
+		6DFC8F6F1ACD10AA00FB4A1B /* PlaylistCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistCollectionViewController.h; sourceTree = "<group>"; };
+		6DFC8F701ACD10AA00FB4A1B /* PlaylistCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistCollectionViewController.m; sourceTree = "<group>"; };
 		733B1C516DB3410D150F83D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CF810B647A2F9DF5085925B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -320,6 +335,30 @@
 			name = sf2;
 			sourceTree = "<group>";
 		};
+		6D1B17BB1ACE25A700482FC4 /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				6D32B5281ACE57D00091C407 /* PlaylistModel.h */,
+				6D32B5291ACE57D00091C407 /* PlaylistModel.m */,
+				6DA78C0C1A8BCF99002FC88D /* PlaylistViewController.h */,
+				6DA78C0D1A8BCF99002FC88D /* PlaylistViewController.m */,
+				6DFC8F6F1ACD10AA00FB4A1B /* PlaylistCollectionViewController.h */,
+				6DFC8F701ACD10AA00FB4A1B /* PlaylistCollectionViewController.m */,
+				6DFC8F671ACCF5C400FB4A1B /* PlaylistPatternPort */,
+			);
+			name = Playlist;
+			sourceTree = "<group>";
+		};
+		6D1B17BC1ACE489000482FC4 /* TLSpringFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				6D1B17BD1ACE48B300482FC4 /* TLSpringFlowLayout.h */,
+				6D1B17BE1ACE48B300482FC4 /* TLSpringFlowLayout.m */,
+			);
+			name = TLSpringFlowLayout;
+			path = Keey;
+			sourceTree = "<group>";
+		};
 		6D2EC4C91A97EC5000712D44 /* wav */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,9 +442,8 @@
 		6DA78C081A8BC3E0002FC88D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6D1B17BB1ACE25A700482FC4 /* Playlist */,
 				6D9014E31A968F5800B59B67 /* InstrumentCTRL */,
-				6DA78C0C1A8BCF99002FC88D /* PlaylistViewController.h */,
-				6DA78C0D1A8BCF99002FC88D /* PlaylistViewController.m */,
 				6DA78C091A8BC41B002FC88D /* PatternViewController.h */,
 				6DA78C0A1A8BC41B002FC88D /* PatternViewController.m */,
 				6D0AEB621A8F117A00AFB84B /* DrawerViewController.h */,
@@ -449,6 +487,7 @@
 		6DDE0DD81A78D0270087053D = {
 			isa = PBXGroup;
 			children = (
+				6D1B17BC1ACE489000482FC4 /* TLSpringFlowLayout */,
 				6D0A4F211AC33D3900A2F6C2 /* CustomCell */,
 				6DE068361A7DA74600F3D04B /* AudioToolbox.framework */,
 				6DDE0DE31A78D0270087053D /* Keey */,
@@ -590,6 +629,17 @@
 				6DC795FC1AB21D0D00D32CCC /* KeyBoardStepSequencer.m */,
 			);
 			name = StepSequencer;
+			sourceTree = "<group>";
+		};
+		6DFC8F671ACCF5C400FB4A1B /* PlaylistPatternPort */ = {
+			isa = PBXGroup;
+			children = (
+				6D1B17C01ACE4BAB00482FC4 /* TimeViewPort.h */,
+				6D1B17C11ACE4BAB00482FC4 /* TimeViewPort.m */,
+				6DFC8F691ACCF60500FB4A1B /* PlaylistPatternPortView.h */,
+				6DFC8F6A1ACCF60500FB4A1B /* PlaylistPatternPortView.m */,
+			);
+			name = PlaylistPatternPort;
 			sourceTree = "<group>";
 		};
 		B419B458D6AEFC0F41458696 /* Pods */ = {
@@ -783,13 +833,16 @@
 			files = (
 				6DE068351A7DA69400F3D04B /* kicks.m in Sources */,
 				6D35A9DF1A791A5300A38A58 /* HeaderView.m in Sources */,
+				6D1B17C21ACE4BAB00482FC4 /* TimeViewPort.m in Sources */,
 				6D0A4F281AC34BD000A2F6C2 /* StepState.m in Sources */,
 				6D65E9971A8D00D700009CF3 /* Snares.m in Sources */,
+				6DFC8F6B1ACCF60500FB4A1B /* PlaylistPatternPortView.m in Sources */,
 				6D35A9E31A792BC800A38A58 /* BodyView.m in Sources */,
 				6DA78C0E1A8BCF99002FC88D /* PlaylistViewController.m in Sources */,
 				6D0AEB681A8F189000AFB84B /* PanelView.m in Sources */,
 				6DA78C191A8BDBE8002FC88D /* PatternCollectionViewCTRL.m in Sources */,
 				6D0474E31AB207CE00B405AD /* InstrumentalHeaderView.m in Sources */,
+				6D1B17BF1ACE48B300482FC4 /* TLSpringFlowLayout.m in Sources */,
 				6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */,
 				6DDE0DEA1A78D0270087053D /* AppDelegate.m in Sources */,
 				6D65E99A1A8D00EE00009CF3 /* HiHats.m in Sources */,
@@ -799,7 +852,9 @@
 				6D9014E61A968F9C00B59B67 /* DrumStepSequencerViewController.m in Sources */,
 				6D65E9A01A8D11FF00009CF3 /* Piano.m in Sources */,
 				6D0AEB641A8F117A00AFB84B /* DrawerViewController.m in Sources */,
+				6D32B52A1ACE57D00091C407 /* PlaylistModel.m in Sources */,
 				6DEEEEE91A80FE4E008CF16F /* BubbleButton.m in Sources */,
+				6DFC8F711ACD10AA00FB4A1B /* PlaylistCollectionViewController.m in Sources */,
 				6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */,
 				6DB10B021ABE3F6900024475 /* CustomModal.m in Sources */,
 				6DDE0E0C1A78D08D0087053D /* MainViewController.m in Sources */,

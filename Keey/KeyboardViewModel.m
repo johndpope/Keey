@@ -200,4 +200,26 @@
     return stateSteps;
 }
 
+- (void)handleMusicControl:(enum MusicPlayerControlType) playerControlType {
+    
+    switch (playerControlType) {
+            
+        case MusicPlayerControlTypeStop:
+            
+            MusicPlayerStop([musicSeq musicPlayer]);
+            
+            break;
+            
+        case MusicPlayerControlTypeStart:
+            
+            MusicPlayerStart([musicSeq musicPlayer]);
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
 @end

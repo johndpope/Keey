@@ -109,10 +109,19 @@
             [self moveSelected:1];
             [self hideContentController:_patternViewCTRL];
             [self displayContentController:_playlistViewCTRL];
+            [self updatePlaylist];
             break;
         default:
             break;
     }
+}
+
+- (void) updatePlaylist {
+    
+    //NSLog(@"%@ thats how much", [_patternViewCTRL getAllPatternsButtons]);
+    [_playlistViewCTRL setAllPatterns: [_patternViewCTRL getAllCurrentPatternControllers]];
+    [_playlistViewCTRL handleUpdate];
+    
 }
 
 - (void) moveSelected: (int) selectedIndex{

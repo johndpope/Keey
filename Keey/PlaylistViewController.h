@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlaylistCollectionViewController.h"
+#import "PlaylistPatternPortView.h"
 
-@interface PlaylistViewController : UIViewController
+@interface PlaylistViewController : UIViewController <PlaylistPatternPortViewDelegate, PlaylistPatternPortViewDelegate>
+
+@property NSMutableArray *allPatterns;
+@property NSMutableArray *allPatternsController;
+
+- (void) handleUpdate;
 
 @end

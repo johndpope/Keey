@@ -26,7 +26,7 @@
             break;
         
         case InstrumentalTypePiano:
-            self.backgroundColor = [UIColor colorWithRed:0.392 green:0.439 blue:0.525 alpha:1];
+            self.backgroundColor = [UIColor colorWithRed:0.824 green:0.322 blue:0.498 alpha:1];
             [self setTitle:@"Piano" forState:UIControlStateNormal];
             imageView.image = [UIImage imageNamed:@"pianoicon.png"];
             _instrumentType = InstrumentalTypePiano;

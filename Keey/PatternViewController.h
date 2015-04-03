@@ -23,5 +23,7 @@
 @property NSArray *instrumentFactory;
 @property InstrumentButton *instrumentButton;
 
+- (NSMutableArray *) getAllPatternsButtons;
+- (NSMutableArray *) getAllCurrentPatternControllers;
 
 @end

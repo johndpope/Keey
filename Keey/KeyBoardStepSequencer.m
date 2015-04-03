@@ -26,7 +26,6 @@
     
     UICollectionView *seqcollectionview;
     InstrumentalHeaderView *keyboardView;
-    KeyboardViewModel *keyboardViewModel;
     UIView *sequencerContainerView;
     UIView *custNavBar;
     NSIndexPath *currentHighlightedIndexPath;
@@ -65,15 +64,18 @@ static NSString * const reuseIdentifier = @"Cell";
     [seqcollectionview addSubview:marker];
     [marker startAnimation:2 toDestination:seqcollectionview.frame.size.width];
     
-    keyboardViewModel = [[KeyboardViewModel alloc] init];
-    [keyboardViewModel createStepStatesWithSections:numberofSections withKeyNoteCount:12];
-    [keyboardViewModel setupKeys:16];
+    _keyboardViewModel = [[KeyboardViewModel alloc] init];
+    [_keyboardViewModel createStepStatesWithSections:numberofSections withKeyNoteCount:12];
+    [_keyboardViewModel setupKeys:16];
         
         isfirstTimeAppearing = true;
         
         
         //CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayLinkHandler)];
         //[displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+        
+    } else {
+        
     }
     
 }
@@ -131,7 +133,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     cell.backgroundColor = [UIColor clearColor];
     
-    if ([keyboardViewModel isStateSelectedAt:[indexPath row] positionInPianoRoll:[indexPath section]]) {
+    if ([_keyboardViewModel isStateSelectedAt:[indexPath row] positionInPianoRoll:[indexPath section]]) {
         
         cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
         cell.layer.borderColor = [[UIColor clearColor] CGColor];
@@ -156,7 +158,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    if ([keyboardViewModel isStateSelectedAt:[indexPath row] positionInPianoRoll:[indexPath section]]) {
+    if ([_keyboardViewModel isStateSelectedAt:[indexPath row] positionInPianoRoll:[indexPath section]]) {
         
         [self addStepToSequencer:indexPath withLength:0];
 
@@ -249,7 +251,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     UITextField *instumentTitleTextField = [[UITextField alloc] initWithFrame:CGRectMake(120, 20, 100, 40)];
     //[instumentTitleBtn setBackgroundColor: [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1]];
-    [instumentTitleTextField setBackgroundColor: instrumentButton.backgroundColor];
+    [instumentTitleTextField setBackgroundColor: [UIColor colorWithRed:0.141 green:0.184 blue:0.204 alpha:1]];
     instumentTitleTextField.textAlignment = NSTextAlignmentCenter;
     instumentTitleTextField.textColor = [UIColor whiteColor];
     instumentTitleTextField.text = instrumentButton.titleLabel.text;
@@ -422,7 +424,7 @@ static NSString * const reuseIdentifier = @"Cell";
         
         // 32 beats 2bars
         numberofSections = 32;
-        [keyboardViewModel handleBarChangewithBars:2];
+        [_keyboardViewModel handleBarChangewithBars:2];
         [seqcollectionview reloadData];
 
         [secondBarControlBtn sendActionsForControlEvents:UIControlEventTouchUpInside];
@@ -433,7 +435,7 @@ static NSString * const reuseIdentifier = @"Cell";
         // 16 beats 1bars
         
         numberofSections = 16;
-        [keyboardViewModel handleBarChangewithBars:1];
+        [_keyboardViewModel handleBarChangewithBars:1];
         [seqcollectionview reloadData];
         
         [firstBarControlBtn sendActionsForControlEvents:UIControlEventTouchUpInside];
@@ -449,15 +451,15 @@ static NSString * const reuseIdentifier = @"Cell";
     switch (octave) {
             
         case OctaveTypeHigh:
-            [keyboardViewModel handleOctaveChange:octave];
+            [_keyboardViewModel handleOctaveChange:octave];
             break;
             
         case OctaveTypeMid:
-            [keyboardViewModel handleOctaveChange:octave];
+            [_keyboardViewModel handleOctaveChange:octave];
             break;
             
         case OctaveTypeLow:
-            [keyboardViewModel handleOctaveChange:octave];
+            [_keyboardViewModel handleOctaveChange:octave];
             break;
             
         default:
@@ -466,7 +468,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void) CustomModalSwitchPreset: (NSUInteger) presetNumber {
-    [keyboardViewModel handleSwitchPreset:presetNumber];
+    [_keyboardViewModel handleSwitchPreset:presetNumber];
 }
 
 - (void) handleLongPress: (UIGestureRecognizer *)longPress {
@@ -563,12 +565,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void) addStepToSequencer: (NSIndexPath *)indexPath withLength: (int) length {
 
-    [keyboardViewModel updateStepSeqForPosition:[indexPath section] withlength:length withKeyNote:[indexPath row]];
+    [_keyboardViewModel updateStepSeqForPosition:[indexPath section] withlength:length withKeyNote:[indexPath row]];
     
 }
 
 - (void) dismissviewctrl {
     //[seqcollectionview scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:30] atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
+    [self.delegate HandleKeyBoardStepSequencerClose:self];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -601,7 +604,7 @@ static NSString * const reuseIdentifier = @"Cell";
         
         if (nowIntersecting != wasIntersected) {
             
-            if (nowIntersecting && [keyboardViewModel isStateSelectedAt:[cellPath row] positionInPianoRoll:[cellPath section]]) {
+            if (nowIntersecting && [_keyboardViewModel isStateSelectedAt:[cellPath row] positionInPianoRoll:[cellPath section]]) {
                 //NSLog(@"row is: %d section is: %d", [cellPath row], [cellPath section]);
                 
                 cell.backgroundColor = [UIColor whiteColor];
@@ -641,6 +644,20 @@ static NSString * const reuseIdentifier = @"Cell";
     [textField resignFirstResponder];
     
     return true;
+}
+
+- (void) stopMusicPlayer {
+    [_keyboardViewModel handleMusicControl:MusicPlayerControlTypeStop];
+}
+
+- (void) startMusicPlayer {
+    [_keyboardViewModel handleMusicControl:MusicPlayerControlTypeStart];
+
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

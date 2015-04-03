@@ -31,6 +31,11 @@ typedef enum KeyType : NSUInteger {
     
 } KeyType;
 
+typedef enum MusicPlayerControlType : NSUInteger {
+    MusicPlayerControlTypeStop,
+    MusicPlayerControlTypeStart
+} MusicPlayerControlType;
+
 @property NSMutableDictionary *stepSeqStates;
 
 
@@ -50,6 +55,6 @@ typedef enum KeyType : NSUInteger {
 
 - (void) handleSwitchPreset: (NSUInteger) presetIndex;
 
-
+- (void) handleMusicControl: (enum MusicPlayerControlType) playerControlType;
 
 @end
