@@ -125,7 +125,7 @@
     switch (octave) {
             
         case OctaveTypeHigh:
-            [musicSeq setTracksOctave:71];
+            [musicSeq setTracksOctave:59];
             break;
             
         case OctaveTypeMid:
@@ -133,7 +133,7 @@
             break;
             
         case OctaveTypeLow:
-            [musicSeq setTracksOctave:23];
+            [musicSeq setTracksOctave:35];
             break;
             
         default:

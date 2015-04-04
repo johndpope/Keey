@@ -51,7 +51,7 @@
 - (void) displayContentController: (UICollectionViewController *) content {
     
     [self addChildViewController:content];
-    content.view.frame = CGRectMake(20, ([self window_height]/6), [self window_width]-20, 300);
+    content.view.frame = CGRectMake(0, ([self window_height]/6), [self window_width], 300);
     [self.view addSubview: content.view];
     [content didMoveToParentViewController:self];
     

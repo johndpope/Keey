@@ -15,7 +15,7 @@
 #import <pop/POP.h>
 
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController <UIGestureRecognizerDelegate>
 
 @property PatternViewController *patternViewCTRL;
 @property PlaylistViewController *playlistViewCTRL;

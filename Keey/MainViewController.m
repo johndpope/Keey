@@ -12,7 +12,11 @@
 #import "MainViewController.h"
 #import "Drums.h"
 
-@interface MainViewController ()
+@interface MainViewController () {
+    UIView *cusSegControl;
+    UIButton *patternButton;
+    UIButton *playlistButton;
+}
 
 @end
 
@@ -72,7 +76,7 @@
 
 - (void) displayCustomSegmentedControl {
     
-    UIView *cusSegControl = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 55)];
+    cusSegControl = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 55)];
     cusSegControl.center = CGPointMake([self window_width]/2, 70.0);
     cusSegControl.backgroundColor = [UIColor colorWithRed:0.129 green:0.165 blue:0.184 alpha:1];
     cusSegControl.layer.cornerRadius = 27.5;
@@ -83,25 +87,34 @@
     _selectedView.layer.cornerRadius = 30;
     [cusSegControl addSubview:_selectedView];
     
-    UIButton *first = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 135, 45)];
-    [first addTarget:self action:@selector(HandleSegCtrlClick:) forControlEvents:UIControlEventTouchUpInside];
-    first.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:14];
-    [first setTitle:@"pattern" forState:UIControlStateNormal];
-    [first setTag:0];
-    [cusSegControl addSubview:first];
+    UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:) ];
+    [pan setDelegate:self];
+    pan.maximumNumberOfTouches = pan.minimumNumberOfTouches = 1;
+    [_selectedView addGestureRecognizer:pan];
     
-    UIButton *second = [[UIButton alloc] initWithFrame:CGRectMake(135, 5, 135, 45)];
-    [second addTarget:self action:@selector(HandleSegCtrlClick:) forControlEvents:UIControlEventTouchUpInside];
-    second.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:14];
-    [second setTitle:@"playlist" forState:UIControlStateNormal];
-    [second setTag:1];
-    [cusSegControl addSubview:second];
+    patternButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 135, 45)];
+    patternButton.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:16];
+    patternButton.userInteractionEnabled = NO;
+    [patternButton setAlpha:0.98];
+    [patternButton setTitle:@"pattern" forState:UIControlStateNormal];
+    [patternButton setTag:0];
+    [cusSegControl addSubview:patternButton];
+    
+    playlistButton = [[UIButton alloc] initWithFrame:CGRectMake(135, 5, 135, 45)];
+    playlistButton.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:16];
+    playlistButton.userInteractionEnabled = NO;
+    [playlistButton setAlpha:0.98];
+    [playlistButton setTitle:@"playlist" forState:UIControlStateNormal];
+    [playlistButton setTitleColor:[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] forState:UIControlStateNormal];
+    [playlistButton setTag:1];
+    [cusSegControl addSubview:playlistButton];
 }
 
 - (void) HandleSegCtrlClick: (id) sender {
     
     switch ([sender tag]) {
         case 0:
+            
             [self moveSelected:0];
             [self displayContentController:_patternViewCTRL];
             [self hideContentController:_playlistViewCTRL];
@@ -137,7 +150,9 @@
         anim.springSpeed = 30;
         
         [_selectedView.layer pop_addAnimation:anim forKey:@"springAnimation"];
-
+        
+        [patternButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [playlistButton setTitleColor:[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] forState:UIControlStateNormal];
         
     } else {
         
@@ -150,6 +165,60 @@
         
         [_selectedView.layer pop_addAnimation:anim forKey:@"springAnimation"];
         
+        [playlistButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [patternButton setTitleColor:[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] forState:UIControlStateNormal];
+        
+    }
+    
+}
+
+- (void) pan:(UIPanGestureRecognizer *)aPan{
+    
+    //CGPoint locationOfPan = [aPan locationInView:seqcollectionview];
+    
+    float divisor;
+    float alpha;
+    
+    UIView *segSelectedView = aPan.view;
+    
+    CGPoint currentPoint = [aPan locationInView:cusSegControl];
+    
+    
+    //NSLog(@"x is: %f",currentPoint.x);
+    
+    if (currentPoint.x > 30 && currentPoint.x < 250 ) {
+        
+        [UIView animateWithDuration:0.01f
+                         animations:^{
+                             
+                             CGRect oldFrame = segSelectedView.frame;
+                             
+                             segSelectedView.frame = CGRectMake(currentPoint.x-70, -3, oldFrame.size.width, oldFrame.size.height);
+                             
+                         }];
+        
+        if (segSelectedView.frame.origin.x > 0) {
+            
+            if (segSelectedView.frame.origin.x < cusSegControl.frame.size.width/2) {
+                
+                divisor = cusSegControl.frame.size.width/2;
+                alpha = (segSelectedView.frame.origin.x/divisor) - 1;
+                
+                [patternButton setTitleColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:fabsf(alpha)] forState:UIControlStateNormal];
+                [playlistButton setTitleColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:(segSelectedView.frame.origin.x/divisor)] forState:UIControlStateNormal];
+                
+            }
+            
+        }
+    }
+    
+    if (aPan.state == UIGestureRecognizerStateEnded) {
+        
+        if (currentPoint.x < cusSegControl.frame.size.width/2) {
+            [self HandleSegCtrlClick:patternButton];
+        } else {
+            [self HandleSegCtrlClick:playlistButton];
+        }
         
     }
     

@@ -18,7 +18,6 @@
     
     UIImage *btnImage = [[UIImage alloc] init];
     
-    
     _panelHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self window_width], 60)];
     _panelHeader.backgroundColor = [UIColor colorWithRed:0.216 green:0.271 blue:0.294 alpha:1];
     [self addSubview:_panelHeader];

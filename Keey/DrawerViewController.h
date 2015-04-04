@@ -16,7 +16,7 @@
 @end //end protocol
 
 
-@interface DrawerViewController : UIViewController {
+@interface DrawerViewController : UIViewController <UIGestureRecognizerDelegate> {
     NSString *title;
 }
 

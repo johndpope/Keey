@@ -30,6 +30,11 @@
     [_panelView displayViewWithTitle:@"Add an Instrument"];
     [self.view addSubview:_panelView];
     
+    UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    [pan setDelegate:self];
+    pan.maximumNumberOfTouches = pan.minimumNumberOfTouches = 1;
+    [_panelView.panelHeader addGestureRecognizer:pan];
+    
     [_panelView.panelHeaderCloseBtn addTarget:self action:@selector(OverLayDidTap) forControlEvents:UIControlEventTouchUpInside];
     
     UITapGestureRecognizer *tapRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OverLayDidTap)];
@@ -41,7 +46,7 @@
 - (void) animateDrawerIn {
     
     POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
-    anim.fromValue = [NSNumber numberWithFloat:[self window_height]+370];
+    //anim.fromValue = [NSNumber numberWithFloat:[self window_height]+370];
     anim.toValue = [NSNumber numberWithFloat:[self window_height]-(_panelView.frame.size.height/2 - 200)];
     anim.velocity = [NSNumber numberWithFloat:50];
     anim.springSpeed = 30;
@@ -76,6 +81,38 @@
 - (void) displayDrawerElements: ( NSArray *) elements {
 
     [_panelView displayContent: elements];
+    
+}
+
+- (void) pan:(UIPanGestureRecognizer *)aPan{
+    
+    CGPoint currentPoint = [aPan locationInView:self.view];
+    
+    if (currentPoint.y > 200) {
+        
+        [UIView animateWithDuration:0.01f
+                         animations:^{
+                             
+                             CGRect oldFrame = _panelView.frame;
+                             oldFrame.origin.y = currentPoint.y;
+                             _panelView.frame = oldFrame;
+                             
+                         }];
+
+    }
+    
+    if (aPan.state == UIGestureRecognizerStateEnded) {
+        
+        if (currentPoint.y < [self window_height]/1.5) {
+            
+            [self animateDrawerIn];
+            
+        } else {
+            
+            [self OverLayDidTap];
+            
+        }
+    }
     
 }
 

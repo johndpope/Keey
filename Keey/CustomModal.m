@@ -124,7 +124,6 @@
     [_dashboardView addSubview:sampleThree];
     
     [barOne sendActionsForControlEvents: UIControlEventTouchUpInside];
-    
 }
 
 - (void) handleOctaveChange: (id)sender {

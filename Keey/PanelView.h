@@ -10,7 +10,7 @@
 #import "BubbleButton.h"
 #import "InstrumentButton.h"
 
-@interface PanelView : UIView
+@interface PanelView : UIView <UIGestureRecognizerDelegate>
 
 @property UIView *panelHeader;
 @property UIView *panelContent;

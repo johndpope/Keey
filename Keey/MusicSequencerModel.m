@@ -116,7 +116,7 @@
     
     
     [self setLoopDuration:16];
-    currentOctaveNumber = 71;
+    currentOctaveNumber = 59;
 }
 
 - (void) setLoopDuration :(int) duration {
