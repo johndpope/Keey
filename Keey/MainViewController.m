@@ -61,6 +61,7 @@
     content.view.frame = CGRectMake(0, 120, [self window_width], [self window_height]);
     [self.view addSubview: content.view];
     [content didMoveToParentViewController:self];
+    
 }
 
 - (void) hideContentController: (UIViewController*) content {

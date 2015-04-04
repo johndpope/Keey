@@ -10,8 +10,11 @@
 #define SCREEN_HEIGHT (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
 
 #import "AppDelegate.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () {
+    AVAudioPlayer *launchSoundPlayer;
+}
 
 @end
 
@@ -19,9 +22,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [self playLaunchSound];
+
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)] ;
-    NSLog(@"%f", SCREEN_WIDTH);
+    
     // assign Main view controller
     _mVC = [[MainViewController alloc] init];
     
@@ -31,7 +37,6 @@
     // assign the rootview controller to the nav controller and display it
     _window.rootViewController = _nav;
     [_window makeKeyAndVisible];
-    
     //[_nav presentViewController:_splashscreenVC animated:nil completion:nil];
     //[_nav performSelector:@selector(dismissModalViewControllerAnimated:) withObject:nil afterDelay:3.0];
     
@@ -58,6 +63,17 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)playLaunchSound {
+    
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/KeeyStartSoundlow.wav",
+                               [[NSBundle mainBundle] resourcePath]];
+    
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    
+    launchSoundPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+    //[launchSoundPlayer play];
 }
 
 @end

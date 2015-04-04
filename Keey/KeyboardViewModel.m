@@ -153,11 +153,11 @@
             break;
             
         case 2:
-            [musicSeq setInstrumentPreset:@"LV - Hex" withPatch:0];
+            [musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:0];
             break;
             
         case 3:
-            [musicSeq setInstrumentPreset:@"GeneralUser GS MuseScore v1.442" withPatch:0];
+            [musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:1];
             break;
             
         default:
@@ -206,6 +206,7 @@
             
         case MusicPlayerControlTypeStop:
             
+            MusicPlayerSetTime([musicSeq musicPlayer], 0);
             MusicPlayerStop([musicSeq musicPlayer]);
             
             break;

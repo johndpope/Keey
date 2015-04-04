@@ -64,6 +64,7 @@
 		6DA78C0E1A8BCF99002FC88D /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA78C0D1A8BCF99002FC88D /* PlaylistViewController.m */; };
 		6DA78C191A8BDBE8002FC88D /* PatternCollectionViewCTRL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA78C181A8BDBE8002FC88D /* PatternCollectionViewCTRL.m */; };
 		6DB10B021ABE3F6900024475 /* CustomModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB10B011ABE3F6900024475 /* CustomModal.m */; };
+		6DBE653F1ACF97D500C0B830 /* KeeyStartSoundlow.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6DBE653E1ACF97D500C0B830 /* KeeyStartSoundlow.wav */; };
 		6DC5262B1AAD5DF20029D530 /* teddybear.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6DC5262A1AAD5DF20029D530 /* teddybear.mid */; };
 		6DC795F61AB2123200D32CCC /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC795F51AB2123200D32CCC /* close.png */; };
 		6DC795F81AB219BC00D32CCC /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC795F71AB219BC00D32CCC /* settings.png */; };
@@ -71,7 +72,6 @@
 		6DDE0DE71A78D0270087053D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE0DE61A78D0270087053D /* main.m */; };
 		6DDE0DEA1A78D0270087053D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE0DE91A78D0270087053D /* AppDelegate.m */; };
 		6DDE0DF21A78D0270087053D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DDE0DF11A78D0270087053D /* Images.xcassets */; };
-		6DDE0DF51A78D0270087053D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DDE0DF31A78D0270087053D /* LaunchScreen.xib */; };
 		6DDE0E011A78D0270087053D /* KeeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE0E001A78D0270087053D /* KeeyTests.m */; };
 		6DDE0E0C1A78D08D0087053D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE0E0B1A78D08D0087053D /* MainViewController.m */; };
 		6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0682B1A7D97C700F3D04B /* Drums.m */; };
@@ -82,6 +82,9 @@
 		6DE748551A98F6DB0072B140 /* Marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE748541A98F6DB0072B140 /* Marker.png */; };
 		6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */; };
 		6DEEEEE91A80FE4E008CF16F /* BubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEEEEE81A80FE4E008CF16F /* BubbleButton.m */; };
+		6DF07C8B1ACF61870097A492 /* Keey-BassSoundFont.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6DF07C8A1ACF61870097A492 /* Keey-BassSoundFont.sf2 */; };
+		6DF07C901ACF93AA0097A492 /* keeyLaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF07C8E1ACF93AA0097A492 /* keeyLaunchImage.png */; };
+		6DF07C911ACF93AA0097A492 /* keeyLaunchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF07C8F1ACF93AA0097A492 /* keeyLaunchImage@2x.png */; };
 		6DF42B021AABF981001E754B /* DrumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42B011AABF981001E754B /* DrumViewModel.m */; };
 		6DF42B091AACDE6A001E754B /* buffkick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6DF42B081AACDE6A001E754B /* buffkick.wav */; };
 		6DF42B101AAD35A3001E754B /* MusicSequencerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42B0F1AAD35A3001E754B /* MusicSequencerModel.m */; };
@@ -186,6 +189,7 @@
 		6DA78C181A8BDBE8002FC88D /* PatternCollectionViewCTRL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternCollectionViewCTRL.m; sourceTree = "<group>"; };
 		6DB10B001ABE3F6900024475 /* CustomModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomModal.h; sourceTree = "<group>"; };
 		6DB10B011ABE3F6900024475 /* CustomModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomModal.m; sourceTree = "<group>"; };
+		6DBE653E1ACF97D500C0B830 /* KeeyStartSoundlow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = KeeyStartSoundlow.wav; sourceTree = "<group>"; };
 		6DC5262A1AAD5DF20029D530 /* teddybear.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = teddybear.mid; sourceTree = "<group>"; };
 		6DC795F51AB2123200D32CCC /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		6DC795F71AB219BC00D32CCC /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
@@ -197,7 +201,6 @@
 		6DDE0DE81A78D0270087053D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6DDE0DE91A78D0270087053D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6DDE0DF11A78D0270087053D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6DDE0DF41A78D0270087053D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6DDE0DFA1A78D0270087053D /* KeeyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeeyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DDE0DFF1A78D0270087053D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DDE0E001A78D0270087053D /* KeeyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeeyTests.m; sourceTree = "<group>"; };
@@ -217,6 +220,9 @@
 		6DEEEED51A7FB5C5008CF16F /* kick01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kick01.mp3; sourceTree = "<group>"; };
 		6DEEEEE71A80FE4E008CF16F /* BubbleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleButton.h; sourceTree = "<group>"; };
 		6DEEEEE81A80FE4E008CF16F /* BubbleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleButton.m; sourceTree = "<group>"; };
+		6DF07C8A1ACF61870097A492 /* Keey-BassSoundFont.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Keey-BassSoundFont.sf2"; sourceTree = "<group>"; };
+		6DF07C8E1ACF93AA0097A492 /* keeyLaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keeyLaunchImage.png; sourceTree = "<group>"; };
+		6DF07C8F1ACF93AA0097A492 /* keeyLaunchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keeyLaunchImage@2x.png"; sourceTree = "<group>"; };
 		6DF42B001AABF981001E754B /* DrumViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumViewModel.h; sourceTree = "<group>"; };
 		6DF42B011AABF981001E754B /* DrumViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrumViewModel.m; sourceTree = "<group>"; };
 		6DF42B081AACDE6A001E754B /* buffkick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buffkick.wav; sourceTree = "<group>"; };
@@ -322,6 +328,7 @@
 		6D11E4411AAD574900FFDEEF /* sf2 */ = {
 			isa = PBXGroup;
 			children = (
+				6DF07C8A1ACF61870097A492 /* Keey-BassSoundFont.sf2 */,
 				6DF575471AC7395000CC6EB6 /* Keey-Guitarsoundfont.sf2 */,
 				6D43548D1AB11FE9008BAE1C /* Audio - Sound Font - Sonic Implants Session Drums.sf2 */,
 				6D4354911AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 */,
@@ -362,6 +369,7 @@
 		6D2EC4C91A97EC5000712D44 /* wav */ = {
 			isa = PBXGroup;
 			children = (
+				6DBE653E1ACF97D500C0B830 /* KeeyStartSoundlow.wav */,
 				6DF42B081AACDE6A001E754B /* buffkick.wav */,
 				6D2EC4CA1A97EC5900712D44 /* Clap.wav */,
 				6D2EC4CB1A97EC5900712D44 /* HiHat.wav */,
@@ -517,7 +525,6 @@
 				6DE068321A7DA68100F3D04B /* Instrument Objects */,
 				6DE068291A7D966700F3D04B /* Sound Objects */,
 				6DDE0DF11A78D0270087053D /* Images.xcassets */,
-				6DDE0DF31A78D0270087053D /* LaunchScreen.xib */,
 				6DDE0DE81A78D0270087053D /* AppDelegate.h */,
 				6DDE0DE91A78D0270087053D /* AppDelegate.m */,
 				6DDE0E0A1A78D08D0087053D /* MainViewController.h */,
@@ -532,6 +539,8 @@
 		6DDE0DE41A78D0270087053D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6DF07C8E1ACF93AA0097A492 /* keeyLaunchImage.png */,
+				6DF07C8F1ACF93AA0097A492 /* keeyLaunchImage@2x.png */,
 				6DC5262A1AAD5DF20029D530 /* teddybear.mid */,
 				6D0A4F1A1AC3228400A2F6C2 /* fonts */,
 				6D11E4411AAD574900FFDEEF /* sf2 */,
@@ -736,7 +745,9 @@
 			files = (
 				6D6F714A1AC0FA0700DF8626 /* LV - Game Plucks.sf2 in Resources */,
 				6D6F714B1AC0FA0700DF8626 /* LV - Hex.sf2 in Resources */,
+				6DBE653F1ACF97D500C0B830 /* KeeyStartSoundlow.wav in Resources */,
 				6DF575441AC5823C00CC6EB6 /* keeyappicon@1x.png in Resources */,
+				6DF07C8B1ACF61870097A492 /* Keey-BassSoundFont.sf2 in Resources */,
 				6D0A4F0B1AC2E72600A2F6C2 /* thumb.png in Resources */,
 				6D7C7FD11AAEDD3600BE7C7F /* x.sf2 in Resources */,
 				6D7C7FCD1AAECA0700BE7C7F /* BrassEnsembleSE.sf2 in Resources */,
@@ -765,9 +776,9 @@
 				6D4354921AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 in Resources */,
 				6D0A4F091AC2E6D700A2F6C2 /* slider.png in Resources */,
 				6D0A4EF91AC2A62400A2F6C2 /* closeicon.png in Resources */,
-				6DDE0DF51A78D0270087053D /* LaunchScreen.xib in Resources */,
 				6D0A4F051AC2E56500A2F6C2 /* sliderbar.png in Resources */,
 				6DEEEED61A7FB5C5008CF16F /* kick01.mp3 in Resources */,
+				6DF07C901ACF93AA0097A492 /* keeyLaunchImage.png in Resources */,
 				6DDE0DF21A78D0270087053D /* Images.xcassets in Resources */,
 				6D0A4F181AC3228000A2F6C2 /* RockoFLF-Bold.ttf in Resources */,
 				6DF575481AC7395000CC6EB6 /* Keey-Guitarsoundfont.sf2 in Resources */,
@@ -779,6 +790,7 @@
 				6D100E181AC86EEE00D60245 /* keeylogonew@2x.png in Resources */,
 				6D618B531A95507200CC3CDC /* trumpeticon.png in Resources */,
 				6DF575451AC5823C00CC6EB6 /* keeyappicon@2x.png in Resources */,
+				6DF07C911ACF93AA0097A492 /* keeyLaunchImage@2x.png in Resources */,
 				6D0A4F201AC3244900A2F6C2 /* gothamrnd-light.ttf in Resources */,
 				6DE748551A98F6DB0072B140 /* Marker.png in Resources */,
 			);
@@ -888,17 +900,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		6DDE0DF31A78D0270087053D /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6DDE0DF41A78D0270087053D /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		6DDE0E021A78D0270087053D /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -983,6 +984,7 @@
 			baseConfigurationReference = 733B1C516DB3410D150F83D9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Keey/Info.plist;
@@ -999,6 +1001,7 @@
 			baseConfigurationReference = 64B5F0C437AFFE1031D05AA0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Keey/Info.plist;

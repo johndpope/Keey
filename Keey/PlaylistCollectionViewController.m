@@ -22,9 +22,10 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidAppear:(BOOL)animated {
     
+    /*
     POPSpringAnimation *animation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBackgroundColor];
     animation.fromValue = [UIColor clearColor];
-    animation.toValue = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:0.95];;
+    animation.toValue = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:0.95];
     animation.springSpeed = 40;
     animation.springBounciness = 0;
     animation.removedOnCompletion = YES;
@@ -32,7 +33,7 @@ static NSString * const reuseIdentifier = @"Cell";
     };
 
     [self.view.layer pop_addAnimation:animation forKey:@"springAnimation"];
-
+*/
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -49,6 +50,14 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    
+    UIVisualEffectView *backgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    backgroundView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+20);
+    [self.view addSubview:backgroundView];
+    [self.view bringSubviewToFront:self.collectionView];
     
     UITapGestureRecognizer *bgTouchGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundDidTouch:)];
     bgTouchGest.numberOfTapsRequired = 1;
@@ -111,8 +120,9 @@ static NSString * const reuseIdentifier = @"Cell";
     
     //[cell.contentView addSubview:[_patterns objectAtIndex:[indexPath section]]];
     InstrumentButton *patternInstrument = [[InstrumentButton alloc] init];
-    [patternInstrument setTitle:[[[(KeyBoardStepSequencer *)[patterns objectAtIndex:[indexPath row]] instrumentButton] titleLabel] text] forState:UIControlStateNormal];
+        
     [patternInstrument ofType:[[(KeyBoardStepSequencer *)[patterns objectAtIndex:[indexPath row]] instrumentButton] instrumentType] ofSize:SmallSize];
+    [patternInstrument setTitle:[[[(KeyBoardStepSequencer *)[patterns objectAtIndex:[indexPath row]] instrumentButton] titleLabel] text] forState:UIControlStateNormal];
     [patternInstrument addTarget:self action:@selector(patternDidclick:) forControlEvents:UIControlEventTouchUpInside];
     patternInstrument.tag = [indexPath row];
     [cell.contentView addSubview:patternInstrument];

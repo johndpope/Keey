@@ -48,6 +48,8 @@
     
     playlistModel = [[PlaylistModel alloc] init];
     
+    [playlistModel setUpTimerWithDelay:2];
+    
 }
 
 
@@ -72,22 +74,21 @@
 
 - (void) HandlePatternTouch: (InstrumentButton *) sender {
     
-    //NSLog(@"%ld", (long)sender.tag);
-    [playlistModel HandlePatternPortInsert:[allPatterns objectAtIndex:sender.tag]];
+    //[playlistModel HandlePatternPortInsert:[allPatterns objectAtIndex:sender.tag]];
     [self displayTimeViewForPort:sender];
     
 }
 
 - (void) displayTimeViewForPort: (InstrumentButton *) patternBtn {
-    
+
     TimeViewPort *timeViewPort = [[TimeViewPort alloc] init];
     [timeViewPort ofType:patternBtn.instrumentType ofSize:SmallSize];
     [timeViewPort setTitle:@"" forState:UIControlStateNormal];
-    [timeViewPort displayTimeMarker];
+    [timeViewPort setKeyBoardSequencer:(KeyBoardStepSequencer *)[allPatterns objectAtIndex:patternBtn.tag]];
+    [playlistModel.queuedPatterns addObject:timeViewPort];
     [currentPortView addSubview:timeViewPort];
     
 }
-
 
 - (void) displayContentController: (UICollectionViewController *) content {
     

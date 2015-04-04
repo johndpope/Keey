@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "KeyBoardStepSequencer.h"
+#import "TimeViewPort.h"
 
 @interface PlaylistModel : NSObject
 
 - (void) HandlePatternPortInsert: (KeyBoardStepSequencer *) sender;
+- (void) setUpTimerWithDelay: (int) delay;
+
+@property NSMutableArray *queuedPatterns;
 
 @end

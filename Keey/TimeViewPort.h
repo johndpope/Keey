@@ -7,9 +7,12 @@
 //
 
 #import "InstrumentButton.h"
+#import "KeyBoardStepSequencer.h"
 
 @interface TimeViewPort : InstrumentButton
 
 - (void) displayTimeMarker;
+
+@property KeyBoardStepSequencer *keyBoardSequencer;
 
 @end

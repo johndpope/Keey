@@ -52,6 +52,7 @@
 @implementation KeyBoardStepSequencer
 
 @synthesize instrumentButton;
+@synthesize patternLenght;
 
 static NSString * const reuseIdentifier = @"Cell";
 
@@ -252,6 +253,8 @@ static NSString * const reuseIdentifier = @"Cell";
     UITextField *instumentTitleTextField = [[UITextField alloc] initWithFrame:CGRectMake(120, 20, 100, 40)];
     //[instumentTitleBtn setBackgroundColor: [UIColor colorWithRed:0.384 green:0.745 blue:0.671 alpha:1]];
     [instumentTitleTextField setBackgroundColor: [UIColor colorWithRed:0.141 green:0.184 blue:0.204 alpha:1]];
+    instumentTitleTextField.layer.borderColor = instrumentButton.backgroundColor.CGColor;
+    instumentTitleTextField.layer.borderWidth = 2;
     instumentTitleTextField.textAlignment = NSTextAlignmentCenter;
     instumentTitleTextField.textColor = [UIColor whiteColor];
     instumentTitleTextField.text = instrumentButton.titleLabel.text;

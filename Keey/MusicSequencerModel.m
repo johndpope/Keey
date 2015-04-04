@@ -544,9 +544,9 @@
 }
 
 - (void) resetMusicTracksFor: (MusicTrack)musicTrack {
-
-    MusicTrackClear(musicTrack, 0, 16);
-
+    
+        MusicTrackClear(musicTrack, 0, 16);
+    
 }
 
 - (void) clearAllMusicTracks {
@@ -603,7 +603,7 @@
     insdata.fileURL = (__bridge CFURLRef) bankURL;
     insdata.bankMSB  = kAUSampler_DefaultMelodicBankMSB;
     insdata.bankLSB  = kAUSampler_DefaultBankLSB;
-    insdata.presetID = (UInt8) 0;
+    insdata.presetID = (UInt8) presetNumber;
     insdata.instrumentType = kInstrumentType_DLSPreset; // DLS and SF2 are the same enum values
     
     // Load the instrument

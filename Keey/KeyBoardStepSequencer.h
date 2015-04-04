@@ -26,6 +26,7 @@
 @property KeyboardViewModel *keyboardViewModel;
 
 @property (nonatomic, weak) id <KeyBoardStepSequencerDelegate> delegate; //define MyClassDelegate as delegate
+@property int patternLenght;
 
 - (void) stopMusicPlayer;
 - (void) startMusicPlayer;

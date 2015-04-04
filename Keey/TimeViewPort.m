@@ -18,6 +18,16 @@
 }
 */
 
+- (instancetype) init {
+    self = [super init];
+    
+    if (self) {
+        _keyBoardSequencer = [[KeyBoardStepSequencer alloc] init];
+    }
+    
+    return self;
+}
+
 - (void) displayTimeMarker {
     
     UIView *marker = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, self.frame.size.height)];
@@ -30,9 +40,9 @@
     maskLayer.path=[UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:maskRect.size.height/2].CGPath; // Considering the ImageView is square in Shape
     marker.layer.mask = maskLayer;
     
-    [UIView animateWithDuration:2
+    [UIView animateWithDuration:4
                           delay:0
-                        options: UIViewAnimationCurveLinear | UIViewAnimationOptionRepeat
+                        options: UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                      animations:^{
                          CGRect oldFrame = marker.frame;
                          oldFrame.size.width = self.frame.size.width;
