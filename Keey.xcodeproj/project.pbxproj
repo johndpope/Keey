@@ -29,6 +29,7 @@
 		6D100E171AC86EEE00D60245 /* keeylogonew@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D100E151AC86EEE00D60245 /* keeylogonew@1x.png */; };
 		6D100E181AC86EEE00D60245 /* keeylogonew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D100E161AC86EEE00D60245 /* keeylogonew@2x.png */; };
 		6D11E4431AAD575600FFDEEF /* StabBrass_JJ.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E4421AAD575600FFDEEF /* StabBrass_JJ.sf2 */; };
+		6D1AB00F1AD1021500F58408 /* LongNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1AB00E1AD1021500F58408 /* LongNoteView.m */; };
 		6D1B17BF1ACE48B300482FC4 /* TLSpringFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B17BE1ACE48B300482FC4 /* TLSpringFlowLayout.m */; };
 		6D1B17C21ACE4BAB00482FC4 /* TimeViewPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B17C11ACE4BAB00482FC4 /* TimeViewPort.m */; };
 		6D2EC4CE1A97EC5900712D44 /* Clap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CA1A97EC5900712D44 /* Clap.wav */; };
@@ -41,6 +42,7 @@
 		6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E51A792F5F00A38A58 /* BodyContentView.m */; };
 		6D43548E1AB11FE9008BAE1C /* Audio - Sound Font - Sonic Implants Session Drums.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D43548D1AB11FE9008BAE1C /* Audio - Sound Font - Sonic Implants Session Drums.sf2 */; };
 		6D4354921AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6D4354911AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 */; };
+		6D4684321AD0DB2D007BA05E /* OctavePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4684311AD0DB2D007BA05E /* OctavePickerView.m */; };
 		6D618B4B1A94E87800CC3CDC /* InstrumentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D618B4A1A94E87800CC3CDC /* InstrumentButton.m */; };
 		6D618B4D1A954ADD00CC3CDC /* drumicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B4C1A954ADD00CC3CDC /* drumicon.png */; };
 		6D618B511A95507200CC3CDC /* guitaricon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D618B4E1A95507200CC3CDC /* guitaricon.png */; };
@@ -138,6 +140,8 @@
 		6D100E151AC86EEE00D60245 /* keeylogonew@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keeylogonew@1x.png"; sourceTree = "<group>"; };
 		6D100E161AC86EEE00D60245 /* keeylogonew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keeylogonew@2x.png"; sourceTree = "<group>"; };
 		6D11E4421AAD575600FFDEEF /* StabBrass_JJ.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = StabBrass_JJ.sf2; sourceTree = "<group>"; };
+		6D1AB00D1AD1021500F58408 /* LongNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongNoteView.h; sourceTree = "<group>"; };
+		6D1AB00E1AD1021500F58408 /* LongNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongNoteView.m; sourceTree = "<group>"; };
 		6D1B17BD1ACE48B300482FC4 /* TLSpringFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSpringFlowLayout.h; sourceTree = "<group>"; };
 		6D1B17BE1ACE48B300482FC4 /* TLSpringFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSpringFlowLayout.m; sourceTree = "<group>"; };
 		6D1B17C01ACE4BAB00482FC4 /* TimeViewPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeViewPort.h; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 		6D35A9E51A792F5F00A38A58 /* BodyContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyContentView.m; sourceTree = "<group>"; };
 		6D43548D1AB11FE9008BAE1C /* Audio - Sound Font - Sonic Implants Session Drums.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audio - Sound Font - Sonic Implants Session Drums.sf2"; sourceTree = "<group>"; };
 		6D4354911AB186F0008BAE1C /* KeeyDrumkitsoundfont.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = KeeyDrumkitsoundfont.sf2; sourceTree = "<group>"; };
+		6D4684301AD0DB2D007BA05E /* OctavePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OctavePickerView.h; sourceTree = "<group>"; };
+		6D4684311AD0DB2D007BA05E /* OctavePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OctavePickerView.m; sourceTree = "<group>"; };
 		6D618B491A94E87800CC3CDC /* InstrumentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentButton.h; sourceTree = "<group>"; };
 		6D618B4A1A94E87800CC3CDC /* InstrumentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentButton.m; sourceTree = "<group>"; };
 		6D618B4C1A954ADD00CC3CDC /* drumicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drumicon.png; sourceTree = "<group>"; };
@@ -342,6 +348,15 @@
 			name = sf2;
 			sourceTree = "<group>";
 		};
+		6D1AB00C1AD101EA00F58408 /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				6D1AB00D1AD1021500F58408 /* LongNoteView.h */,
+				6D1AB00E1AD1021500F58408 /* LongNoteView.m */,
+			);
+			name = Note;
+			sourceTree = "<group>";
+		};
 		6D1B17BB1ACE25A700482FC4 /* Playlist */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +412,15 @@
 				6D35A9E51A792F5F00A38A58 /* BodyContentView.m */,
 			);
 			name = Body;
+			sourceTree = "<group>";
+		};
+		6D46842F1AD0DAE0007BA05E /* NoteOctavePicker */ = {
+			isa = PBXGroup;
+			children = (
+				6D4684301AD0DB2D007BA05E /* OctavePickerView.h */,
+				6D4684311AD0DB2D007BA05E /* OctavePickerView.m */,
+			);
+			name = NoteOctavePicker;
 			sourceTree = "<group>";
 		};
 		6D618B541A95507400CC3CDC /* icons */ = {
@@ -636,6 +660,8 @@
 				6D9014E51A968F9C00B59B67 /* DrumStepSequencerViewController.m */,
 				6DC795FB1AB21D0D00D32CCC /* KeyBoardStepSequencer.h */,
 				6DC795FC1AB21D0D00D32CCC /* KeyBoardStepSequencer.m */,
+				6D1AB00C1AD101EA00F58408 /* Note */,
+				6D46842F1AD0DAE0007BA05E /* NoteOctavePicker */,
 			);
 			name = StepSequencer;
 			sourceTree = "<group>";
@@ -869,8 +895,10 @@
 				6DFC8F711ACD10AA00FB4A1B /* PlaylistCollectionViewController.m in Sources */,
 				6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */,
 				6DB10B021ABE3F6900024475 /* CustomModal.m in Sources */,
+				6D4684321AD0DB2D007BA05E /* OctavePickerView.m in Sources */,
 				6DDE0E0C1A78D08D0087053D /* MainViewController.m in Sources */,
 				6DE748531A98F5A90072B140 /* MarkerView.m in Sources */,
+				6D1AB00F1AD1021500F58408 /* LongNoteView.m in Sources */,
 				6DF42B101AAD35A3001E754B /* MusicSequencerModel.m in Sources */,
 				6D65E9941A8D00A200009CF3 /* Claps.m in Sources */,
 				6D618B4B1A94E87800CC3CDC /* InstrumentButton.m in Sources */,

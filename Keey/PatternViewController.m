@@ -148,6 +148,7 @@
 - (void) addInstrumentToPatternScrollView : (InstrumentButton *) sender {
     
     [_patternCollectionCTRL addPatternInstrument:sender];
+    [self hideDrawerController:_drawerViewController];
     
 }
 

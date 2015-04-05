@@ -32,7 +32,7 @@
     
 }
 
-- (void) updateStepAt : (int)index forInstrument :(enum DrumMood)drumMood {
+- (void) updateStepAt : (NSUInteger)index forInstrument :(enum DrumMood)drumMood {
     
     switch (drumMood) {
             
@@ -94,7 +94,7 @@
     NSLog(@"%@", kickSteps);
 }
 
-- (BOOL) shouldPlaySoundAt : (int)index forInstrument :(enum DrumMood)drumMood {
+- (BOOL) shouldPlaySoundAt : (NSUInteger)index forInstrument :(enum DrumMood)drumMood {
     
     switch (drumMood) {
             

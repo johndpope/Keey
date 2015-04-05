@@ -14,10 +14,10 @@
 #import "InstrumentalHeaderView.h"
 #import "MusicSequencerModel.h"
 #import "KeyboardViewModel.h"
-#import "MarkerView.h"
 #import "BeatBarHeaderView.h"
 #import "PianoRollConfig.h"
 #import "StepViewCell.h"
+#import "MarkerView.h"
 #import "StepState.h"
 #import <pop/POP.h>
 
@@ -32,8 +32,11 @@
     int currentHighlightedIndexPathLength;
     MarkerView *marker;
     CustomModal *customModalMenu;
+    OctavePickerView *noteOctavePickerView;
     BeatBarHeaderView *barheaderView;
     StepViewCell *customCell;
+    LongNoteView *longNoteView;
+    LongNoteView *currentHighlightednote;
     
     int numberofSections;
     
@@ -99,6 +102,13 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self setUpModalView];
     
+    noteOctavePickerView = [[OctavePickerView alloc] initWithFrame:self.view.frame];
+    [noteOctavePickerView setupView];
+    [noteOctavePickerView setupDashboard];
+    [noteOctavePickerView setOctavePickerDelegate:self];
+    [self.view addSubview:noteOctavePickerView];
+    noteOctavePickerView.hidden = YES;
+
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -269,6 +279,10 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
+- (void) handleMenuButtonClick {
+    [self displayModal:customModalMenu];
+}
+
 - (void) handleBarSwitch: (UIButton *)sender {
     
     switch (sender.tag) {
@@ -338,12 +352,12 @@ static NSString * const reuseIdentifier = @"Cell";
     }
 }
 
-- (void) handleMenuButtonClick {
-    
-    if ([customModalMenu isHidden]) {
+- (void) displayModal: (CustomModal *)sender {
+        
+    if ([sender isHidden]) {
                 
-        [customModalMenu setHidden:NO];
-        [customModalMenu.dashboardView setHidden:YES];
+        [sender setHidden:NO];
+        [sender.dashboardView setHidden:YES];
         
         POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewBackgroundColor];
         anim.fromValue = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
@@ -354,7 +368,7 @@ static NSString * const reuseIdentifier = @"Cell";
         anim.removedOnCompletion = YES;
         anim.completionBlock = ^(POPAnimation *anim, BOOL finished){
             
-            [customModalMenu.dashboardView setHidden:NO];
+            [sender.dashboardView setHidden:NO];
             
             POPSpringAnimation *animframe = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
             animframe.fromValue = [NSNumber numberWithFloat:[self window_height]];
@@ -364,11 +378,11 @@ static NSString * const reuseIdentifier = @"Cell";
             animframe.springBounciness = 10;
             animframe.removedOnCompletion = YES;
             
-            [customModalMenu.dashboardView.layer pop_addAnimation:animframe forKey:@"springAnimation"];
+            [sender.dashboardView.layer pop_addAnimation:animframe forKey:@"springAnimation"];
 
         };
         
-        [customModalMenu.background pop_addAnimation:anim forKey:@"springAnimation"];
+        [sender.background pop_addAnimation:anim forKey:@"springAnimation"];
 
 
         
@@ -381,13 +395,13 @@ static NSString * const reuseIdentifier = @"Cell";
         animframe.springBounciness = 0;
         animframe.removedOnCompletion = YES;
         
-        [customModalMenu.dashboardView.layer pop_addAnimation:animframe forKey:@"springAnimation"];
+        [sender.dashboardView.layer pop_addAnimation:animframe forKey:@"springAnimation"];
         
         animframe.completionBlock = ^(POPAnimation *animpop, BOOL finished){
 
         };
         
-        [customModalMenu.dashboardView setHidden:NO];
+        [sender.dashboardView setHidden:NO];
         
         POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewBackgroundColor];
         anim.toValue = [UIColor clearColor];
@@ -397,10 +411,10 @@ static NSString * const reuseIdentifier = @"Cell";
         
         anim.completionBlock = ^(POPAnimation *animpop, BOOL finished){
             
-            [customModalMenu setHidden:YES];
+            [sender setHidden:YES];
         };
         
-        [customModalMenu.background pop_addAnimation:anim forKey:@"springAnimation"];
+        [sender.background pop_addAnimation:anim forKey:@"springAnimation"];
     }
     
 }
@@ -416,8 +430,12 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
+- (void) HandleOctaveOverlayTap: (CustomModal *)sender {
+    [self displayModal:sender];
+}
+
 - (void) CustomModalHandleOverlayTap:(CustomModal *)sender {
-    [self handleMenuButtonClick];
+    [self displayModal:sender];
 }
 
 - (void) CustomModalHandleBarChange: (int) bars {
@@ -474,6 +492,34 @@ static NSString * const reuseIdentifier = @"Cell";
     [_keyboardViewModel handleSwitchPreset:presetNumber];
 }
 
+- (void) HandleNoteOctaveChange:(int)octaveIndex {
+    
+    switch (octaveIndex) {
+            
+        case 1:
+            [_keyboardViewModel updateNoteOctaveForNoteAt:[currentHighlightedIndexPath section] withOctave:OctaveTypeLow withKeyNote:[currentHighlightedIndexPath row]];
+            [currentHighlightednote setBackgroundColor:[UIColor colorWithRed:0.671 green:0.557 blue:0.467 alpha:1]];
+
+            break;
+        
+        case 2:
+            [_keyboardViewModel updateNoteOctaveForNoteAt:[currentHighlightedIndexPath section] withOctave:OctaveTypeMid withKeyNote:[currentHighlightedIndexPath row]];
+            [currentHighlightednote setBackgroundColor:[UIColor colorWithRed:0.831 green:0.69 blue:0.58 alpha:1]];
+
+
+            break;
+        
+        case 3:
+            [_keyboardViewModel updateNoteOctaveForNoteAt:[currentHighlightedIndexPath section] withOctave:OctaveTypeHigh withKeyNote:[currentHighlightedIndexPath row]];
+            [currentHighlightednote setBackgroundColor:[UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1]];
+
+            break;
+            
+        default:
+            break;
+    }
+}
+
 - (void) handleLongPress: (UIGestureRecognizer *)longPress {
 
     NSIndexPath *indexPath;
@@ -491,20 +537,49 @@ static NSString * const reuseIdentifier = @"Cell";
 
 }
 
+- (void) handleNoteTap: (UIGestureRecognizer *)sender {
+    
+    LongNoteView *longNote = (LongNoteView *)sender.view;
+    
+    [self bounceNote:longNote];
+    
+    currentHighlightedIndexPath = longNote.noteIndexPath;
+    currentHighlightednote = longNote;
+    
+    [self displayModal:noteOctavePickerView];
+    
+}
+
+- (void) bounceNote: (LongNoteView *)noteView {
+    
+    POPSpringAnimation *bounceAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    bounceAnim.fromValue = [NSValue valueWithCGSize:CGSizeMake(0.8, 0.8)];
+    bounceAnim.toValue = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
+    bounceAnim.springSpeed = 40;
+    bounceAnim.springBounciness = 10;
+    bounceAnim.removedOnCompletion = YES;
+    [noteView.layer pop_addAnimation:bounceAnim forKey:@"springAnimation"];
+}
+
 - (void) drawChord: (NSIndexPath *)indexPath {
     
     UICollectionViewCell *cell = [seqcollectionview cellForItemAtIndexPath:indexPath];
 
-    UIButton *chord = [[UIButton alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, 92, 34)];
-    chord.layer.cornerRadius = 17;
-    chord.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
+    longNoteView = [[LongNoteView alloc] init];
+    longNoteView.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, 92, 34);
+    longNoteView.layer.cornerRadius = 17;
+    longNoteView.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
+    [longNoteView setNoteIndexPath:indexPath];
     
-    [seqcollectionview addSubview:chord];
+    [seqcollectionview addSubview:longNoteView];
     
     UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:) ];
     [pan setDelegate:self];
     pan.maximumNumberOfTouches = pan.minimumNumberOfTouches = 1;
-    [chord addGestureRecognizer:pan];
+    [longNoteView addGestureRecognizer:pan];
+    
+    UITapGestureRecognizer * tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleNoteTap:) ];
+    [longNoteView addGestureRecognizer:tapGest];
     
     [self addStepToSequencer:indexPath withLength:2];
     
@@ -627,7 +702,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+-(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     NSUInteger oldLength = [textField.text length];
     NSUInteger replacementLength = [string length];
@@ -641,7 +716,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
+-(BOOL) textFieldShouldReturn:(UITextField *)textField {
     
     [instrumentButton setTitle:textField.text forState:UIControlStateNormal];
     [textField resignFirstResponder];

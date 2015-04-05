@@ -15,6 +15,7 @@
 - (void) CustomModalHandleBarChange: (int) bars;
 - (void) CustomModalHandleOctaveChange: (OctaveType) octave;
 - (void) CustomModalSwitchPreset: (NSUInteger) presetNumber;
+- (void) HandleNoteOctaveChange: (int)octaveIndex;
 
 @end //end protocol
 

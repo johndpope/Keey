@@ -13,5 +13,6 @@
 @property BOOL selected;
 @property int position;
 @property int length;
+@property int octave;
 
 @end

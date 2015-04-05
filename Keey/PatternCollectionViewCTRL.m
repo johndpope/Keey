@@ -53,12 +53,6 @@ static NSString * const reuseIdentifier = @"Cell";
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    // Do any additional setup after loading the view.
-    
-    //[self addPatternInstrument:drumins];
-    //[self addPatternInstrument:pianoins];
-    //[self addPatternInstrument:trumpetins];
-    //[self addPatternInstrument:guitarinns];
 
 }
 
@@ -83,6 +77,11 @@ static NSString * const reuseIdentifier = @"Cell";
 -(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     return CGSizeMake(190, 150);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    
+    return UIEdgeInsetsMake(0, self.view.frame.size.width/2-80, 0, self.view.frame.size.width/2-100);
 }
 
 - (void) addPatternInstrument:(InstrumentButton *) sender {

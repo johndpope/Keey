@@ -93,7 +93,7 @@
     [_selectedView addGestureRecognizer:pan];
     
     patternButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 135, 45)];
-    patternButton.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:16];
+    patternButton.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:18];
     patternButton.userInteractionEnabled = NO;
     [patternButton setAlpha:0.98];
     [patternButton setTitle:@"pattern" forState:UIControlStateNormal];
@@ -153,6 +153,8 @@
         
         [patternButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [playlistButton setTitleColor:[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] forState:UIControlStateNormal];
+        patternButton.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:18];
+        playlistButton.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:16];
         
     } else {
         
@@ -167,7 +169,9 @@
         
         [playlistButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [patternButton setTitleColor:[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] forState:UIControlStateNormal];
-        
+        patternButton.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:16];
+        playlistButton.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:18];
+
     }
     
 }

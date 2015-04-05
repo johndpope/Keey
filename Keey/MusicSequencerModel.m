@@ -75,7 +75,7 @@
         AUGraphStart(graph);
     }
     
-    [self setInstrumentPreset :@"KeeyDrumkitsoundfont" withPatch:0];
+    //[self setInstrumentPreset :@"KeeyDrumkitsoundfont" withPatch:0];
     
     MusicSequenceSetAUGraph(sequence, graph);
     MusicTrackSetDestNode(musicTrackForKeyB, samplerNode);
@@ -179,7 +179,7 @@
     
 }
 
-- (void) handleMidiEvent: (int) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType {
+- (void) handleMidiEvent: (NSUInteger) index withType: (MidiEventType) eventType forDrumInstrument: (NSString*)drumType {
     
     MusicTimeStamp timestamp = timeDiff*index;
     MIDINoteMessage notemessage;
@@ -430,6 +430,10 @@
                 nil];
 }
 
+- (void) setOctaveNoteAtPosition: (NSUInteger) stepPosition ofOctave:(int)octaveIndex forNote: (NSUInteger) noteKey {
+    
+}
+
 - (void) populateMusicTrack: (NSDictionary*)tracksDic {
     
     [self clearAllMusicTracks];
@@ -446,8 +450,9 @@
         notemessage.velocity = 90;
         notemessage.releaseVelocity = 0;
         notemessage.duration = timeDiff*step.length;
-        notemessage.note = (12 - (int)[key integerValue])+currentOctaveNumber;
-            
+        
+        //notemessage.note = (12 - (int)[key integerValue])+currentOctaveNumber;
+            notemessage.note = (12 - (int)[key integerValue]) + (12 * step.octave) - 1 ;
             if (step.length) {
                 
                 [self addStepToTrack:(int)[key integerValue] withTimeStamp:timeStamp noteMessage:notemessage];
@@ -602,7 +607,7 @@
     AUSamplerInstrumentData insdata;
     insdata.fileURL = (__bridge CFURLRef) bankURL;
     insdata.bankMSB  = kAUSampler_DefaultMelodicBankMSB;
-    insdata.bankLSB  = kAUSampler_DefaultBankLSB;
+    insdata.bankLSB  = (UInt8)0;
     insdata.presetID = (UInt8) presetNumber;
     insdata.instrumentType = kInstrumentType_DLSPreset; // DLS and SF2 are the same enum values
     

@@ -12,6 +12,9 @@
 #import "PianoRollConfig.h"
 #import "InstrumentButton.h"
 #import "KeyboardViewModel.h"
+#import "OctavePickerView.h"
+#import "LongNoteView.h"
+
 
 @class KeyBoardStepSequencer;             //define class, so protocol can see MyClass
 @protocol KeyBoardStepSequencerDelegate <NSObject>   //define delegate protocol
@@ -19,7 +22,7 @@
 
 @end //end protocol
 
-@interface KeyBoardStepSequencer : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, CustomModalViewDelegate, UITextFieldDelegate>
+@interface KeyBoardStepSequencer : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate,UITextFieldDelegate, CustomModalViewDelegate, OctavePickerViewDelegate>
 
 @property PianoRollConfig *config;
 @property InstrumentButton *instrumentButton;

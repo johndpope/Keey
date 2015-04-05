@@ -182,7 +182,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"%d", [indexPath row]);
     if([indexPath section] == 0){
 
         [_drumModel updateStepAt:[indexPath row] forInstrument:DrumMoodKick];

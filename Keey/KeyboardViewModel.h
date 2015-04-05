@@ -45,6 +45,8 @@ typedef enum MusicPlayerControlType : NSUInteger {
 
 - (void) updateStepSeqForPosition: (int) stepPosition withlength: (int)keyLength withKeyNote: (NSUInteger) keyNote;
 
+- (void) updateNoteOctaveForNoteAt: (NSUInteger) stepPosition withOctave: (OctaveType) octaveType withKeyNote: (NSUInteger) keyNote;
+
 //- (void) setLengthForStepAtPosition: (int) stepPosition withStepLength: (int) stepLength forNote: (NSUInteger) noteKey;
 
 - (BOOL) isStateSelectedAt :(int)noteNumber positionInPianoRoll:(int) position;

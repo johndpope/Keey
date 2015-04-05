@@ -90,7 +90,8 @@
     
     musicSeq = [[MusicSequencerModel alloc] init];
     [musicSeq setUpSequencer];
-    [musicSeq setInstrumentPreset:@"Keey-Guitarsoundfont" withPatch:0];
+    //[musicSeq setInstrumentPreset:@"Keey-Guitarsoundfont" withPatch:0];
+    [musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:1];
         
 }
 
@@ -104,6 +105,35 @@
     [musicSeq populateMusicTrack:_stepSeqStates];
     //[musicSeq addStepAtPosition:stepPosition withStepLength:keyLength withNoteKey:keyNote];
     
+}
+
+- (void) updateNoteOctaveForNoteAt: (NSUInteger) stepPosition withOctave: (OctaveType) octaveType withKeyNote: (NSUInteger) keyNote {
+    
+    NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInteger:keyNote]];
+    StepState *currentStepForNote = [rowAtNote objectAtIndex:stepPosition];
+    NSLog(@"current step octave is:%d desire is: %lu", currentStepForNote.octave, octaveType);
+
+    currentStepForNote.octave = octaveType;
+    
+    
+    switch (octaveType) {
+        case OctaveTypeHigh:
+            currentStepForNote.octave = 5;
+            break;
+            
+        case OctaveTypeMid:
+            currentStepForNote.octave = 4;
+            break;
+            
+        case OctaveTypeLow:
+            currentStepForNote.octave = 3;
+            break;
+            
+        default:
+            break;
+    }
+    
+    [musicSeq populateMusicTrack:_stepSeqStates];
 }
 
 - (BOOL) isStateSelectedAt: (int)noteNumber positionInPianoRoll:(int) position {
@@ -149,7 +179,7 @@
     switch (presetIndex) {
             
         case 1:
-            [musicSeq setInstrumentPreset:@"Keey-Guitarsoundfont" withPatch:0];
+            [musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:0];
             break;
             
         case 2:
@@ -172,7 +202,7 @@
     for (int i = 0; i<count; i++) {
         StepState *stepState = [[StepState alloc] init];
         stepState.position = i;
-        stepState.length = 0;
+        stepState.octave = 4;
         [steps addObject:stepState];
     }
     
@@ -184,7 +214,8 @@
         StepState *stepState = [[StepState alloc] init];
         stepState.length = 0;
         stepState.position = position;
-    
+        stepState.octave = 4;
+
     return stepState;
 }
 
