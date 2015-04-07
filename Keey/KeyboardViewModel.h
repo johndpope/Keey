@@ -37,9 +37,10 @@ typedef enum MusicPlayerControlType : NSUInteger {
 } MusicPlayerControlType;
 
 @property NSMutableDictionary *stepSeqStates;
+@property PianoRollConfig *config;
 
 
-- (void) setupKeys : (int) steps;
+- (void) setupKeys : (int) steps withInstrument:(InstrumentType)type;
 
 - (void) createStepStatesWithSections :(int) sectionCount withKeyNoteCount :(int)rowCount;
 
@@ -55,7 +56,7 @@ typedef enum MusicPlayerControlType : NSUInteger {
 
 - (void) handleOctaveChange: (OctaveType) octave;
 
-- (void) handleSwitchPreset: (NSUInteger) presetIndex;
+- (void) handleSwitchPreset: (NSInteger) presetIndex;
 
 - (void) handleMusicControl: (enum MusicPlayerControlType) playerControlType;
 

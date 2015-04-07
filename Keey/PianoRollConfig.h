@@ -18,7 +18,20 @@ typedef enum OctaveType : NSUInteger {
 
 } OctaveType;
 
+typedef enum InstrumentType : NSUInteger {
+    
+    InstrumentTypeDrums,
+    InstrumentTypePiano,
+    InstrumentTypeTrumpet,
+    InstrumentTypeGuitar,
+    InstrumentTypeFlute,
+    InstrumentTypeSynth,
+    InstrumentTypeVox
+    
+} InstrumentType;
+
 @property int currentMeasure;
 @property OctaveType currentOctave;
+@property (nonatomic, assign) InstrumentType instrumentType;
 
 @end

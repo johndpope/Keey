@@ -27,6 +27,7 @@
 		<string>Gotham-Rounded-Medium_21022.ttf</string>
 		<string>gothamrnd-book.ttf</string>
 		<string>gothamrnd-light.ttf</string>
+		<string>fontello.ttf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

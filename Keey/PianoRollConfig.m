@@ -12,5 +12,6 @@
 
 @synthesize currentOctave;
 @synthesize currentMeasure;
+@synthesize instrumentType;
 
 @end

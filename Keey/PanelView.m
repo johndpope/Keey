@@ -32,7 +32,7 @@
     _panelHeaderCloseBtn = [[UIButton alloc] initWithFrame:CGRectMake([self window_width]-60, 20, 20, 20)];
     btnImage = [UIImage imageNamed:@"closeicon.png"];
     [_panelHeaderCloseBtn setBackgroundImage:btnImage forState:UIControlStateNormal];
-    [_panelHeader addSubview:_panelHeaderCloseBtn];
+    //[_panelHeader addSubview:_panelHeaderCloseBtn];
 }
 
 - (void) displayContent: (NSArray *) instruments {

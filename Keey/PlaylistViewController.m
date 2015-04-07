@@ -66,7 +66,7 @@
     
 }
 
-- (void) HandleCollectionViewBodyTouch: (UILongPressGestureRecognizer *)sender {
+- (void) HandleCollectionViewBodyTouch {
     
     [self hideContentController:patternItemsCollectionCtrl];
     

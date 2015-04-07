@@ -13,7 +13,7 @@
 @class PlaylistCollectionViewController;
 @protocol PlaylistPatternPortViewDelegate <NSObject>
 
-- (void) HandleCollectionViewBodyTouch: (UILongPressGestureRecognizer *)sender;
+- (void) HandleCollectionViewBodyTouch;
 - (void) HandlePatternTouch: (InstrumentButton *) sender;
 
 @end

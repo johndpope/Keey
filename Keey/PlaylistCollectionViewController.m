@@ -141,12 +141,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void) backgroundDidTouch: (UILongPressGestureRecognizer *)sender {
     
-    [self.delegate HandleCollectionViewBodyTouch:sender];
+    [self.delegate HandleCollectionViewBodyTouch];
     
 }
 
 - (void) patternDidclick: (InstrumentButton *)sender {
     [self.delegate HandlePatternTouch:sender];
+    [self.delegate HandleCollectionViewBodyTouch];
 }
 
 #pragma mark <UICollectionViewDelegate>

@@ -30,6 +30,7 @@
 
 @property (nonatomic, weak) id <KeyBoardStepSequencerDelegate> delegate; //define MyClassDelegate as delegate
 @property int patternLenght;
+@property (nonatomic, assign) InstrumentType patternType;
 
 - (void) stopMusicPlayer;
 - (void) startMusicPlayer;

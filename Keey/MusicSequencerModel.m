@@ -17,20 +17,7 @@
     MusicSequence sequence;
     MusicEventIterator eventIterator;
     
-    MusicTrack musicTrackForKeyB;
-    MusicTrack musicTrackForASharp;
-    MusicTrack musicTrackForKeyA;
-    MusicTrack musicTrackForGSharp;
-    MusicTrack musicTrackForKeyG;
-    MusicTrack musicTrackForFSharp;
-    MusicTrack musicTrackForKeyF;
-    MusicTrack musicTrackForKeyE;
-    MusicTrack musicTrackForDSharp;
-    MusicTrack musicTrackForKeyD;
-    MusicTrack musicTrackForCSharp;
-    MusicTrack musicTrackForKeyC;
-    
-    MusicTrack exampleTrack;
+    MusicTrack patternMusicTrack;
     
     AUGraph graph;
     AudioUnit samplerUnit;
@@ -78,18 +65,7 @@
     //[self setInstrumentPreset :@"KeeyDrumkitsoundfont" withPatch:0];
     
     MusicSequenceSetAUGraph(sequence, graph);
-    MusicTrackSetDestNode(musicTrackForKeyB, samplerNode);
-    MusicTrackSetDestNode(musicTrackForASharp, samplerNode);
-    MusicTrackSetDestNode(musicTrackForKeyA, samplerNode);
-    MusicTrackSetDestNode(musicTrackForGSharp, samplerNode);
-    MusicTrackSetDestNode(musicTrackForKeyG, samplerNode);
-    MusicTrackSetDestNode(musicTrackForFSharp, samplerNode);
-    MusicTrackSetDestNode(musicTrackForKeyF, samplerNode);
-    MusicTrackSetDestNode(musicTrackForKeyE, samplerNode);
-    MusicTrackSetDestNode(musicTrackForDSharp, samplerNode);
-    MusicTrackSetDestNode(musicTrackForKeyD, samplerNode);
-    MusicTrackSetDestNode(musicTrackForCSharp, samplerNode);
-    MusicTrackSetDestNode(musicTrackForKeyC, samplerNode);
+    MusicTrackSetDestNode(patternMusicTrack, samplerNode);
     
     MusicPlayerSetSequence(_musicPlayer, sequence);
     MusicPlayerStart(_musicPlayer);
@@ -97,23 +73,8 @@
 }
 
 - (void) setupMusicTracks {
-
     
-    MusicSequenceNewTrack(sequence, &(musicTrackForKeyB));
-    MusicSequenceNewTrack(sequence, &(musicTrackForASharp));
-    MusicSequenceNewTrack(sequence, &(musicTrackForKeyA));
-    MusicSequenceNewTrack(sequence, &(musicTrackForGSharp));
-    MusicSequenceNewTrack(sequence, &(musicTrackForKeyG));
-    MusicSequenceNewTrack(sequence, &(musicTrackForFSharp));
-    MusicSequenceNewTrack(sequence, &(musicTrackForKeyF));
-    MusicSequenceNewTrack(sequence, &(musicTrackForKeyE));
-    MusicSequenceNewTrack(sequence, &(musicTrackForDSharp));
-    MusicSequenceNewTrack(sequence, &(musicTrackForKeyD));
-    MusicSequenceNewTrack(sequence, &(musicTrackForCSharp));
-    MusicSequenceNewTrack(sequence, &(musicTrackForKeyC));
-    
-    MusicSequenceNewTrack(sequence, &(exampleTrack));
-    
+    MusicSequenceNewTrack(sequence, &(patternMusicTrack));
     
     [self setLoopDuration:16];
     currentOctaveNumber = 59;
@@ -126,24 +87,12 @@
     
     MusicTrackLoopInfo loopInfo;
     
-    MusicTrackGetProperty(musicTrackForKeyB, kSequenceTrackProperty_TrackLength, &trackLen, &trackLenLen);
+    MusicTrackGetProperty(patternMusicTrack, kSequenceTrackProperty_TrackLength, &trackLen, &trackLenLen);
     loopInfo.loopDuration = timeDiff*duration;
     loopInfo.numberOfLoops = 0;
     
-    MusicTrackSetProperty(exampleTrack, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-
-    MusicTrackSetProperty(musicTrackForKeyB, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    MusicTrackSetProperty(musicTrackForASharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    MusicTrackSetProperty(musicTrackForKeyA, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    MusicTrackSetProperty(musicTrackForGSharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    MusicTrackSetProperty(musicTrackForKeyG, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    MusicTrackSetProperty(musicTrackForFSharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    MusicTrackSetProperty(musicTrackForKeyF, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    MusicTrackSetProperty(musicTrackForKeyE, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    MusicTrackSetProperty(musicTrackForDSharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    MusicTrackSetProperty(musicTrackForKeyD, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    MusicTrackSetProperty(musicTrackForCSharp, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
-    MusicTrackSetProperty(musicTrackForKeyC, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    MusicTrackSetProperty(patternMusicTrack, kSequenceTrackProperty_LoopInfo, &loopInfo, sizeof(loopInfo));
+    
 }
 
 - (void) setupAudioUnitGraph {
@@ -195,220 +144,18 @@
             
             notemessage.note = [[drumBank objectForKey:[drumType lowercaseString]] intValue];
             
-            MusicTrackNewMIDINoteEvent(exampleTrack, timestamp, &notemessage);
+            MusicTrackNewMIDINoteEvent(patternMusicTrack, timestamp, &notemessage);
 
             break;
             
         case MidiEventTypeClear:
             
-            MusicTrackClear(exampleTrack, timestamp, timestamp+timeDiff);
+            MusicTrackClear(patternMusicTrack, timestamp, timestamp+timeDiff);
             
         default:
             break;
     }
 
-}
-
-- (void) addStepAtPosition: (int) stepPosition withStepLength: (int)stepLength withNoteKey:(PianoRollKeyType) pianoRollKey {
-    
-    MusicTimeStamp timeStamp = timeDiff*stepPosition;
-    MIDINoteMessage notemessage;
-    
-    notemessage.channel = 0;
-    notemessage.velocity = 90;
-    notemessage.releaseVelocity = 0;
-    notemessage.duration = timeDiff*stepLength;
-    notemessage.note = (12 - pianoRollKey)+47;
-    
-    switch (pianoRollKey) {
-            
-        case PianoRollKeyTypeB:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyB, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeASharp:
-
-            MusicTrackNewMIDINoteEvent(musicTrackForASharp, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeA:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyA, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeGSharp:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForGSharp, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeG:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyG, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeFSharp:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForFSharp, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeF:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyF, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeE:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyE, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeDSharp:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForDSharp, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeD:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyD, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeCSharp:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForCSharp, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeC:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyC, timeStamp, &notemessage);
-            
-            break;
-            
-        default:
-            break;
-            
-    }
-    
-}
-
-- (void) setLengthForStepAtPosition: (int) stepPosition withStepLength: (int) stepLength forNote: (PianoRollKeyType) pianoRollKey {
-    
-    switch (pianoRollKey) {
-            
-        case PianoRollKeyTypeB:
-
-            NewMusicEventIterator(musicTrackForKeyB, &(eventIterator));
-            
-            break;
-            
-        case PianoRollKeyTypeASharp:
-            
-            [self resetMusicTracksFor:musicTrackForKeyB];
-            NewMusicEventIterator(musicTrackForASharp, &(eventIterator));
-
-            break;
-            
-        case PianoRollKeyTypeA:
-            
-            NewMusicEventIterator(musicTrackForKeyA, &(eventIterator));
-            
-            break;
-            
-        case PianoRollKeyTypeGSharp:
-            
-            NewMusicEventIterator(musicTrackForGSharp, &(eventIterator));
-            
-            break;
-            
-        case PianoRollKeyTypeG:
-            
-            NewMusicEventIterator(musicTrackForKeyG, &(eventIterator));
-            
-            break;
-            
-        case PianoRollKeyTypeFSharp:
-            
-            NewMusicEventIterator(musicTrackForFSharp, &(eventIterator));
-            
-            break;
-            
-        case PianoRollKeyTypeF:
-            
-            NewMusicEventIterator(musicTrackForKeyF, &(eventIterator));
-            
-            break;
-            
-        case PianoRollKeyTypeE:
-            
-            NewMusicEventIterator(musicTrackForKeyE, &(eventIterator));
-            
-            break;
-            
-        case PianoRollKeyTypeDSharp:
-            
-            NewMusicEventIterator(musicTrackForDSharp, &(eventIterator));
-            
-            break;
-            
-        case PianoRollKeyTypeD:
-            
-            NewMusicEventIterator(musicTrackForKeyD, &(eventIterator));
-            
-            break;
-            
-        case PianoRollKeyTypeCSharp:
-            
-            NewMusicEventIterator(musicTrackForCSharp, &(eventIterator));
-            
-            break;
-            
-        case PianoRollKeyTypeC:
-            
-            NewMusicEventIterator(musicTrackForKeyC, &(eventIterator));
-            
-            break;
-            
-        default:
-            
-            break;
-            
-    }
-    
-    MusicEventIteratorSeek(eventIterator, stepPosition*timeDiff);
-    if (stepLength) {
-        
-        MusicDeviceNoteParams params;
-        params.argCount = 2;
-        params.mPitch = (12 - pianoRollKey)+71;
-        params.mVelocity = 90;
-    
-        ExtendedNoteOnEvent notemessage;
-        notemessage.extendedParams = params;
-        notemessage.groupID = 0;
-        notemessage.instrumentID = 0;
-        notemessage.duration = stepLength * timeDiff;
-    
-        MusicEventIteratorSetEventInfo(eventIterator, kMusicEventType_ExtendedNote, &notemessage);
-        
-    } else {
-        
-         MusicEventIteratorDeleteEvent(eventIterator);
-        
-    }
-    
-    DisposeMusicEventIterator(eventIterator);
-
-    
 }
 
 - (void) setTracksOctave :(NSUInteger) octaveNumber {
@@ -450,13 +197,12 @@
         notemessage.velocity = 90;
         notemessage.releaseVelocity = 0;
         notemessage.duration = timeDiff*step.length;
-        
-        //notemessage.note = (12 - (int)[key integerValue])+currentOctaveNumber;
-            notemessage.note = (12 - (int)[key integerValue]) + (12 * step.octave) - 1 ;
+        notemessage.note = (12 - (int)[key integerValue]) + (12 * step.octave) - 1 ;
+            
             if (step.length) {
                 
-                [self addStepToTrack:(int)[key integerValue] withTimeStamp:timeStamp noteMessage:notemessage];
-                
+                //[self addStepToTrack:(int)[key integerValue] withTimeStamp:timeStamp noteMessage:notemessage];
+                MusicTrackNewMIDINoteEvent(patternMusicTrack, timeStamp, &notemessage);
             }
             
         }
@@ -466,86 +212,8 @@
 
 - (void) addStepToTrack: (PianoRollKeyType) pianoRollKeyType withTimeStamp: (MusicTimeStamp)timeStamp noteMessage:(MIDINoteMessage) notemessage {
     
-    switch (pianoRollKeyType) {
-            
-        case PianoRollKeyTypeB:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyB, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeASharp:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForASharp, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeA:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyA, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeGSharp:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForGSharp, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeG:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyG, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeFSharp:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForFSharp, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeF:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyF, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeE:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyE, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeDSharp:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForDSharp, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeD:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyD, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeCSharp:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForCSharp, timeStamp, &notemessage);
-            
-            break;
-            
-        case PianoRollKeyTypeC:
-            
-            MusicTrackNewMIDINoteEvent(musicTrackForKeyC, timeStamp, &notemessage);
-            
-            break;
-            
-        default:
-            break;
-            
-    }
+    MusicTrackNewMIDINoteEvent(patternMusicTrack, timeStamp, &notemessage);
 
-    
 }
 
 - (void) resetMusicTracksFor: (MusicTrack)musicTrack {
@@ -556,18 +224,7 @@
 
 - (void) clearAllMusicTracks {
     
-    [self resetMusicTracksFor:musicTrackForKeyA];
-    [self resetMusicTracksFor:musicTrackForKeyB];
-    [self resetMusicTracksFor:musicTrackForKeyC];
-    [self resetMusicTracksFor:musicTrackForKeyD];
-    [self resetMusicTracksFor:musicTrackForKeyE];
-    [self resetMusicTracksFor:musicTrackForKeyF];
-    [self resetMusicTracksFor:musicTrackForKeyG];
-    [self resetMusicTracksFor:musicTrackForASharp];
-    [self resetMusicTracksFor:musicTrackForCSharp];
-    [self resetMusicTracksFor:musicTrackForDSharp];
-    [self resetMusicTracksFor:musicTrackForFSharp];
-    [self resetMusicTracksFor:musicTrackForGSharp];
+    [self resetMusicTracksFor:patternMusicTrack];
     
 }
 
@@ -625,7 +282,5 @@
     
     return result;
 }
-
-
 
 @end

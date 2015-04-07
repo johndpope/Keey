@@ -86,24 +86,29 @@
     
 }
 
-- (void) setupKeys: (int) steps {
+- (void) setupKeys :(int) steps withInstrument:(InstrumentType)type {
+    
+    _config = [[PianoRollConfig alloc] init];
+    _config.currentOctave = OctaveTypeMid;
+    [_config setInstrumentType:type];
+    _config.currentMeasure = 1;
     
     musicSeq = [[MusicSequencerModel alloc] init];
     [musicSeq setUpSequencer];
     //[musicSeq setInstrumentPreset:@"Keey-Guitarsoundfont" withPatch:0];
-    [musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:1];
+    [musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:0];
+    
         
 }
 
 - (void) updateStepSeqForPosition: (int) stepPosition withlength: (int)keyLength withKeyNote: (NSUInteger) keyNote {
 
-    NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInt:keyNote]];
+    NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInteger:keyNote]];
     StepState *currentStepForNote = [rowAtNote objectAtIndex:stepPosition];
     
     currentStepForNote.length = keyLength;
     
     [musicSeq populateMusicTrack:_stepSeqStates];
-    //[musicSeq addStepAtPosition:stepPosition withStepLength:keyLength withNoteKey:keyNote];
     
 }
 
@@ -111,7 +116,7 @@
     
     NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInteger:keyNote]];
     StepState *currentStepForNote = [rowAtNote objectAtIndex:stepPosition];
-    NSLog(@"current step octave is:%d desire is: %lu", currentStepForNote.octave, octaveType);
+    //NSLog(@"current step octave is:%d desire is: %lu", currentStepForNote.octave, octaveType);
 
     currentStepForNote.octave = octaveType;
     
@@ -174,20 +179,21 @@
     
 }
 
-- (void) handleSwitchPreset:(NSUInteger)presetIndex {
-
+- (void) handleSwitchPreset:(NSInteger)presetIndex {
+    
     switch (presetIndex) {
             
         case 1:
-            [musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:0];
+            [self swapPresetForInstrument:_config.instrumentType withPreset:0];
             break;
             
         case 2:
-            [musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:0];
+            [self swapPresetForInstrument:_config.instrumentType withPreset:1];
+            
             break;
             
         case 3:
-            [musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:1];
+            [self swapPresetForInstrument:_config.instrumentType withPreset:2];
             break;
             
         default:
@@ -252,6 +258,43 @@
             break;
     }
     
+}
+
+- (void) swapPresetForInstrument: (InstrumentType)instrument withPreset:(NSInteger) presetNumber {
+    
+    switch (instrument) {
+            
+        case InstrumentTypeDrums:
+            //[musicSeq setInstrumentPreset:@"Keey-DrumsSoundFont" withPatch:presetNumber];
+            break;
+            
+        case InstrumentTypePiano:
+            //[musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:presetNumber];
+            break;
+            
+        case InstrumentTypeGuitar:
+            //[musicSeq setInstrumentPreset:@"Keey-GuitarSoundFont" withPatch:presetNumber];
+            break;
+            
+        case InstrumentTypeSynth:
+            [musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:presetNumber];
+            break;
+            
+        case InstrumentTypeFlute:
+            //[musicSeq setInstrumentPreset:@"Keey-FluteSoundFont" withPatch:presetNumber];
+            break;
+        
+        case InstrumentTypeTrumpet:
+            //[musicSeq setInstrumentPreset:@"Keey-BrassSoundFont" withPatch:presetNumber];
+            break;
+            
+        case InstrumentTypeVox:
+            //[musicSeq setInstrumentPreset:@"Keey-VoxSoundFont" withPatch:presetNumber];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

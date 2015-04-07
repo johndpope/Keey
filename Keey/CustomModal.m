@@ -7,7 +7,6 @@
 //
 
 #import "CustomModal.h"
-#import <pop/POP.h>
 
 @implementation CustomModal {
     UIButton *barOne;
@@ -165,7 +164,6 @@
 - (void) handleSampleChange: (id)sender {
     
     UIButton *sampleBtn = (UIButton *)sender;
-    
     [self.delegate CustomModalSwitchPreset:sampleBtn.tag];
     [self setActiveSampleButton:sender];
     

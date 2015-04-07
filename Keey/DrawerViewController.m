@@ -68,6 +68,7 @@
     anim.completionBlock = ^(POPAnimation *anim, BOOL finished){
         
     };
+    
     compBlock(YES);
     [_panelView.layer pop_addAnimation:anim forKey:@"springAnimation"];
     
@@ -94,7 +95,7 @@
                          animations:^{
                              
                              CGRect oldFrame = _panelView.frame;
-                             oldFrame.origin.y = currentPoint.y;
+                             oldFrame.origin.y = currentPoint.y-25;
                              _panelView.frame = oldFrame;
                              
                          }];

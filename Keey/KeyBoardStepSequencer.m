@@ -56,6 +56,7 @@
 
 @synthesize instrumentButton;
 @synthesize patternLenght;
+@synthesize patternType;
 
 static NSString * const reuseIdentifier = @"Cell";
 
@@ -70,10 +71,10 @@ static NSString * const reuseIdentifier = @"Cell";
     
     _keyboardViewModel = [[KeyboardViewModel alloc] init];
     [_keyboardViewModel createStepStatesWithSections:numberofSections withKeyNoteCount:12];
-    [_keyboardViewModel setupKeys:16];
-        
+    [_keyboardViewModel setupKeys:16 withInstrument:patternType];
+    [_keyboardViewModel.config setInstrumentType:patternType];
+
         isfirstTimeAppearing = true;
-        
         
         //CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayLinkHandler)];
         //[displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
@@ -91,10 +92,6 @@ static NSString * const reuseIdentifier = @"Cell";
     self.view.backgroundColor = [UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1];
     
     [self setUpNavBar];
-    
-    _config = [[PianoRollConfig alloc] init];
-    _config.currentOctave = OctaveTypeMid;
-    _config.currentMeasure = 1;
     
     numberofSections = 16;
     
@@ -440,14 +437,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void) CustomModalHandleBarChange: (int) bars {
     
-    
     if (bars == 2) {
-        
+
         // 32 beats 2bars
         numberofSections = 32;
         [_keyboardViewModel handleBarChangewithBars:2];
         [seqcollectionview reloadData];
-
+        
         [secondBarControlBtn sendActionsForControlEvents:UIControlEventTouchUpInside];
         currentBarIndicatorViwContainer.hidden = NO;
         
@@ -488,7 +484,8 @@ static NSString * const reuseIdentifier = @"Cell";
     }
 }
 
-- (void) CustomModalSwitchPreset: (NSUInteger) presetNumber {
+- (void) CustomModalSwitchPreset: (NSInteger) presetNumber {
+
     [_keyboardViewModel handleSwitchPreset:presetNumber];
 }
 
@@ -577,6 +574,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [pan setDelegate:self];
     pan.maximumNumberOfTouches = pan.minimumNumberOfTouches = 1;
     [longNoteView addGestureRecognizer:pan];
+    
+    [self pan:pan];
     
     UITapGestureRecognizer * tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleNoteTap:) ];
     [longNoteView addGestureRecognizer:tapGest];

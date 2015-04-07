@@ -36,6 +36,7 @@
 		6D2EC4CF1A97EC5900712D44 /* HiHat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CB1A97EC5900712D44 /* HiHat.wav */; };
 		6D2EC4D01A97EC5900712D44 /* Kick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CC1A97EC5900712D44 /* Kick.wav */; };
 		6D2EC4D11A97EC5900712D44 /* Snare.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D2EC4CD1A97EC5900712D44 /* Snare.wav */; };
+		6D2FC0E71AD38B0A008566FB /* fontello.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D2FC0E61AD38B0A008566FB /* fontello.ttf */; };
 		6D32B52A1ACE57D00091C407 /* PlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D32B5291ACE57D00091C407 /* PlaylistModel.m */; };
 		6D35A9DF1A791A5300A38A58 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9DE1A791A5300A38A58 /* HeaderView.m */; };
 		6D35A9E31A792BC800A38A58 /* BodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D35A9E21A792BC800A38A58 /* BodyView.m */; };
@@ -150,6 +151,7 @@
 		6D2EC4CB1A97EC5900712D44 /* HiHat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HiHat.wav; sourceTree = "<group>"; };
 		6D2EC4CC1A97EC5900712D44 /* Kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Kick.wav; sourceTree = "<group>"; };
 		6D2EC4CD1A97EC5900712D44 /* Snare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Snare.wav; sourceTree = "<group>"; };
+		6D2FC0E61AD38B0A008566FB /* fontello.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontello.ttf; sourceTree = "<group>"; };
 		6D32B5281ACE57D00091C407 /* PlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistModel.h; sourceTree = "<group>"; };
 		6D32B5291ACE57D00091C407 /* PlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistModel.m; sourceTree = "<group>"; };
 		6D35A9DD1A791A5300A38A58 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 		6D0A4F1A1AC3228400A2F6C2 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				6D2FC0E61AD38B0A008566FB /* fontello.ttf */,
 				6D0A4F1B1AC3244900A2F6C2 /* Gotham-Rounded-Medium_21022.ttf */,
 				6D0A4F1C1AC3244900A2F6C2 /* gothamrnd-book.ttf */,
 				6D0A4F1D1AC3244900A2F6C2 /* gothamrnd-light.ttf */,
@@ -394,6 +397,14 @@
 			name = wav;
 			sourceTree = "<group>";
 		};
+		6D2FC0E51AD32097008566FB /* Pattern */ = {
+			isa = PBXGroup;
+			children = (
+				6DA78C0F1A8BD51D002FC88D /* CollectionViewControllers */,
+			);
+			name = Pattern;
+			sourceTree = "<group>";
+		};
 		6D35A9DC1A791A3000A38A58 /* Header */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +485,7 @@
 		6DA78C081A8BC3E0002FC88D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6D2FC0E51AD32097008566FB /* Pattern */,
 				6D1B17BB1ACE25A700482FC4 /* Playlist */,
 				6D9014E31A968F5800B59B67 /* InstrumentCTRL */,
 				6DA78C091A8BC41B002FC88D /* PatternViewController.h */,
@@ -484,13 +496,13 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		6DA78C0F1A8BD51D002FC88D /* CollectionView */ = {
+		6DA78C0F1A8BD51D002FC88D /* CollectionViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				6DA78C171A8BDBE8002FC88D /* PatternCollectionViewCTRL.h */,
 				6DA78C181A8BDBE8002FC88D /* PatternCollectionViewCTRL.m */,
 			);
-			name = CollectionView;
+			name = CollectionViewControllers;
 			sourceTree = "<group>";
 		};
 		6DB10AFF1ABE3F2500024475 /* Custom Modal */ = {
@@ -623,7 +635,6 @@
 		6DE2C7881A7FA88000FBE9D5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6DA78C0F1A8BD51D002FC88D /* CollectionView */,
 				6D0A4EFA1AC2D47700A2F6C2 /* BarHeaderView */,
 				6DB10AFF1ABE3F2500024475 /* Custom Modal */,
 				6DE748501A98F56D0072B140 /* Markerview */,
@@ -809,6 +820,7 @@
 				6D0A4F181AC3228000A2F6C2 /* RockoFLF-Bold.ttf in Resources */,
 				6DF575481AC7395000CC6EB6 /* Keey-Guitarsoundfont.sf2 in Resources */,
 				6D0A4F1E1AC3244900A2F6C2 /* Gotham-Rounded-Medium_21022.ttf in Resources */,
+				6D2FC0E71AD38B0A008566FB /* fontello.ttf in Resources */,
 				6D2EC4CF1A97EC5900712D44 /* HiHat.wav in Resources */,
 				6D618B5A1A958C3E00CC3CDC /* synthicon.png in Resources */,
 				6D0A4F191AC3228000A2F6C2 /* RockoFLF.ttf in Resources */,
