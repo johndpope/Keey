@@ -88,6 +88,8 @@
 		6DF07C8B1ACF61870097A492 /* Keey-BassSoundFont.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 6DF07C8A1ACF61870097A492 /* Keey-BassSoundFont.sf2 */; };
 		6DF07C901ACF93AA0097A492 /* keeyLaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF07C8E1ACF93AA0097A492 /* keeyLaunchImage.png */; };
 		6DF07C911ACF93AA0097A492 /* keeyLaunchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF07C8F1ACF93AA0097A492 /* keeyLaunchImage@2x.png */; };
+		6DF42A7C1AD426B8003CF9C7 /* SCNavControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42A7B1AD426B8003CF9C7 /* SCNavControllerDelegate.m */; };
+		6DF42A801AD428A7003CF9C7 /* SCFadeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42A7F1AD428A7003CF9C7 /* SCFadeTransition.m */; };
 		6DF42B021AABF981001E754B /* DrumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42B011AABF981001E754B /* DrumViewModel.m */; };
 		6DF42B091AACDE6A001E754B /* buffkick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6DF42B081AACDE6A001E754B /* buffkick.wav */; };
 		6DF42B101AAD35A3001E754B /* MusicSequencerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42B0F1AAD35A3001E754B /* MusicSequencerModel.m */; };
@@ -231,6 +233,10 @@
 		6DF07C8A1ACF61870097A492 /* Keey-BassSoundFont.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Keey-BassSoundFont.sf2"; sourceTree = "<group>"; };
 		6DF07C8E1ACF93AA0097A492 /* keeyLaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keeyLaunchImage.png; sourceTree = "<group>"; };
 		6DF07C8F1ACF93AA0097A492 /* keeyLaunchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keeyLaunchImage@2x.png"; sourceTree = "<group>"; };
+		6DF42A7A1AD426B8003CF9C7 /* SCNavControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNavControllerDelegate.h; sourceTree = "<group>"; };
+		6DF42A7B1AD426B8003CF9C7 /* SCNavControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNavControllerDelegate.m; sourceTree = "<group>"; };
+		6DF42A7E1AD428A7003CF9C7 /* SCFadeTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCFadeTransition.h; sourceTree = "<group>"; };
+		6DF42A7F1AD428A7003CF9C7 /* SCFadeTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCFadeTransition.m; sourceTree = "<group>"; };
 		6DF42B001AABF981001E754B /* DrumViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumViewModel.h; sourceTree = "<group>"; };
 		6DF42B011AABF981001E754B /* DrumViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrumViewModel.m; sourceTree = "<group>"; };
 		6DF42B081AACDE6A001E754B /* buffkick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buffkick.wav; sourceTree = "<group>"; };
@@ -531,6 +537,7 @@
 		6DDE0DD81A78D0270087053D = {
 			isa = PBXGroup;
 			children = (
+				6DF42A791AD4268B003CF9C7 /* NavCtrlDelegate */,
 				6D1B17BC1ACE489000482FC4 /* TLSpringFlowLayout */,
 				6D0A4F211AC33D3900A2F6C2 /* CustomCell */,
 				6DE068361A7DA74600F3D04B /* AudioToolbox.framework */,
@@ -661,6 +668,18 @@
 				6D618B4A1A94E87800CC3CDC /* InstrumentButton.m */,
 			);
 			name = Buttons;
+			sourceTree = "<group>";
+		};
+		6DF42A791AD4268B003CF9C7 /* NavCtrlDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				6DF42A7A1AD426B8003CF9C7 /* SCNavControllerDelegate.h */,
+				6DF42A7B1AD426B8003CF9C7 /* SCNavControllerDelegate.m */,
+				6DF42A7E1AD428A7003CF9C7 /* SCFadeTransition.h */,
+				6DF42A7F1AD428A7003CF9C7 /* SCFadeTransition.m */,
+			);
+			name = NavCtrlDelegate;
+			path = Keey;
 			sourceTree = "<group>";
 		};
 		6DF42AFF1AABF954001E754B /* StepSequencer */ = {
@@ -895,6 +914,7 @@
 				6D1B17BF1ACE48B300482FC4 /* TLSpringFlowLayout.m in Sources */,
 				6D35A9E61A792F5F00A38A58 /* BodyContentView.m in Sources */,
 				6DDE0DEA1A78D0270087053D /* AppDelegate.m in Sources */,
+				6DF42A801AD428A7003CF9C7 /* SCFadeTransition.m in Sources */,
 				6D65E99A1A8D00EE00009CF3 /* HiHats.m in Sources */,
 				6D0A4EFD1AC2D4A300A2F6C2 /* BeatBarHeaderView.m in Sources */,
 				6D0A4F011AC2D69F00A2F6C2 /* PianoRollConfig.m in Sources */,
@@ -903,6 +923,7 @@
 				6D65E9A01A8D11FF00009CF3 /* Piano.m in Sources */,
 				6D0AEB641A8F117A00AFB84B /* DrawerViewController.m in Sources */,
 				6D32B52A1ACE57D00091C407 /* PlaylistModel.m in Sources */,
+				6DF42A7C1AD426B8003CF9C7 /* SCNavControllerDelegate.m in Sources */,
 				6DEEEEE91A80FE4E008CF16F /* BubbleButton.m in Sources */,
 				6DFC8F711ACD10AA00FB4A1B /* PlaylistCollectionViewController.m in Sources */,
 				6DE0682C1A7D97C700F3D04B /* Drums.m in Sources */,

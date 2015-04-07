@@ -7,17 +7,26 @@
 //
 
 #import "PatternCollectionViewCTRL.h"
+#import "SCNavControllerDelegate.h"
 
 
 @interface PatternCollectionViewCTRL ()
 
 @end
 
-@implementation PatternCollectionViewCTRL {
-    
-}
+@implementation PatternCollectionViewCTRL
 
 static NSString * const reuseIdentifier = @"Cell";
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if(self) {
+        _navDelegate = [SCNavControllerDelegate new];
+        self.delegate = _navDelegate;
+    }
+    return self;
+}
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -159,7 +168,11 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void) handleInstrumentClick: (InstrumentButton *)sender {
-    [self.navigationController presentViewController:[_currentPatterns objectAtIndex:[sender tag]] animated:YES completion:nil];
+    
+    UIViewController *viewCtrl = [[UIViewController alloc] init];
+    //viewCtrl.transitioningDelegate
+    [self.navigationController pushViewController:viewCtrl animated:YES];
+    //[self.navigationController presentViewController:viewCtrl animated:YES completion:nil];
 }
 
 - (void)HandleKeyBoardStepSequencerClose:(KeyBoardStepSequencer *)stepSequencerViewCtrl {

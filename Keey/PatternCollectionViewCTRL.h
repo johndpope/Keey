@@ -23,7 +23,11 @@
 
 @end
 
-@interface PatternCollectionViewCTRL : UICollectionViewController <KeyBoardStepSequencerDelegate>
+@interface PatternCollectionViewCTRL : UICollectionViewController <KeyBoardStepSequencerDelegate> {
+    
+        id<UINavigationControllerDelegate> _navDelegate;
+}
+
 
 @property NSMutableArray *currentPatterns;
 @property NSMutableArray *patternInstruments;
