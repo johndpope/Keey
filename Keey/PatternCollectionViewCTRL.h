@@ -15,7 +15,6 @@
 #import "KeyBoardStepSequencer.h"
 #import "PianoRollConfig.h"
 
-
 @class PatternCollectionViewCTRL;
 @protocol PatternCollectionViewCTRLDelegate <NSObject>
 
@@ -23,11 +22,7 @@
 
 @end
 
-@interface PatternCollectionViewCTRL : UICollectionViewController <KeyBoardStepSequencerDelegate> {
-    
-        id<UINavigationControllerDelegate> _navDelegate;
-}
-
+@interface PatternCollectionViewCTRL : UICollectionViewController <KeyBoardStepSequencerDelegate>
 
 @property NSMutableArray *currentPatterns;
 @property NSMutableArray *patternInstruments;

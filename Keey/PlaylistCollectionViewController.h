@@ -11,7 +11,7 @@
 
 
 @class PlaylistCollectionViewController;
-@protocol PlaylistPatternPortViewDelegate <NSObject>
+@protocol PlaylistPatternCollectionViewDelegate <NSObject>
 
 - (void) HandleCollectionViewBodyTouch;
 - (void) HandlePatternTouch: (InstrumentButton *) sender;
@@ -22,7 +22,7 @@
 
 @property NSMutableArray *patterns;
 
-@property (nonatomic, weak) id <PlaylistPatternPortViewDelegate> delegate; //define MyClassDelegate as delegate
+@property (nonatomic, weak) id <PlaylistPatternCollectionViewDelegate> delegate; //define MyClassDelegate as delegate
 
 
 @end

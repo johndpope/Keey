@@ -31,8 +31,9 @@
 @property (nonatomic, weak) id <KeyBoardStepSequencerDelegate> delegate; //define MyClassDelegate as delegate
 @property int patternLenght;
 @property (nonatomic, assign) InstrumentType patternType;
+@property BOOL doesExistInPortView;
+
 
 - (void) stopMusicPlayer;
 - (void) startMusicPlayer;
-
 @end

@@ -57,7 +57,7 @@
 
 }
 
-- (void) HandlePortHoldGesture: (UILongPressGestureRecognizer *)sender {
+- (void) HandlePortHoldGesture: (UIGestureRecognizer *)sender {
     
     [patternItemsCollectionCtrl setPatterns:allPatterns];
     [patternItemsCollectionCtrl.collectionView reloadData];
@@ -81,10 +81,13 @@
 
 - (void) displayTimeViewForPort: (InstrumentButton *) patternBtn {
 
+    KeyBoardStepSequencer *stepSequencer = (KeyBoardStepSequencer *)[allPatterns objectAtIndex:patternBtn.tag];
+    
     TimeViewPort *timeViewPort = [[TimeViewPort alloc] init];
+    timeViewPort.delegate = playlistModel;
     [timeViewPort ofType:patternBtn.instrumentType ofSize:SmallSize];
-    [timeViewPort setTitle:@"" forState:UIControlStateNormal];
-    [timeViewPort setKeyBoardSequencer:(KeyBoardStepSequencer *)[allPatterns objectAtIndex:patternBtn.tag]];
+    [timeViewPort setTitle:stepSequencer.instrumentButton.titleLabel.text forState:UIControlStateNormal];
+    [timeViewPort setKeyBoardSequencer:stepSequencer];
     [playlistModel.queuedPatterns addObject:timeViewPort];
     [currentPortView addSubview:timeViewPort];
     

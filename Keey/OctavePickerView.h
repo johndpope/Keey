@@ -14,6 +14,7 @@
 
 - (void) HandleNoteOctaveChange: (int)octaveIndex;
 - (void) HandleOctaveOverlayTap: (CustomModal *)sender;
+- (void) HandleNoteDeleteTouch;
 
 @end
 
@@ -21,6 +22,7 @@
 
 - (void) setupView;
 - (void) setupDashboard;
+- (void) selectOctaveIndex: (int) index;
 
 
 @property (nonatomic, weak) id <OctavePickerViewDelegate> octavePickerDelegate; //define MyClassDelegate as delegate

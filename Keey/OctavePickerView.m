@@ -83,6 +83,7 @@
     [octaveButtonContainer addSubview:octaveThree];
     
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 220, self.dashboardView.frame.size.width, 50)];
+    [deleteButton addTarget:self action:@selector(handleDeleteTouch) forControlEvents:UIControlEventTouchUpInside];
     deleteButton.titleLabel.font = [UIFont fontWithName:@"fontello" size:25];
     [deleteButton setTitle:@"\uE807" forState:UIControlStateNormal];
     [deleteButton setTitleColor:[UIColor colorWithRed:0.886 green:0.925 blue:0.937 alpha:1] forState:UIControlStateNormal];
@@ -94,6 +95,10 @@
 
     [self changeOctave:octaveIndex.tag];
 
+}
+
+- (void) handleDeleteTouch {
+    [self.octavePickerDelegate HandleNoteDeleteTouch];
 }
 
 - (void) changeOctave: (NSInteger)index {
@@ -121,29 +126,33 @@
         }
         
     }
-    NSLog(@"slected index is: %d", selectedMenuOption);
+    [self selectOctaveIndex:selectedMenuOption];
     
-    switch (selectedMenuOption) {
+}
+
+- (void) selectOctaveIndex: (int) index {
+    
+    switch (index) {
             
         case 1:
             [self updateMenu: (self.dashboardView.frame.size.width/1-50)];
-
+            
             break;
         case 2:
             [self updateMenu: (self.dashboardView.frame.size.width/2)];
-
+            
             break;
         case 3:
             [self updateMenu: (self.dashboardView.frame.size.width/6)];
-
+            
             break;
             
         default:
             break;
     }
-
-    [self changeOctave:selectedMenuOption];
-
+    
+    [self changeOctave:index];
+    
 }
 
 - (void) updateMenu: (float) positionX {

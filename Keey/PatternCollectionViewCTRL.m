@@ -6,27 +6,20 @@
 //  Copyright (c) 2015 SweetKeyNotes. All rights reserved.
 //
 
+#define SCREEN_WIDTH (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_HEIGHT (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
+
 #import "PatternCollectionViewCTRL.h"
-#import "SCNavControllerDelegate.h"
+#import "PopInTransition.h"
+#import "PopOutTransition.h"
 
-
-@interface PatternCollectionViewCTRL ()
+@interface PatternCollectionViewCTRL () <UIViewControllerTransitioningDelegate>
 
 @end
 
 @implementation PatternCollectionViewCTRL
 
 static NSString * const reuseIdentifier = @"Cell";
-
--(id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if(self) {
-        _navDelegate = [SCNavControllerDelegate new];
-        self.delegate = _navDelegate;
-    }
-    return self;
-}
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -101,8 +94,10 @@ static NSString * const reuseIdentifier = @"Cell";
             
         case InstrumentalTypeDrums:
             [instrument ofType:InstrumentalTypeDrums ofSize:BigSize];
-            _DrumPatternerCTRL = [[DrumPatternViewController alloc] init];
-            [_currentPatterns addObject:_DrumPatternerCTRL];
+            _keyboardStepSeqViewCTRL = [[KeyBoardStepSequencer alloc] init];
+            [_keyboardStepSeqViewCTRL setPatternType:InstrumentTypeDrums];
+            [_keyboardStepSeqViewCTRL setInstrumentButton:instrument];
+            [_currentPatterns addObject:_keyboardStepSeqViewCTRL];
             break;
             
         case InstrumentalTypePiano:
@@ -169,14 +164,38 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void) handleInstrumentClick: (InstrumentButton *)sender {
     
-    UIViewController *viewCtrl = [[UIViewController alloc] init];
-    //viewCtrl.transitioningDelegate
-    [self.navigationController pushViewController:viewCtrl animated:YES];
-    //[self.navigationController presentViewController:viewCtrl animated:YES completion:nil];
+        UIViewController *vc = [_currentPatterns objectAtIndex:[sender tag]];
+
+        vc.view.frame = CGRectMake(0, 0, [self window_width], [self window_height]);
+    
+        vc.modalPresentationStyle = UIModalPresentationCustom;
+        vc.transitioningDelegate = self;
+        [self presentViewController:vc animated:YES completion:nil];
+
 }
 
 - (void)HandleKeyBoardStepSequencerClose:(KeyBoardStepSequencer *)stepSequencerViewCtrl {
     [stepSequencerViewCtrl stopMusicPlayer];
+}
+
+#pragma mark - Transitioning Delegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return [PopInTransition new];
+}
+
+#pragma mark - Transitioning Delegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [PopOutTransition new];
+}
+
+- (CGFloat) window_height {
+    return SCREEN_HEIGHT;
+}
+
+- (CGFloat) window_width {
+    return SCREEN_WIDTH;
 }
 
 - (void)didReceiveMemoryWarning {

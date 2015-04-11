@@ -160,7 +160,6 @@
 
 - (void) setTracksOctave :(NSUInteger) octaveNumber {
     currentOctaveNumber = octaveNumber;
-    NSLog(@"%lu", (unsigned long)currentOctaveNumber);
 }
 
 - (void) setupIterator {
@@ -197,6 +196,7 @@
         notemessage.velocity = 90;
         notemessage.releaseVelocity = 0;
         notemessage.duration = timeDiff*step.length;
+        //notemessage.note = 50;
         notemessage.note = (12 - (int)[key integerValue]) + (12 * step.octave) - 1 ;
             
             if (step.length) {

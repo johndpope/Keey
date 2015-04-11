@@ -1,5 +1,5 @@
 //
-//  SCFadeTransition.h
+//  PopInTransition.h
 //  Keey
 //
 //  Created by Ipalibo Whyte on 07/04/2015.
@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface SCFadeTransition : NSObject <UIViewControllerAnimatedTransitioning>
+@interface PopInTransition : NSObject <UIViewControllerAnimatedTransitioning>
 
 @end

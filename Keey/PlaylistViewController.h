@@ -10,7 +10,7 @@
 #import "PlaylistCollectionViewController.h"
 #import "PlaylistPatternPortView.h"
 
-@interface PlaylistViewController : UIViewController <PlaylistPatternPortViewDelegate, PlaylistPatternPortViewDelegate>
+@interface PlaylistViewController : UIViewController <PlaylistPatternCollectionViewDelegate, PlaylistPatternPortViewDelegate>
 
 @property NSMutableArray *allPatterns;
 @property NSMutableArray *allPatternsController;

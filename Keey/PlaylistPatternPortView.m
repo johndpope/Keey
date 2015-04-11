@@ -57,7 +57,7 @@
     
 }
 
-- (void) handleHoldGest: (UILongPressGestureRecognizer *)sender {
+- (void) handleHoldGest: (UIGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
         [self.delegate HandlePortHoldGesture:sender];
     }

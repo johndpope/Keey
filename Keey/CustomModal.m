@@ -17,8 +17,8 @@
     UIButton *sampleThree;
 }
 
-- (void) setupView {
-    
+- (void) setupViewForInstrumentType: (InstrumentType)instrumentType {
+
     _background = [[UIView alloc] init];
     _background.frame = self.frame;
     //background.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
@@ -35,6 +35,9 @@
     _dashboardView.layer.cornerRadius = 10;
     [self addSubview:_dashboardView];
     
+    
+    if (!instrumentType == InstrumentTypeDrums) {
+
     /* Octave Slider */
     
     UILabel *octaveLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, _dashboardView.frame.size.width, 30)];
@@ -59,33 +62,6 @@
     [slider setMinimumTrackImage: sliderLeftTrackImage forState: UIControlStateNormal];
     [slider setMaximumTrackImage: sliderRightTrackImage forState: UIControlStateNormal];
     [_dashboardView addSubview:slider];
-    
-    /* Bars */
-    
-    UILabel *barsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 140, _dashboardView.frame.size.width, 30)];
-    barsLabel.textColor = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:1];
-    barsLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:20];
-    barsLabel.textAlignment = NSTextAlignmentCenter;
-    barsLabel.text = @"Bars";
-    [_dashboardView addSubview:barsLabel];
-    
-    barOne = [[UIButton alloc] initWithFrame:CGRectMake(_dashboardView.frame.size.width/2-55, 200, 50, 50)];
-    [barOne setTitleColor:[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] forState:UIControlStateNormal];
-    [barOne addTarget:self action:@selector(handleBarChange:) forControlEvents:UIControlEventTouchUpInside];
-    barOne.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:30];
-    barOne.layer.cornerRadius = 25;
-    [barOne setTitle:@"1" forState:UIControlStateNormal];
-    barOne.tag = 1;
-    [_dashboardView addSubview:barOne];
-    
-    barTwo = [[UIButton alloc] initWithFrame:CGRectMake(_dashboardView.frame.size.width/2+5, 200, 50, 50)];
-    [barTwo setTitleColor:[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] forState:UIControlStateNormal];
-    [barTwo addTarget:self action:@selector(handleBarChange:) forControlEvents:UIControlEventTouchUpInside];
-    barTwo.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:30];
-    barTwo.layer.cornerRadius = 25;
-    [barTwo setTitle:@"2" forState:UIControlStateNormal];
-    barTwo.tag = 2;
-    [_dashboardView addSubview:barTwo];
     
     
     UILabel *chooseSampleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 280, _dashboardView.frame.size.width, 30)];
@@ -116,11 +92,40 @@
     [sampleThree addTarget:self action:@selector(handleSampleChange:) forControlEvents:UIControlEventTouchUpInside];
     [sampleThree.layer setBorderColor:[[UIColor colorWithRed:0.459 green:0.894 blue:0.627 alpha:1] CGColor]];
     [sampleThree setBackgroundColor:[UIColor clearColor]];
-
+    
     sampleThree.layer.borderWidth = 3;
     sampleThree.layer.cornerRadius = 7.5;
     sampleThree.tag = 3;
     [_dashboardView addSubview:sampleThree];
+    
+}
+
+    /* Bars */
+    
+    UILabel *barsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 140, _dashboardView.frame.size.width, 30)];
+    barsLabel.textColor = [UIColor colorWithRed:0.333 green:0.467 blue:0.514 alpha:1];
+    barsLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:20];
+    barsLabel.textAlignment = NSTextAlignmentCenter;
+    barsLabel.text = @"Bars";
+    [_dashboardView addSubview:barsLabel];
+    
+    barOne = [[UIButton alloc] initWithFrame:CGRectMake(_dashboardView.frame.size.width/2-55, 200, 50, 50)];
+    [barOne setTitleColor:[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] forState:UIControlStateNormal];
+    [barOne addTarget:self action:@selector(handleBarChange:) forControlEvents:UIControlEventTouchUpInside];
+    barOne.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:30];
+    barOne.layer.cornerRadius = 25;
+    [barOne setTitle:@"1" forState:UIControlStateNormal];
+    barOne.tag = 1;
+    [_dashboardView addSubview:barOne];
+    
+    barTwo = [[UIButton alloc] initWithFrame:CGRectMake(_dashboardView.frame.size.width/2+5, 200, 50, 50)];
+    [barTwo setTitleColor:[UIColor colorWithRed:0.165 green:0.212 blue:0.231 alpha:1] forState:UIControlStateNormal];
+    [barTwo addTarget:self action:@selector(handleBarChange:) forControlEvents:UIControlEventTouchUpInside];
+    barTwo.titleLabel.font = [UIFont fontWithName:@"Gotham Rounded" size:30];
+    barTwo.layer.cornerRadius = 25;
+    [barTwo setTitle:@"2" forState:UIControlStateNormal];
+    barTwo.tag = 2;
+    [_dashboardView addSubview:barTwo];
     
     [barOne sendActionsForControlEvents: UIControlEventTouchUpInside];
 }
@@ -193,7 +198,6 @@
 }
 
 - (void) setActiveSampleButton: (UIButton *)sampleBtn {
-    
     
     [sampleOne setFrame:CGRectMake(_dashboardView.frame.size.width/2-90, 350, 15, 15)];
     [sampleOne setBackgroundColor:[UIColor clearColor]];

@@ -33,7 +33,8 @@ typedef enum KeyType : NSUInteger {
 
 typedef enum MusicPlayerControlType : NSUInteger {
     MusicPlayerControlTypeStop,
-    MusicPlayerControlTypeStart
+    MusicPlayerControlTypeStart,
+    MusicPlayerControlTypeMute
 } MusicPlayerControlType;
 
 @property NSMutableDictionary *stepSeqStates;
@@ -42,15 +43,17 @@ typedef enum MusicPlayerControlType : NSUInteger {
 
 - (void) setupKeys : (int) steps withInstrument:(InstrumentType)type;
 
+- (BOOL) isStateSelectedAt :(int)noteNumber positionInPianoRoll:(int) position;
+
+- (int)  getNoteLengthforNoteRowAt:(int) noteNumber withStepPosition:(NSUInteger) position;
+
+- (int) getOctaveOfStepInPosition: (int) noteNumber withStepPosition:(NSUInteger) position;
+
 - (void) createStepStatesWithSections :(int) sectionCount withKeyNoteCount :(int)rowCount;
 
 - (void) updateStepSeqForPosition: (int) stepPosition withlength: (int)keyLength withKeyNote: (NSUInteger) keyNote;
 
 - (void) updateNoteOctaveForNoteAt: (NSUInteger) stepPosition withOctave: (OctaveType) octaveType withKeyNote: (NSUInteger) keyNote;
-
-//- (void) setLengthForStepAtPosition: (int) stepPosition withStepLength: (int) stepLength forNote: (NSUInteger) noteKey;
-
-- (BOOL) isStateSelectedAt :(int)noteNumber positionInPianoRoll:(int) position;
 
 - (void) handleBarChangewithBars :(int)bars;
 
@@ -59,5 +62,6 @@ typedef enum MusicPlayerControlType : NSUInteger {
 - (void) handleSwitchPreset: (NSInteger) presetIndex;
 
 - (void) handleMusicControl: (enum MusicPlayerControlType) playerControlType;
+
 
 @end

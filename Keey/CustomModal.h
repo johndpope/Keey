@@ -22,7 +22,7 @@
 
 @interface CustomModal : UIView
 
-- (void) setupView;
+- (void) setupViewForInstrumentType: (InstrumentType)instrumentType;
 
 @property UIView *background;
 @property UIView *dashboardView;

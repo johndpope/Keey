@@ -11,7 +11,7 @@
 @class PlaylistPatternPortView;
 @protocol PlaylistPatternPortViewDelegate <NSObject>
 
-- (void) HandlePortHoldGesture: (UILongPressGestureRecognizer *)sender;
+- (void) HandlePortHoldGesture: (UIGestureRecognizer *)sender;
 
 @end
 

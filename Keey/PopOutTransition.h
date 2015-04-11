@@ -1,5 +1,5 @@
 //
-//  SCNavControllerDelegate.h
+//  PopOutTransition.h
 //  Keey
 //
 //  Created by Ipalibo Whyte on 07/04/2015.
@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SCFadeTransition.h"
+#import <UIKit/UIKit.h>
 
-@interface SCNavControllerDelegate : NSObject <UINavigationControllerDelegate>
+@interface PopOutTransition : NSObject
 
 @end

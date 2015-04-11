@@ -120,9 +120,10 @@ static NSString * const reuseIdentifier = @"Cell";
     
     //[cell.contentView addSubview:[_patterns objectAtIndex:[indexPath section]]];
     InstrumentButton *patternInstrument = [[InstrumentButton alloc] init];
-        
-    [patternInstrument ofType:[[(KeyBoardStepSequencer *)[patterns objectAtIndex:[indexPath row]] instrumentButton] instrumentType] ofSize:SmallSize];
-    [patternInstrument setTitle:[[[(KeyBoardStepSequencer *)[patterns objectAtIndex:[indexPath row]] instrumentButton] titleLabel] text] forState:UIControlStateNormal];
+    KeyBoardStepSequencer *stepSequencer = (KeyBoardStepSequencer *)[patterns objectAtIndex:[indexPath row]];
+
+    [patternInstrument ofType:[[stepSequencer instrumentButton] instrumentType] ofSize:SmallSize];
+    [patternInstrument setTitle:[[[stepSequencer instrumentButton] titleLabel] text] forState:UIControlStateNormal];
     [patternInstrument addTarget:self action:@selector(patternDidclick:) forControlEvents:UIControlEventTouchUpInside];
     patternInstrument.tag = [indexPath row];
     [cell.contentView addSubview:patternInstrument];
@@ -134,9 +135,21 @@ static NSString * const reuseIdentifier = @"Cell";
     animation.springBounciness = 10;
     animation.removedOnCompletion = YES;
 
+    patternInstrument.tag = [indexPath row];
+    
     [cell.layer pop_addAnimation:animation forKey:@"springAnimation"];
+
+    if (stepSequencer.doesExistInPortView){
+        cell.alpha = 0.5;
+        [patternInstrument removeTarget:self action:@selector(patternDidclick:) forControlEvents:UIControlEventTouchUpInside];
+
+    }
     
     return cell;
+    
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void) backgroundDidTouch: (UILongPressGestureRecognizer *)sender {
@@ -146,6 +159,10 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void) patternDidclick: (InstrumentButton *)sender {
+    
+    KeyBoardStepSequencer *stepSequencer = (KeyBoardStepSequencer *)[patterns objectAtIndex:[sender tag]];
+    stepSequencer.doesExistInPortView = YES;
+    
     [self.delegate HandlePatternTouch:sender];
     [self.delegate HandleCollectionViewBodyTouch];
 }

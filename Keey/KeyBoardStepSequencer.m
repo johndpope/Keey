@@ -47,7 +47,7 @@
     
     BOOL isfirstTimeAppearing;
     BOOL wasIntersected;
-
+    
 }
 
 @end
@@ -73,6 +73,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [_keyboardViewModel createStepStatesWithSections:numberofSections withKeyNoteCount:12];
     [_keyboardViewModel setupKeys:16 withInstrument:patternType];
     [_keyboardViewModel.config setInstrumentType:patternType];
+    
+    [_keyboardViewModel handleSwitchPreset:1];
 
         isfirstTimeAppearing = true;
         
@@ -105,7 +107,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [noteOctavePickerView setOctavePickerDelegate:self];
     [self.view addSubview:noteOctavePickerView];
     noteOctavePickerView.hidden = YES;
-
+    
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -143,8 +145,10 @@ static NSString * const reuseIdentifier = @"Cell";
     
     if ([_keyboardViewModel isStateSelectedAt:[indexPath row] positionInPianoRoll:[indexPath section]]) {
         
-        cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
-        cell.layer.borderColor = [[UIColor clearColor] CGColor];
+        if ([_keyboardViewModel getNoteLengthforNoteRowAt:[indexPath row] withStepPosition:[indexPath section]] == 1) {
+            cell.backgroundColor = [UIColor colorWithRed:1 green:0.855 blue:0.741 alpha:1];
+            cell.layer.borderColor = [[UIColor clearColor] CGColor];
+        }
         
     }
     
@@ -203,8 +207,15 @@ static NSString * const reuseIdentifier = @"Cell";
     [sequencerContainerView addSubview:seqcollectionview];
     
     keyboardView = [[InstrumentalHeaderView alloc] initWithFrame:CGRectMake(0, 0, 100, sequencerContainerView.frame.size.height)];
+    
+    if (patternType == InstrumentTypeDrums) {
+        
+        [keyboardView setUpHeaders:16 withType:HeaderTypeDetailed];
+    } else {
+        [keyboardView setUpHeaders:16 withType:HeaderTypeKeyboard];
+    }
+    
     [keyboardView setTotalNotes:12];
-    [keyboardView setUpHeaders:16 withType:HeaderTypeKeyboard];
     [sequencerContainerView addSubview:keyboardView];
     
     barheaderView = [[BeatBarHeaderView alloc] init];
@@ -419,7 +430,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void) setUpModalView {
     
     customModalMenu = [[CustomModal alloc] initWithFrame:CGRectMake(0, 0, [self window_width], [self window_height])];
-    [customModalMenu setupView];
+    [customModalMenu setupViewForInstrumentType:patternType];
     [customModalMenu setHidden:YES];
     [self.view addSubview:customModalMenu];
     
@@ -517,6 +528,12 @@ static NSString * const reuseIdentifier = @"Cell";
     }
 }
 
+- (void) HandleNoteDeleteTouch {
+    NSLog(@"hello");
+    [self addStepToSequencer:[currentHighlightednote noteIndexPath] withLength:0];
+    [currentHighlightednote removeFromSuperview];
+}
+
 - (void) handleLongPress: (UIGestureRecognizer *)longPress {
 
     NSIndexPath *indexPath;
@@ -543,6 +560,9 @@ static NSString * const reuseIdentifier = @"Cell";
     currentHighlightedIndexPath = longNote.noteIndexPath;
     currentHighlightednote = longNote;
     
+    [noteOctavePickerView selectOctaveIndex:[_keyboardViewModel getOctaveOfStepInPosition:[currentHighlightedIndexPath row] withStepPosition:[currentHighlightedIndexPath section]]];
+    
+    NSLog(@"octave at this point is: %d", [_keyboardViewModel getOctaveOfStepInPosition:[currentHighlightedIndexPath row] withStepPosition:[currentHighlightedIndexPath section]]);
     [self displayModal:noteOctavePickerView];
     
 }

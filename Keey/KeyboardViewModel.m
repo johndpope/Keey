@@ -96,13 +96,11 @@
     musicSeq = [[MusicSequencerModel alloc] init];
     [musicSeq setUpSequencer];
     //[musicSeq setInstrumentPreset:@"Keey-Guitarsoundfont" withPatch:0];
-    [musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:0];
+    //[musicSeq setInstrumentPreset:@"Keey DrumSoundFont-2" withPatch:0];
     
-        
 }
 
 - (void) updateStepSeqForPosition: (int) stepPosition withlength: (int)keyLength withKeyNote: (NSUInteger) keyNote {
-
     NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInteger:keyNote]];
     StepState *currentStepForNote = [rowAtNote objectAtIndex:stepPosition];
     
@@ -199,6 +197,7 @@
         default:
             break;
     }
+    
 }
 
 - (NSMutableArray*) generateSteps: (int)count {
@@ -237,7 +236,7 @@
     return stateSteps;
 }
 
-- (void)handleMusicControl:(enum MusicPlayerControlType) playerControlType {
+- (void) handleMusicControl:(enum MusicPlayerControlType) playerControlType {
     
     switch (playerControlType) {
             
@@ -253,6 +252,10 @@
             MusicPlayerStart([musicSeq musicPlayer]);
             
             break;
+        
+        case MusicPlayerControlTypeMute:
+            
+            break;
             
         default:
             break;
@@ -261,15 +264,16 @@
 }
 
 - (void) swapPresetForInstrument: (InstrumentType)instrument withPreset:(NSInteger) presetNumber {
-    
+
     switch (instrument) {
             
         case InstrumentTypeDrums:
-            //[musicSeq setInstrumentPreset:@"Keey-DrumsSoundFont" withPatch:presetNumber];
+            [musicSeq setInstrumentPreset:@"Keey DrumSoundFont-2" withPatch:presetNumber];
             break;
             
         case InstrumentTypePiano:
-            //[musicSeq setInstrumentPreset:@"Keey-BassSoundFont" withPatch:presetNumber];
+            [musicSeq setInstrumentPreset:@"Keey-Stringsoundfont" withPatch:presetNumber];
+            
             break;
             
         case InstrumentTypeGuitar:
@@ -296,5 +300,23 @@
             break;
     }
 }
+
+- (int)  getNoteLengthforNoteRowAt:(int) noteNumber withStepPosition:(NSUInteger) position {
+
+    NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInteger:noteNumber]];
+    StepState *currentStepForNote = [rowAtNote objectAtIndex:position];
+    return currentStepForNote.length;
+    
+}
+
+- (int) getOctaveOfStepInPosition: (int) noteNumber withStepPosition:(NSUInteger) position {
+    
+    NSMutableArray *rowAtNote = [_stepSeqStates objectForKey:[NSNumber numberWithInteger:noteNumber]];
+    StepState *currentStepForNote = [rowAtNote objectAtIndex:position];
+    return currentStepForNote.octave;
+    
+}
+
+
 
 @end
