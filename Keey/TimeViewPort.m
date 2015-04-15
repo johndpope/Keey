@@ -11,6 +11,7 @@
 
 @implementation TimeViewPort {
     UITapGestureRecognizer *tapGest;
+    UITapGestureRecognizer *doubleTapGest;
     UIView *marker;
 }
 
@@ -28,7 +29,14 @@
     if (self) {
         //_keyBoardSequencer = [[KeyBoardStepSequencer alloc] init];
         tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGest:)];
+        tapGest.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tapGest];
+        
+        doubleTapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTapGest:)];
+        doubleTapGest.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:doubleTapGest];
+        
+        [tapGest requireGestureRecognizerToFail:doubleTapGest];
     }
     
     return self;
@@ -61,6 +69,10 @@
 - (void) handleTapGest: (UIGestureRecognizer *)sender {
     [self.delegate HandleTimeViewPortTouch:self];
     
+}
+
+- (void) handleDoubleTapGest: (UIGestureRecognizer *)sender {
+    [self.delegate HandleTimeViewPortDoubleTouch:self];
 }
 
 - (void) updateTimeViewStyle {

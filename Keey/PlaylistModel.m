@@ -33,12 +33,10 @@ MVC BEST PRACTICES */
         
         if (!portView.isPlaying) {
             
-            NSLog(@"Should Start");
             [portView.keyBoardSequencer startMusicPlayer];
             
         } else {
             
-            NSLog(@"Should Stop");
             [portView.keyBoardSequencer stopMusicPlayer];
 
         }
@@ -49,9 +47,8 @@ MVC BEST PRACTICES */
     
 }
 
-- (void) HandleTimeViewPortTouch: (TimeViewPort *)timeView {
+- (void) addToPlayingQueue: (TimeViewPort *)timeView {
     
-    NSLog(@"Time view info is %@ ", timeView.titleLabel.text);
     [_queuedPatterns addObject:timeView];
     
 }

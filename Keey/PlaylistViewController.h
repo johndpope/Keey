@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PlaylistCollectionViewController.h"
 #import "PlaylistPatternPortView.h"
+#import "TimeViewPort.h"
 
-@interface PlaylistViewController : UIViewController <PlaylistPatternCollectionViewDelegate, PlaylistPatternPortViewDelegate>
+@interface PlaylistViewController : UIViewController <PlaylistPatternCollectionViewDelegate, PlaylistPatternPortViewDelegate, TimeViewPortDelegate>
 
 @property NSMutableArray *allPatterns;
 @property NSMutableArray *allPatternsController;

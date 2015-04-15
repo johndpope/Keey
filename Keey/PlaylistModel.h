@@ -10,10 +10,11 @@
 #import "KeyBoardStepSequencer.h"
 #import "TimeViewPort.h"
 
-@interface PlaylistModel : NSObject <TimeViewPortDelegate>
+@interface PlaylistModel : NSObject
 
 - (void) HandlePatternPortInsert: (KeyBoardStepSequencer *) sender;
 - (void) setUpTimerWithDelay: (int) delay;
+- (void) addToPlayingQueue: (TimeViewPort *)timeView ;
 
 @property NSMutableArray *queuedPatterns;
 

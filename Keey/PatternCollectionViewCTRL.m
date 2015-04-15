@@ -166,10 +166,10 @@ static NSString * const reuseIdentifier = @"Cell";
     
         UIViewController *vc = [_currentPatterns objectAtIndex:[sender tag]];
 
-        vc.view.frame = CGRectMake(0, 0, [self window_width], [self window_height]);
+        //vc.view.frame = CGRectMake(0, 0, [self window_width], [self window_height]);
     
-        vc.modalPresentationStyle = UIModalPresentationCustom;
-        vc.transitioningDelegate = self;
+        //vc.modalPresentationStyle = UIModalPresentationCustom;
+        //vc.transitioningDelegate = self;
         [self presentViewController:vc animated:YES completion:nil];
 
 }

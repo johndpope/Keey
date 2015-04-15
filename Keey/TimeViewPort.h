@@ -13,6 +13,7 @@
 @protocol TimeViewPortDelegate <NSObject>
 
 - (void) HandleTimeViewPortTouch: (TimeViewPort *)timeView;
+- (void) HandleTimeViewPortDoubleTouch: (TimeViewPort *)timeView;
 
 @end
 @interface TimeViewPort : InstrumentButton

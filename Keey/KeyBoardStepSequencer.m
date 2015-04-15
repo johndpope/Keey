@@ -62,12 +62,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    if (!isfirstTimeAppearing) {
-        
+    
     marker = [[MarkerView alloc] initWithFrame:CGRectMake(0, 0, 1, seqcollectionview.frame.size.height)];
     [marker displayMarkerLine];
     [seqcollectionview addSubview:marker];
     [marker startAnimation:2 toDestination:seqcollectionview.frame.size.width];
+    
+    if (!isfirstTimeAppearing) {
     
     _keyboardViewModel = [[KeyboardViewModel alloc] init];
     [_keyboardViewModel createStepStatesWithSections:numberofSections withKeyNoteCount:12];
@@ -242,6 +243,14 @@ static NSString * const reuseIdentifier = @"Cell";
     UIButton *octaveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     octaveButton.backgroundColor = [UIColor colorWithRed:0.141 green:0.184 blue:0.204 alpha:1];
     [octaveButton addTarget:self action:@selector(handleMenuButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *stopButton = [[UIButton alloc] initWithFrame:CGRectMake(custNavBar.frame.size.width-130, 25, 30, 30)];
+    stopButton.backgroundColor = [UIColor colorWithRed:0.141 green:0.184 blue:0.204 alpha:1];
+    [stopButton addTarget:self action:@selector(handleStopButtonTouch:) forControlEvents:UIControlEventTouchUpInside];
+    stopButton.backgroundColor = [UIColor whiteColor];
+    stopButton.layer.cornerRadius = 3;
+    [custNavBar addSubview:stopButton];
+
     //[octaveButton setBackgroundImage:[UIImage imageNamed:@"octave.png"] forState:UIControlStateNormal];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 20, 35, 35)];
@@ -567,6 +576,15 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
+- (void) handleStopButtonTouch: (UIButton *)sender {
+    [self stopMusicPlayer];
+    [self removeMarkerView];
+}
+
+- (void) removeMarkerView {
+    [marker removeFromSuperview];
+}
+
 - (void) bounceNote: (LongNoteView *)noteView {
     
     POPSpringAnimation *bounceAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
@@ -670,6 +688,7 @@ static NSString * const reuseIdentifier = @"Cell";
     //[seqcollectionview scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:30] atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
     [self.delegate HandleKeyBoardStepSequencerClose:self];
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self removeMarkerView];
 }
 
 - (CGFloat) window_height {
